@@ -1,6 +1,18 @@
 # AI Agents: Zero to Hero
 
-A comprehensive course on building AI agents from foundations to production.
+A comprehensive, hands-on course that takes you from understanding basic agent concepts to building production-ready autonomous systems. Learn to create intelligent agents that can reason, use tools, collaborate, and solve complex real-world problems.
+
+**What You'll Learn:**
+- Build agents using ReAct patterns, planning algorithms, and memory systems
+- Integrate tools for code execution, data access, and web interaction
+- Implement production-grade reliability, testing, and monitoring
+- Create specialized agents for coding, research, and automation
+- Master advanced topics like multimodal processing and agent learning
+- Deploy enterprise-scale systems with proper security and cost optimization
+- Explore cutting-edge research in self-improvement and multi-agent collaboration
+- Complete a capstone project building an Autonomous Software Engineering Agent
+
+**21,000+ lines of detailed content** with complete working code examples, architectural patterns, and best practices from foundations to frontier research.
 
 ## 📚 View the Book
 
