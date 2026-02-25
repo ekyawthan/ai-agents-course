@@ -175,3 +175,16 @@ blockquote:has(strong:first-child) {
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
+
+/* Logo styling */
+.sidebar .sidebar-logo {
+    text-align: center;
+    padding: 1.5em 0;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 1em;
+}
+
+.sidebar .sidebar-logo img {
+    max-width: 120px;
+    height: auto;
+}
