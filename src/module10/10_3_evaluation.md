@@ -927,4 +927,4 @@ Throughout this course, you've mastered:
 4. **Build more**: Create specialized agents
 5. **Teach**: Share your knowledge
 
-Thank you for completing the AI Agents: Zero to Hero course!
+Thank you for completing the Agentic Guide to AI Agents course!

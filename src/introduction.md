@@ -1,4 +1,4 @@
-# AI Agents: Zero to Hero
+# Agentic Guide to AI Agents
 
 Welcome to the complete course on building AI agents from the ground up.
 
