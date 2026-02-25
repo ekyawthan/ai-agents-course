@@ -29,10 +29,10 @@ From foundations to frontier research, this course covers the full spectrum of a
 
 The course follows a carefully designed progression:
 
-**Foundations (Modules 1-2)**: Core concepts and first agent
-**Intermediate (Modules 3-5)**: Advanced patterns and production readiness  
-**Advanced (Modules 6-8)**: Specialized agents and enterprise scale
-**Expert (Modules 9-10)**: Research frontiers and capstone project
+**Foundations (Chapters 1-2)**: Core concepts and first agent
+**Intermediate (Chapters 3-5)**: Advanced patterns and production readiness  
+**Advanced (Chapters 6-8)**: Specialized agents and enterprise scale
+**Expert (Chapters 9-10)**: Research frontiers and capstone project
 
 ## Acknowledgments
 
@@ -47,7 +47,7 @@ This course builds on the incredible work of the AI research community. Special 
 
 **v1.0** (February 2026)
 - Initial release
-- 10 complete modules
+- 10 complete chapters
 - Autonomous Software Engineering Agent capstone
 - 21,000+ lines of content
 

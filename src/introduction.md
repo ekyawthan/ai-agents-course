@@ -25,9 +25,9 @@ This comprehensive course takes you from foundational concepts to cutting-edge i
 
 ## Learning Path
 
-- **Beginner**: Modules 1-2 (2-3 weeks)
-- **Intermediate**: Modules 3-5 (4-6 weeks)
-- **Advanced**: Modules 6-9 (6-8 weeks)
+- **Beginner**: Chapters 1-2 (2-3 weeks)
+- **Intermediate**: Chapters 3-5 (4-6 weeks)
+- **Advanced**: Chapters 6-9 (6-8 weeks)
 - **Expert**: Module 10 + Research (ongoing)
 
 ## Estimated Time

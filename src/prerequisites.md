@@ -92,10 +92,10 @@ print(response.choices[0].message.content)
 ## Time Commitment
 
 - **Total course**: 40-60 hours
-- **Per module**: 4-6 hours
+- **Per chapter**: 4-6 hours
 - **Capstone project**: 10-15 hours
 
-**Recommended pace**: 2-3 modules per week
+**Recommended pace**: 2-3 chapters per week
 
 ## Learning Path
 
