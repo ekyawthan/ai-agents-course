@@ -28,7 +28,7 @@
         <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../theme/custom-01b8c103.css">
+        <link rel="stylesheet" href="../theme/custom-6b8ad661.css">
 
 
         <!-- Provide site root and default themes to javascript -->
@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-918ca33d.js";
+            window.path_to_searchindex_js = "../searchindex-49812cde.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-2a593895.js"></script>
@@ -195,24 +195,49 @@
 <h2 id="introduction-to-planning"><a class="header" href="#introduction-to-planning">Introduction to Planning</a></h2>
 <p>Simple ReAct agents decide one step at a time. <strong>Planning agents</strong> think ahead—they create a multi-step plan before executing, leading to more efficient and coherent task completion.</p>
 <h3 id="why-planning-matters"><a class="header" href="#why-planning-matters">Why Planning Matters</a></h3>
+<pre><code class="language-mermaid">graph TB
+    subgraph "Without Planning"
+    A1[Search flights] --&gt; A2[Search hotels]
+    A2 --&gt; A3[Dates don't match!]
+    A3 --&gt; A4[Search flights again]
+    A4 --&gt; A5[Search hotels again]
+    end
+    
+    subgraph "With Planning"
+    B1[Plan all steps] --&gt; B2[Determine dates]
+    B2 --&gt; B3[Search flights]
+    B3 --&gt; B4[Search hotels]
+    B4 --&gt; B5[Done efficiently]
+    end
+    
+    style A3 fill:#fee2e2
+    style B5 fill:#d1fae5
+</code></pre>
 <p><strong>Without Planning (Reactive)</strong>:</p>
-<pre><code>User: "Book a flight to Paris and hotel for 3 nights"
-→ Search flights
-→ Search hotels
-→ Realize dates don't match
-→ Search flights again
-→ Search hotels again
-</code></pre>
+<ul>
+<li>Search flights → Search hotels → Dates mismatch → Redo everything</li>
+<li>Inefficient, multiple retries</li>
+</ul>
 <p><strong>With Planning (Proactive)</strong>:</p>
-<pre><code>User: "Book a flight to Paris and hotel for 3 nights"
-→ Plan:
-   1. Determine travel dates
-   2. Search flights for those dates
-   3. Search hotels for same dates
-   4. Compare options
-   5. Make bookings
-→ Execute plan efficiently
-</code></pre>
+<ul>
+<li>Plan: dates → flights → hotels → booking</li>
+<li>Execute efficiently in one pass</li>
+</ul>
+<blockquote>
+<p><strong>⚠️ When to Use Planning</strong></p>
+<p>Use planning for:</p>
+<ul>
+<li>Multi-step tasks with dependencies</li>
+<li>Tasks requiring coordination</li>
+<li>Resource-constrained scenarios</li>
+</ul>
+<p>Skip planning for:</p>
+<ul>
+<li>Simple single-step tasks</li>
+<li>Highly dynamic environments</li>
+<li>When speed is critical</li>
+</ul>
+</blockquote>
 <h2 id="chain-of-thought-reasoning"><a class="header" href="#chain-of-thought-reasoning">Chain-of-Thought Reasoning</a></h2>
 <p>Chain-of-Thought (CoT) prompting encourages step-by-step reasoning.</p>
 <h3 id="basic-cot"><a class="header" href="#basic-cot">Basic CoT</a></h3>
@@ -742,6 +767,18 @@ Format as numbered list."""
 <li><strong>Monitor progress</strong>: Track what’s completed</li>
 <li><strong>Learn from failures</strong>: Improve planning over time</li>
 </ol>
+<hr>
+<blockquote>
+<p><strong>✅ Key Takeaways</strong></p>
+<ul>
+<li>Planning agents create multi-step plans before executing</li>
+<li>Chain-of-Thought enables step-by-step reasoning</li>
+<li>Task decomposition breaks complex goals into manageable steps</li>
+<li>Plan-and-Execute pattern separates planning from execution</li>
+<li>Replanning allows adaptation when plans fail</li>
+<li>Use planning for complex, multi-step tasks with dependencies</li>
+</ul>
+</blockquote>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
 <p>You now understand planning agents! Next, we’ll explore memory systems that allow agents to remember and learn from past interactions.</p>
 
@@ -786,6 +823,11 @@ Format as numbered list."""
             window.playground_copyable = true;
         </script>
 
+        <script src="../ace-2a3cd908.js"></script>
+        <script src="../mode-rust-2c9d5c9a.js"></script>
+        <script src="../editor-16ca416c.js"></script>
+        <script src="../theme-dawn-4493f9c8.js"></script>
+        <script src="../theme-tomorrow_night-9dbe62a9.js"></script>
 
         <script src="../elasticlunr-ef4e11c1.min.js"></script>
         <script src="../mark-09e88c2c.min.js"></script>
@@ -796,6 +838,7 @@ Format as numbered list."""
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="../theme/mermaid-init-e567e1e5.js"></script>
 
 
 

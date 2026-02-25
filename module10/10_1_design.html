@@ -28,7 +28,7 @@
         <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../theme/custom-01b8c103.css">
+        <link rel="stylesheet" href="../theme/custom-6b8ad661.css">
 
 
         <!-- Provide site root and default themes to javascript -->
@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-918ca33d.js";
+            window.path_to_searchindex_js = "../searchindex-49812cde.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-2a593895.js"></script>
@@ -267,44 +267,43 @@
 </ul>
 <h2 id="architecture-design"><a class="header" href="#architecture-design">Architecture Design</a></h2>
 <h3 id="high-level-architecture"><a class="header" href="#high-level-architecture">High-Level Architecture</a></h3>
-<pre><code>┌─────────────────────────────────────────────────────────────┐
-│                    User Interface Layer                      │
-│  (CLI, API, or Chat Interface)                              │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────────────┐
-│                  Orchestration Layer                         │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │   Planner    │  │   Router     │  │   Monitor    │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────────────┐
-│                   Agent Layer                                │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │   Analyzer   │  │   Fixer      │  │   Tester     │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
-│  ┌──────────────┐  ┌──────────────┐                        │
-│  │  Refactorer  │  │   Reviewer   │                        │
-│  └──────────────┘  └──────────────┘                        │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────────────┐
-│                    Tool Layer                                │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │  AST Parser  │  │  Executor    │  │  Git Ops     │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │  Linter      │  │  Formatter   │  │  Test Runner │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────────────┐
-│                   Storage Layer                              │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │  Vector DB   │  │  Code Cache  │  │  Feedback DB │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
-└─────────────────────────────────────────────────────────────┘
+<pre><code class="language-mermaid">graph TB
+    UI[User Interface Layer]
+    UI --&gt; ORC[Orchestration Layer]
+    
+    subgraph Orchestration
+    ORC --&gt; PLAN[Planner]
+    ORC --&gt; ROUTE[Router]
+    ORC --&gt; MON[Monitor]
+    end
+    
+    subgraph Agents
+    ROUTE --&gt; ANA[Analyzer Agent]
+    ROUTE --&gt; FIX[Fixer Agent]
+    ROUTE --&gt; TEST[Tester Agent]
+    ROUTE --&gt; REF[Refactorer Agent]
+    ROUTE --&gt; REV[Reviewer Agent]
+    end
+    
+    subgraph Tools
+    ANA --&gt; AST[AST Parser]
+    FIX --&gt; EXEC[Code Executor]
+    TEST --&gt; RUNNER[Test Runner]
+    AST --&gt; LINT[Linter]
+    EXEC --&gt; GIT[Git Ops]
+    end
+    
+    subgraph Storage
+    MON --&gt; VDB[(Vector DB)]
+    MON --&gt; CACHE[(Code Cache)]
+    MON --&gt; FB[(Feedback DB)]
+    end
+    
+    style UI fill:#dbeafe
+    style ORC fill:#fef3c7
+    style ANA fill:#d1fae5
+    style FIX fill:#d1fae5
+    style TEST fill:#d1fae5
 </code></pre>
 <h3 id="component-design"><a class="header" href="#component-design">Component Design</a></h3>
 <p><strong>1. Orchestration Layer</strong></p>
@@ -829,6 +828,18 @@ class SemanticMemory:
 <li><strong>Choice</strong>: Few-shot + feedback learning</li>
 <li><strong>Rationale</strong>: Fast adaptation without full retraining</li>
 </ul>
+<hr>
+<blockquote>
+<p><strong>✅ Key Takeaways</strong></p>
+<ul>
+<li>Design requires balancing functional and non-functional requirements</li>
+<li>Multi-agent architecture provides separation of concerns</li>
+<li>Safety mechanisms are critical for code-modifying agents</li>
+<li>Memory systems enable learning from past experiences</li>
+<li>Tool selection impacts capabilities and complexity</li>
+<li>Architecture decisions should align with use case constraints</li>
+</ul>
+</blockquote>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
 <p>Now that we have the design, let’s implement the Autonomous Software Engineering Agent!</p>
 <p>In the next section, you’ll build:</p>
@@ -881,6 +892,11 @@ class SemanticMemory:
             window.playground_copyable = true;
         </script>
 
+        <script src="../ace-2a3cd908.js"></script>
+        <script src="../mode-rust-2c9d5c9a.js"></script>
+        <script src="../editor-16ca416c.js"></script>
+        <script src="../theme-dawn-4493f9c8.js"></script>
+        <script src="../theme-tomorrow_night-9dbe62a9.js"></script>
 
         <script src="../elasticlunr-ef4e11c1.min.js"></script>
         <script src="../mark-09e88c2c.min.js"></script>
@@ -891,6 +907,7 @@ class SemanticMemory:
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="../theme/mermaid-init-e567e1e5.js"></script>
 
 
 
