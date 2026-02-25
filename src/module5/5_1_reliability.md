@@ -1,5 +1,16 @@
 # Reliability & Safety
 
+## Module 5: Learning Objectives
+
+By the end of this module, you will:
+- ✓ Implement input validation and guardrails
+- ✓ Design comprehensive testing strategies
+- ✓ Set up monitoring and observability systems
+- ✓ Handle failures gracefully with retries and fallbacks
+- ✓ Measure and improve agent reliability
+
+---
+
 ## Input Validation and Sanitization
 
 Never trust user input. Always validate and sanitize.

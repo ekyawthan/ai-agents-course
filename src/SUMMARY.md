@@ -1,6 +1,8 @@
 # Summary
 
 [Introduction](./introduction.md)
+[Prerequisites](./prerequisites.md)
+[About This Course](./about.md)
 
 ---
 
@@ -71,3 +73,7 @@
 - [Tools & Libraries](./appendix/tools.md)
 - [Resources](./appendix/resources.md)
 - [Glossary](./appendix/glossary.md)
+
+---
+
+[Contributing](./contributing.md)

@@ -1,5 +1,16 @@
 # Code Execution
 
+## Module 4: Learning Objectives
+
+By the end of this module, you will:
+- ✓ Execute code safely in sandboxed environments
+- ✓ Integrate data sources (databases, APIs, file systems)
+- ✓ Implement web scraping and browser automation
+- ✓ Build RAG systems for knowledge retrieval
+- ✓ Handle various data formats and protocols
+
+---
+
 ## Why Agents Need Code Execution
 
 Code execution allows agents to:

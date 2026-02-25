@@ -1,5 +1,16 @@
 # Planning Agents
 
+## Module 3: Learning Objectives
+
+By the end of this module, you will:
+- ✓ Implement planning algorithms (Chain-of-Thought, task decomposition)
+- ✓ Build memory systems (short-term, long-term, semantic)
+- ✓ Create multi-agent systems with collaboration patterns
+- ✓ Understand when to use planning vs reactive approaches
+- ✓ Design agent communication protocols
+
+---
+
 ## Introduction to Planning
 
 Simple ReAct agents decide one step at a time. **Planning agents** think ahead—they create a multi-step plan before executing, leading to more efficient and coherent task completion.

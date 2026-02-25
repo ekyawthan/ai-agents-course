@@ -3,3 +3,15 @@ authors = ["Kyaw Mong"]
 language = "en"
 src = "src"
 title = "AI Agents: Zero to Hero"
+
+[output.html]
+additional-css = ["theme/custom.css"]
+git-repository-url = "https://github.com/ekyawthan/ai-agents-course"
+edit-url-template = "https://github.com/ekyawthan/ai-agents-course/edit/main/{path}"
+
+[output.html.search]
+enable = true
+
+[output.html.fold]
+enable = true
+level = 0

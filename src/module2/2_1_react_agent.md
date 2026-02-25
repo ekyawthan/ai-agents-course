@@ -1,5 +1,16 @@
 # Simple ReAct Agent
 
+## Module 2: Learning Objectives
+
+By the end of this module, you will:
+- ✓ Implement a ReAct agent from scratch
+- ✓ Integrate external tools with function calling
+- ✓ Handle errors and retries gracefully
+- ✓ Build a complete shopping research assistant
+- ✓ Understand tool schemas and validation
+
+---
+
 ## Introduction to ReAct
 
 **ReAct** (Reasoning + Acting) is the most popular pattern for building AI agents. It combines:

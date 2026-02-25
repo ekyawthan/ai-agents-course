@@ -1,5 +1,16 @@
 # Architecture Patterns
 
+## Module 8: Learning Objectives
+
+By the end of this module, you will:
+- ✓ Design microservices and event-driven architectures
+- ✓ Implement enterprise security and compliance
+- ✓ Optimize costs through caching and model selection
+- ✓ Scale agents to handle production workloads
+- ✓ Deploy on Kubernetes and serverless platforms
+
+---
+
 ## Introduction to Enterprise Architecture
 
 Enterprise-scale agent systems require robust, scalable, and maintainable architectures. This section covers proven patterns for production deployments.

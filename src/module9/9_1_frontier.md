@@ -1,5 +1,16 @@
 # Frontier Capabilities
 
+## Module 9: Learning Objectives
+
+By the end of this module, you will:
+- ✓ Understand self-improving and meta-learning agents
+- ✓ Explore constitutional AI and debate systems
+- ✓ Recognize open problems in alignment and interpretability
+- ✓ Identify frontier research directions
+- ✓ Contribute to cutting-edge agent research
+
+---
+
 ## Introduction to Frontier Research
 
 Frontier capabilities represent the cutting edge of agent research—capabilities that are emerging but not yet fully realized. This section explores what's possible and what's coming next.

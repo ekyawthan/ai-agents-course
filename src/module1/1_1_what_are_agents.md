@@ -1,5 +1,16 @@
 # What Are AI Agents?
 
+## Module 1: Learning Objectives
+
+By the end of this module, you will:
+- ✓ Define what AI agents are and how they differ from traditional software
+- ✓ Identify different types of agents and their use cases
+- ✓ Understand the perception-reasoning-action loop
+- ✓ Explain how LLMs enable agentic behavior
+- ✓ Recognize key components of agent architecture
+
+---
+
 ## Definition and Core Concepts
 
 An **AI agent** is an autonomous system that perceives its environment, reasons about it, and takes actions to achieve specific goals. Unlike simple chatbots that respond to queries, agents can:

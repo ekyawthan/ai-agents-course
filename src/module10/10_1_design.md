@@ -1,5 +1,16 @@
 # Design Your Agent
 
+## Module 10: Learning Objectives
+
+By the end of this module, you will:
+- ✓ Design a complete autonomous software engineering agent
+- ✓ Implement multi-agent orchestration with specialized roles
+- ✓ Integrate all concepts from previous modules
+- ✓ Deploy a production-ready agent system
+- ✓ Evaluate and iterate based on real-world testing
+
+---
+
 ## Capstone Project: Autonomous Software Engineering Agent
 
 Welcome to the capstone project! You'll build a sophisticated agent that can analyze codebases, identify issues, propose fixes, write tests, and refactor code autonomously.

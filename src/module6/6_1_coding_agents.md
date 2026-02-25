@@ -1,5 +1,16 @@
 # Coding Agents
 
+## Module 6: Learning Objectives
+
+By the end of this module, you will:
+- ✓ Build coding agents that analyze and generate code
+- ✓ Create research agents with multi-source verification
+- ✓ Implement task automation with workflow orchestration
+- ✓ Design specialized agents for specific domains
+- ✓ Integrate advanced capabilities into focused agents
+
+---
+
 ## Introduction to Coding Agents
 
 Coding agents are specialized AI systems that understand, generate, modify, and debug code. They're among the most powerful and practical agent applications.

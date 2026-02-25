@@ -1,5 +1,16 @@
 # Agent Learning & Adaptation
 
+## Module 7: Learning Objectives
+
+By the end of this module, you will:
+- ✓ Implement few-shot and RLHF learning strategies
+- ✓ Build multimodal agents processing vision and audio
+- ✓ Master LangChain, LangGraph, and other frameworks
+- ✓ Design custom agentic frameworks
+- ✓ Enable continuous learning and adaptation
+
+---
+
 ## Introduction to Agent Learning
 
 Learning and adaptation enable agents to improve over time, personalize to users, and handle new situations without explicit reprogramming.
