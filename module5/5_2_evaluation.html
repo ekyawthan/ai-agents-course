@@ -1,0 +1,924 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Evaluation &amp; Testing - AI Agents: Zero to Hero</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-c3e257ac.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-65a70cec.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">AI Agents: Zero to Hero</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="evaluation--testing"><a class="header" href="#evaluation--testing">Evaluation &amp; Testing</a></h1>
+<h2 id="agent-benchmarks"><a class="header" href="#agent-benchmarks">Agent Benchmarks</a></h2>
+<p>Measure agent performance systematically.</p>
+<h3 id="creating-test-suites"><a class="header" href="#creating-test-suites">Creating Test Suites</a></h3>
+<pre><code class="language-python">from dataclasses import dataclass
+from typing import List, Callable
+import time
+
+@dataclass
+class TestCase:
+    """Single test case"""
+    name: str
+    input: str
+    expected_output: str = None
+    expected_behavior: str = None
+    timeout: int = 30
+
+@dataclass
+class TestResult:
+    """Test result"""
+    test_name: str
+    passed: bool
+    actual_output: str
+    expected_output: str
+    execution_time: float
+    error: str = None
+
+class AgentTestSuite:
+    """Test suite for agents"""
+    
+    def __init__(self, agent):
+        self.agent = agent
+        self.test_cases = []
+        self.results = []
+    
+    def add_test(self, test_case: TestCase):
+        """Add test case"""
+        self.test_cases.append(test_case)
+    
+    def run_tests(self) -&gt; dict:
+        """Run all tests"""
+        self.results = []
+        
+        for test in self.test_cases:
+            print(f"Running: {test.name}...")
+            result = self.run_single_test(test)
+            self.results.append(result)
+        
+        return self.generate_report()
+    
+    def run_single_test(self, test: TestCase) -&gt; TestResult:
+        """Run single test"""
+        start_time = time.time()
+        
+        try:
+            # Execute agent
+            actual_output = self.agent.process(test.input)
+            execution_time = time.time() - start_time
+            
+            # Check result
+            if test.expected_output:
+                passed = self.check_output_match(actual_output, test.expected_output)
+            elif test.expected_behavior:
+                passed = self.check_behavior(actual_output, test.expected_behavior)
+            else:
+                passed = True  # Just check it doesn't crash
+            
+            return TestResult(
+                test_name=test.name,
+                passed=passed,
+                actual_output=actual_output,
+                expected_output=test.expected_output or test.expected_behavior,
+                execution_time=execution_time
+            )
+            
+        except Exception as e:
+            execution_time = time.time() - start_time
+            return TestResult(
+                test_name=test.name,
+                passed=False,
+                actual_output="",
+                expected_output=test.expected_output or test.expected_behavior,
+                execution_time=execution_time,
+                error=str(e)
+            )
+    
+    def check_output_match(self, actual: str, expected: str) -&gt; bool:
+        """Check if output matches expected"""
+        # Exact match
+        if actual.strip() == expected.strip():
+            return True
+        
+        # Contains expected
+        if expected.lower() in actual.lower():
+            return True
+        
+        return False
+    
+    def check_behavior(self, output: str, behavior: str) -&gt; bool:
+        """Check if output exhibits expected behavior"""
+        # Use LLM to judge
+        prompt = f"""Does this output exhibit the expected behavior?
+
+Output: {output}
+
+Expected behavior: {behavior}
+
+Answer with just 'yes' or 'no':"""
+        
+        response = llm.generate(prompt).strip().lower()
+        return response == 'yes'
+    
+    def generate_report(self) -&gt; dict:
+        """Generate test report"""
+        total = len(self.results)
+        passed = sum(1 for r in self.results if r.passed)
+        failed = total - passed
+        
+        avg_time = sum(r.execution_time for r in self.results) / total if total &gt; 0 else 0
+        
+        return {
+            "total": total,
+            "passed": passed,
+            "failed": failed,
+            "pass_rate": passed / total if total &gt; 0 else 0,
+            "avg_execution_time": avg_time,
+            "results": self.results
+        }
+
+# Usage
+suite = AgentTestSuite(agent)
+
+suite.add_test(TestCase(
+    name="Basic math",
+    input="What is 2 + 2?",
+    expected_output="4"
+))
+
+suite.add_test(TestCase(
+    name="Tool usage",
+    input="Search for information about Python",
+    expected_behavior="Uses search tool and provides relevant information"
+))
+
+report = suite.run_tests()
+print(f"Pass rate: {report['pass_rate']:.1%}")
+</code></pre>
+<h3 id="standard-benchmarks"><a class="header" href="#standard-benchmarks">Standard Benchmarks</a></h3>
+<pre><code class="language-python">class StandardBenchmarks:
+    """Common agent benchmarks"""
+    
+    @staticmethod
+    def get_math_benchmark() -&gt; List[TestCase]:
+        """Math reasoning tests"""
+        return [
+            TestCase("Addition", "What is 123 + 456?", "579"),
+            TestCase("Multiplication", "What is 25 * 17?", "425"),
+            TestCase("Word problem", "If I have 3 apples and buy 2 more, how many do I have?", "5"),
+            TestCase("Percentage", "What is 15% of 200?", "30"),
+        ]
+    
+    @staticmethod
+    def get_reasoning_benchmark() -&gt; List[TestCase]:
+        """Logical reasoning tests"""
+        return [
+            TestCase(
+                "Deduction",
+                "All cats are animals. Fluffy is a cat. Is Fluffy an animal?",
+                expected_behavior="Correctly deduces that Fluffy is an animal"
+            ),
+            TestCase(
+                "Planning",
+                "I need to make dinner. What steps should I take?",
+                expected_behavior="Provides logical sequence of steps"
+            ),
+        ]
+    
+    @staticmethod
+    def get_tool_usage_benchmark() -&gt; List[TestCase]:
+        """Tool usage tests"""
+        return [
+            TestCase(
+                "Search",
+                "Find information about the Eiffel Tower",
+                expected_behavior="Uses search tool and provides facts"
+            ),
+            TestCase(
+                "Calculation",
+                "Calculate the compound interest on $1000 at 5% for 3 years",
+                expected_behavior="Uses calculator tool"
+            ),
+        ]
+</code></pre>
+<h2 id="success-metrics"><a class="header" href="#success-metrics">Success Metrics</a></h2>
+<p>Define what success means for your agent.</p>
+<h3 id="quantitative-metrics"><a class="header" href="#quantitative-metrics">Quantitative Metrics</a></h3>
+<pre><code class="language-python">class AgentMetrics:
+    """Track agent performance metrics"""
+    
+    def __init__(self):
+        self.metrics = {
+            "total_requests": 0,
+            "successful_requests": 0,
+            "failed_requests": 0,
+            "total_execution_time": 0,
+            "tool_calls": 0,
+            "tokens_used": 0,
+            "cost": 0.0
+        }
+    
+    def record_request(self, 
+                      success: bool,
+                      execution_time: float,
+                      tool_calls: int = 0,
+                      tokens: int = 0,
+                      cost: float = 0.0):
+        """Record request metrics"""
+        self.metrics["total_requests"] += 1
+        
+        if success:
+            self.metrics["successful_requests"] += 1
+        else:
+            self.metrics["failed_requests"] += 1
+        
+        self.metrics["total_execution_time"] += execution_time
+        self.metrics["tool_calls"] += tool_calls
+        self.metrics["tokens_used"] += tokens
+        self.metrics["cost"] += cost
+    
+    def get_summary(self) -&gt; dict:
+        """Get metrics summary"""
+        total = self.metrics["total_requests"]
+        
+        if total == 0:
+            return self.metrics
+        
+        return {
+            **self.metrics,
+            "success_rate": self.metrics["successful_requests"] / total,
+            "avg_execution_time": self.metrics["total_execution_time"] / total,
+            "avg_tool_calls": self.metrics["tool_calls"] / total,
+            "avg_tokens": self.metrics["tokens_used"] / total,
+            "avg_cost": self.metrics["cost"] / total
+        }
+    
+    def print_summary(self):
+        """Print formatted summary"""
+        summary = self.get_summary()
+        
+        print("Agent Performance Metrics")
+        print("=" * 40)
+        print(f"Total Requests: {summary['total_requests']}")
+        print(f"Success Rate: {summary['success_rate']:.1%}")
+        print(f"Avg Execution Time: {summary['avg_execution_time']:.2f}s")
+        print(f"Avg Tool Calls: {summary['avg_tool_calls']:.1f}")
+        print(f"Avg Tokens: {summary['avg_tokens']:.0f}")
+        print(f"Avg Cost: ${summary['avg_cost']:.4f}")
+        print(f"Total Cost: ${summary['cost']:.2f}")
+</code></pre>
+<h3 id="qualitative-metrics"><a class="header" href="#qualitative-metrics">Qualitative Metrics</a></h3>
+<pre><code class="language-python">class QualityEvaluator:
+    """Evaluate response quality"""
+    
+    def __init__(self):
+        self.client = openai.OpenAI()
+    
+    def evaluate_response(self, 
+                         question: str,
+                         response: str,
+                         criteria: List[str] = None) -&gt; dict:
+        """Evaluate response quality"""
+        
+        if criteria is None:
+            criteria = [
+                "Accuracy: Is the information correct?",
+                "Completeness: Does it fully answer the question?",
+                "Clarity: Is it easy to understand?",
+                "Relevance: Does it stay on topic?"
+            ]
+        
+        scores = {}
+        
+        for criterion in criteria:
+            score = self.score_criterion(question, response, criterion)
+            criterion_name = criterion.split(':')[0]
+            scores[criterion_name] = score
+        
+        return {
+            "scores": scores,
+            "average": sum(scores.values()) / len(scores),
+            "passed": all(score &gt;= 3 for score in scores.values())
+        }
+    
+    def score_criterion(self, question: str, response: str, criterion: str) -&gt; int:
+        """Score response on single criterion (1-5)"""
+        prompt = f"""Rate this response on the following criterion (1-5):
+
+Question: {question}
+
+Response: {response}
+
+Criterion: {criterion}
+
+Provide only a number from 1 (poor) to 5 (excellent):"""
+        
+        result = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.1
+        )
+        
+        try:
+            score = int(result.choices[0].message.content.strip())
+            return max(1, min(5, score))  # Clamp to 1-5
+        except:
+            return 3  # Default to middle score
+</code></pre>
+<h2 id="unit-and-integration-testing"><a class="header" href="#unit-and-integration-testing">Unit and Integration Testing</a></h2>
+<h3 id="unit-tests-for-components"><a class="header" href="#unit-tests-for-components">Unit Tests for Components</a></h3>
+<pre><code class="language-python">import unittest
+
+class TestAgentComponents(unittest.TestCase):
+    """Unit tests for agent components"""
+    
+    def setUp(self):
+        """Set up test fixtures"""
+        self.agent = MyAgent()
+    
+    def test_input_validation(self):
+        """Test input validation"""
+        validator = InputValidator()
+        
+        # Valid input
+        result = validator.validate_text_input("Hello world")
+        self.assertTrue(result['valid'])
+        
+        # Invalid input (too long)
+        long_text = "x" * 20000
+        result = validator.validate_text_input(long_text)
+        self.assertFalse(result['valid'])
+    
+    def test_tool_execution(self):
+        """Test tool execution"""
+        result = self.agent.execute_tool("calculate", {"expression": "2 + 2"})
+        self.assertEqual(result, "4")
+    
+    def test_memory_storage(self):
+        """Test memory system"""
+        self.agent.memory.add("user_name", "Alice")
+        retrieved = self.agent.memory.get("user_name")
+        self.assertEqual(retrieved, "Alice")
+    
+    def test_error_handling(self):
+        """Test error handling"""
+        # Should not crash on invalid tool
+        result = self.agent.execute_tool("nonexistent_tool", {})
+        self.assertIn("error", result.lower())
+    
+    def tearDown(self):
+        """Clean up"""
+        pass
+
+# Run tests
+if __name__ == '__main__':
+    unittest.main()
+</code></pre>
+<h3 id="integration-tests"><a class="header" href="#integration-tests">Integration Tests</a></h3>
+<pre><code class="language-python">class TestAgentIntegration(unittest.TestCase):
+    """Integration tests for full agent"""
+    
+    def test_end_to_end_query(self):
+        """Test complete query flow"""
+        agent = MyAgent()
+        
+        response = agent.process("What is 2 + 2?")
+        
+        self.assertIsNotNone(response)
+        self.assertIn("4", response)
+    
+    def test_multi_step_task(self):
+        """Test multi-step task execution"""
+        agent = MyAgent()
+        
+        response = agent.process("Search for Python tutorials and summarize the top result")
+        
+        # Should use search tool
+        self.assertTrue(agent.tool_used("search"))
+        
+        # Should provide summary
+        self.assertGreater(len(response), 50)
+    
+    def test_error_recovery(self):
+        """Test error recovery"""
+        agent = MyAgent()
+        
+        # Simulate tool failure
+        agent.tools["search"] = lambda x: raise_error()
+        
+        response = agent.process("Search for something")
+        
+        # Should handle gracefully
+        self.assertIsNotNone(response)
+        self.assertNotIn("Traceback", response)
+    
+    def test_rate_limiting(self):
+        """Test rate limiting"""
+        agent = MyAgent()
+        
+        # Make many requests
+        for i in range(150):
+            response = agent.process(f"Request {i}")
+        
+        # Should be rate limited
+        self.assertTrue(agent.was_rate_limited())
+</code></pre>
+<h3 id="property-based-testing"><a class="header" href="#property-based-testing">Property-Based Testing</a></h3>
+<pre><code class="language-python">from hypothesis import given, strategies as st
+
+class TestAgentProperties(unittest.TestCase):
+    """Property-based tests"""
+    
+    @given(st.text(min_size=1, max_size=1000))
+    def test_agent_handles_any_text(self, text):
+        """Agent should handle any text input without crashing"""
+        agent = MyAgent()
+        
+        try:
+            response = agent.process(text)
+            # Should return something
+            self.assertIsNotNone(response)
+        except Exception as e:
+            # Should not crash
+            self.fail(f"Agent crashed on input: {text[:50]}... Error: {e}")
+    
+    @given(st.integers(min_value=-1000, max_value=1000))
+    def test_calculator_tool(self, number):
+        """Calculator should handle any integer"""
+        agent = MyAgent()
+        
+        result = agent.execute_tool("calculate", {"expression": f"{number} + 1"})
+        expected = str(number + 1)
+        
+        self.assertEqual(result, expected)
+</code></pre>
+<h2 id="human-evaluation-frameworks"><a class="header" href="#human-evaluation-frameworks">Human Evaluation Frameworks</a></h2>
+<h3 id="collecting-human-feedback"><a class="header" href="#collecting-human-feedback">Collecting Human Feedback</a></h3>
+<pre><code class="language-python">class HumanEvaluator:
+    """Collect human evaluations"""
+    
+    def __init__(self):
+        self.evaluations = []
+    
+    def request_evaluation(self, 
+                          question: str,
+                          response: str,
+                          evaluator_id: str) -&gt; dict:
+        """Request human evaluation"""
+        
+        print(f"\n{'='*60}")
+        print(f"Question: {question}")
+        print(f"\nResponse: {response}")
+        print(f"\n{'='*60}")
+        
+        # Collect ratings
+        ratings = {}
+        
+        criteria = [
+            ("accuracy", "Is the response accurate? (1-5)"),
+            ("helpfulness", "Is the response helpful? (1-5)"),
+            ("clarity", "Is the response clear? (1-5)"),
+        ]
+        
+        for key, prompt in criteria:
+            while True:
+                try:
+                    score = int(input(f"{prompt}: "))
+                    if 1 &lt;= score &lt;= 5:
+                        ratings[key] = score
+                        break
+                except ValueError:
+                    pass
+        
+        # Collect feedback
+        feedback = input("\nAdditional feedback (optional): ")
+        
+        evaluation = {
+            "question": question,
+            "response": response,
+            "evaluator_id": evaluator_id,
+            "ratings": ratings,
+            "feedback": feedback,
+            "timestamp": time.time()
+        }
+        
+        self.evaluations.append(evaluation)
+        return evaluation
+    
+    def get_summary(self) -&gt; dict:
+        """Get evaluation summary"""
+        if not self.evaluations:
+            return {}
+        
+        # Average ratings
+        avg_ratings = {}
+        for criterion in ["accuracy", "helpfulness", "clarity"]:
+            scores = [e["ratings"][criterion] for e in self.evaluations]
+            avg_ratings[criterion] = sum(scores) / len(scores)
+        
+        return {
+            "total_evaluations": len(self.evaluations),
+            "average_ratings": avg_ratings,
+            "overall_score": sum(avg_ratings.values()) / len(avg_ratings)
+        }
+</code></pre>
+<h3 id="ab-testing"><a class="header" href="#ab-testing">A/B Testing</a></h3>
+<pre><code class="language-python">class ABTest:
+    """A/B test different agent versions"""
+    
+    def __init__(self, agent_a, agent_b):
+        self.agent_a = agent_a
+        self.agent_b = agent_b
+        self.results = {"a": [], "b": []}
+    
+    def run_test(self, test_cases: List[str], evaluator) -&gt; dict:
+        """Run A/B test"""
+        
+        for i, test_case in enumerate(test_cases):
+            # Alternate between agents
+            if i % 2 == 0:
+                agent = self.agent_a
+                variant = "a"
+            else:
+                agent = self.agent_b
+                variant = "b"
+            
+            # Get response
+            response = agent.process(test_case)
+            
+            # Evaluate
+            evaluation = evaluator.evaluate_response(test_case, response)
+            
+            self.results[variant].append(evaluation)
+        
+        return self.compare_results()
+    
+    def compare_results(self) -&gt; dict:
+        """Compare A vs B"""
+        avg_a = sum(r["average"] for r in self.results["a"]) / len(self.results["a"])
+        avg_b = sum(r["average"] for r in self.results["b"]) / len(self.results["b"])
+        
+        return {
+            "agent_a_score": avg_a,
+            "agent_b_score": avg_b,
+            "winner": "a" if avg_a &gt; avg_b else "b",
+            "difference": abs(avg_a - avg_b)
+        }
+</code></pre>
+<h2 id="automated-testing-pipeline"><a class="header" href="#automated-testing-pipeline">Automated Testing Pipeline</a></h2>
+<pre><code class="language-python">class TestPipeline:
+    """Automated testing pipeline"""
+    
+    def __init__(self, agent):
+        self.agent = agent
+        self.test_suite = AgentTestSuite(agent)
+        self.metrics = AgentMetrics()
+        self.evaluator = QualityEvaluator()
+    
+    def run_full_pipeline(self) -&gt; dict:
+        """Run complete test pipeline"""
+        results = {}
+        
+        # 1. Unit tests
+        print("Running unit tests...")
+        results["unit_tests"] = self.run_unit_tests()
+        
+        # 2. Integration tests
+        print("Running integration tests...")
+        results["integration_tests"] = self.run_integration_tests()
+        
+        # 3. Benchmark tests
+        print("Running benchmarks...")
+        results["benchmarks"] = self.run_benchmarks()
+        
+        # 4. Quality evaluation
+        print("Running quality evaluation...")
+        results["quality"] = self.run_quality_evaluation()
+        
+        # 5. Performance metrics
+        print("Collecting performance metrics...")
+        results["performance"] = self.metrics.get_summary()
+        
+        # 6. Generate report
+        report = self.generate_report(results)
+        
+        return report
+    
+    def run_unit_tests(self) -&gt; dict:
+        """Run unit tests"""
+        loader = unittest.TestLoader()
+        suite = loader.loadTestsFromTestCase(TestAgentComponents)
+        runner = unittest.TextTestRunner(verbosity=0)
+        result = runner.run(suite)
+        
+        return {
+            "total": result.testsRun,
+            "passed": result.testsRun - len(result.failures) - len(result.errors),
+            "failed": len(result.failures) + len(result.errors)
+        }
+    
+    def run_integration_tests(self) -&gt; dict:
+        """Run integration tests"""
+        loader = unittest.TestLoader()
+        suite = loader.loadTestsFromTestCase(TestAgentIntegration)
+        runner = unittest.TextTestRunner(verbosity=0)
+        result = runner.run(suite)
+        
+        return {
+            "total": result.testsRun,
+            "passed": result.testsRun - len(result.failures) - len(result.errors),
+            "failed": len(result.failures) + len(result.errors)
+        }
+    
+    def run_benchmarks(self) -&gt; dict:
+        """Run benchmark tests"""
+        # Add standard benchmarks
+        for test in StandardBenchmarks.get_math_benchmark():
+            self.test_suite.add_test(test)
+        
+        for test in StandardBenchmarks.get_reasoning_benchmark():
+            self.test_suite.add_test(test)
+        
+        return self.test_suite.run_tests()
+    
+    def run_quality_evaluation(self) -&gt; dict:
+        """Run quality evaluation"""
+        test_cases = [
+            ("What is Python?", "Python is a high-level programming language..."),
+            ("How do I sort a list?", "You can use the sorted() function..."),
+        ]
+        
+        evaluations = []
+        for question, response in test_cases:
+            eval_result = self.evaluator.evaluate_response(question, response)
+            evaluations.append(eval_result)
+        
+        avg_score = sum(e["average"] for e in evaluations) / len(evaluations)
+        
+        return {
+            "evaluations": evaluations,
+            "average_score": avg_score
+        }
+    
+    def generate_report(self, results: dict) -&gt; dict:
+        """Generate comprehensive report"""
+        return {
+            "timestamp": time.time(),
+            "summary": {
+                "unit_tests_passed": results["unit_tests"]["passed"],
+                "integration_tests_passed": results["integration_tests"]["passed"],
+                "benchmark_pass_rate": results["benchmarks"]["pass_rate"],
+                "quality_score": results["quality"]["average_score"],
+                "success_rate": results["performance"]["success_rate"]
+            },
+            "details": results
+        }
+
+# Usage
+pipeline = TestPipeline(agent)
+report = pipeline.run_full_pipeline()
+
+print("\nTest Report Summary")
+print("=" * 40)
+for key, value in report["summary"].items():
+    print(f"{key}: {value}")
+</code></pre>
+<h2 id="best-practices"><a class="header" href="#best-practices">Best Practices</a></h2>
+<ol>
+<li><strong>Test early and often</strong>: Continuous testing during development</li>
+<li><strong>Automate testing</strong>: Run tests automatically on changes</li>
+<li><strong>Use multiple metrics</strong>: Quantitative and qualitative</li>
+<li><strong>Test edge cases</strong>: Unusual inputs, errors, limits</li>
+<li><strong>Benchmark regularly</strong>: Track performance over time</li>
+<li><strong>Get human feedback</strong>: Automated tests aren’t enough</li>
+<li><strong>Test in production</strong>: Monitor real usage</li>
+<li><strong>Version your tests</strong>: Track test changes</li>
+<li><strong>Document failures</strong>: Learn from what breaks</li>
+<li><strong>Iterate based on results</strong>: Use tests to improve</li>
+</ol>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
+<p>You now understand evaluation and testing! Next, we’ll explore monitoring and observability for production agents.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../module5/5_1_reliability.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../module5/5_3_monitoring.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../module5/5_1_reliability.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../module5/5_3_monitoring.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

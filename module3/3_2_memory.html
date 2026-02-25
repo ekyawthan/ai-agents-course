@@ -1,0 +1,950 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Memory Systems - AI Agents: Zero to Hero</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-c3e257ac.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-65a70cec.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">AI Agents: Zero to Hero</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="memory-systems"><a class="header" href="#memory-systems">Memory Systems</a></h1>
+<h2 id="why-agents-need-memory"><a class="header" href="#why-agents-need-memory">Why Agents Need Memory</a></h2>
+<p>Without memory, agents are like people with amnesia—they can’t learn from experience, maintain context, or build on previous interactions.</p>
+<p><strong>Without Memory</strong>:</p>
+<pre><code>User: "My name is Alice"
+Agent: "Nice to meet you!"
+[Later]
+User: "What's my name?"
+Agent: "I don't know your name."
+</code></pre>
+<p><strong>With Memory</strong>:</p>
+<pre><code>User: "My name is Alice"
+Agent: "Nice to meet you, Alice!" [stores: user_name = "Alice"]
+[Later]
+User: "What's my name?"
+Agent: "Your name is Alice." [retrieves: user_name]
+</code></pre>
+<h2 id="types-of-memory"><a class="header" href="#types-of-memory">Types of Memory</a></h2>
+<h3 id="short-term-memory-working-memory"><a class="header" href="#short-term-memory-working-memory">Short-Term Memory (Working Memory)</a></h3>
+<p>Temporary storage for the current task.</p>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>Limited capacity (context window)</li>
+<li>Cleared after task completion</li>
+<li>Fast access</li>
+<li>Stored in conversation history</li>
+</ul>
+<p><strong>What to store</strong>:</p>
+<ul>
+<li>Current conversation</li>
+<li>Intermediate results</li>
+<li>Active plan</li>
+<li>Tool outputs</li>
+</ul>
+<h3 id="long-term-memory-persistent-memory"><a class="header" href="#long-term-memory-persistent-memory">Long-Term Memory (Persistent Memory)</a></h3>
+<p>Permanent storage across sessions.</p>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>Unlimited capacity (database)</li>
+<li>Persists across sessions</li>
+<li>Slower access (requires retrieval)</li>
+<li>Stored in external systems</li>
+</ul>
+<p><strong>What to store</strong>:</p>
+<ul>
+<li>User preferences</li>
+<li>Past conversations</li>
+<li>Learned facts</li>
+<li>Successful strategies</li>
+</ul>
+<h2 id="conversation-history-management"><a class="header" href="#conversation-history-management">Conversation History Management</a></h2>
+<p>Managing the conversation context efficiently.</p>
+<h3 id="basic-history-tracking"><a class="header" href="#basic-history-tracking">Basic History Tracking</a></h3>
+<pre><code class="language-python">class ConversationMemory:
+    """Simple conversation history"""
+    
+    def __init__(self, max_messages=20):
+        self.messages = []
+        self.max_messages = max_messages
+    
+    def add_message(self, role: str, content: str):
+        """Add message to history"""
+        self.messages.append({
+            "role": role,
+            "content": content,
+            "timestamp": time.time()
+        })
+        
+        # Trim if too long
+        if len(self.messages) &gt; self.max_messages:
+            self.messages = self.messages[-self.max_messages:]
+    
+    def get_messages(self) -&gt; List[dict]:
+        """Get conversation history"""
+        return self.messages
+    
+    def clear(self):
+        """Clear history"""
+        self.messages = []
+</code></pre>
+<h3 id="sliding-window"><a class="header" href="#sliding-window">Sliding Window</a></h3>
+<p>Keep only recent messages:</p>
+<pre><code class="language-python">class SlidingWindowMemory:
+    """Keep last N messages"""
+    
+    def __init__(self, window_size=10):
+        self.window_size = window_size
+        self.messages = []
+    
+    def add(self, message: dict):
+        """Add message and maintain window"""
+        self.messages.append(message)
+        
+        # Keep only last N messages
+        if len(self.messages) &gt; self.window_size:
+            self.messages = self.messages[-self.window_size:]
+    
+    def get_context(self) -&gt; List[dict]:
+        """Get current window"""
+        return self.messages
+</code></pre>
+<h3 id="token-based-truncation"><a class="header" href="#token-based-truncation">Token-Based Truncation</a></h3>
+<p>Manage by token count instead of message count:</p>
+<pre><code class="language-python">import tiktoken
+
+class TokenAwareMemory:
+    """Manage memory by token budget"""
+    
+    def __init__(self, max_tokens=4000, model="gpt-4"):
+        self.max_tokens = max_tokens
+        self.messages = []
+        self.encoding = tiktoken.encoding_for_model(model)
+    
+    def count_tokens(self, text: str) -&gt; int:
+        """Count tokens in text"""
+        return len(self.encoding.encode(text))
+    
+    def get_total_tokens(self) -&gt; int:
+        """Count total tokens in history"""
+        total = 0
+        for msg in self.messages:
+            total += self.count_tokens(msg["content"])
+        return total
+    
+    def add(self, message: dict):
+        """Add message and trim if needed"""
+        self.messages.append(message)
+        
+        # Trim oldest messages if over budget
+        while self.get_total_tokens() &gt; self.max_tokens and len(self.messages) &gt; 1:
+            self.messages.pop(0)  # Remove oldest
+    
+    def get_context(self) -&gt; List[dict]:
+        """Get messages within token budget"""
+        return self.messages
+</code></pre>
+<h3 id="summarization-strategy"><a class="header" href="#summarization-strategy">Summarization Strategy</a></h3>
+<p>Compress old messages:</p>
+<pre><code class="language-python">class SummarizingMemory:
+    """Summarize old conversations"""
+    
+    def __init__(self, summary_threshold=20):
+        self.messages = []
+        self.summary = None
+        self.summary_threshold = summary_threshold
+    
+    def add(self, message: dict):
+        """Add message and summarize if needed"""
+        self.messages.append(message)
+        
+        if len(self.messages) &gt; self.summary_threshold:
+            self.summarize_old_messages()
+    
+    def summarize_old_messages(self):
+        """Summarize and compress old messages"""
+        # Take first half of messages
+        to_summarize = self.messages[:len(self.messages)//2]
+        
+        # Create summary
+        summary_text = self.create_summary(to_summarize)
+        
+        # Update summary
+        if self.summary:
+            self.summary += f"\n\n{summary_text}"
+        else:
+            self.summary = summary_text
+        
+        # Keep only recent messages
+        self.messages = self.messages[len(self.messages)//2:]
+    
+    def create_summary(self, messages: List[dict]) -&gt; str:
+        """Generate summary of messages"""
+        conversation = "\n".join([
+            f"{m['role']}: {m['content']}" for m in messages
+        ])
+        
+        prompt = f"""Summarize this conversation concisely:
+
+{conversation}
+
+Summary:"""
+        
+        return llm.generate(prompt)
+    
+    def get_context(self) -&gt; List[dict]:
+        """Get context with summary"""
+        context = []
+        
+        if self.summary:
+            context.append({
+                "role": "system",
+                "content": f"Previous conversation summary:\n{self.summary}"
+            })
+        
+        context.extend(self.messages)
+        return context
+</code></pre>
+<h2 id="vector-databases-for-semantic-memory"><a class="header" href="#vector-databases-for-semantic-memory">Vector Databases for Semantic Memory</a></h2>
+<p>Store and retrieve information by meaning, not just keywords.</p>
+<h3 id="why-vector-databases"><a class="header" href="#why-vector-databases">Why Vector Databases?</a></h3>
+<p>Traditional search: “Find messages containing ‘Python’”
+Semantic search: “Find messages about programming languages”</p>
+<h3 id="basic-vector-memory"><a class="header" href="#basic-vector-memory">Basic Vector Memory</a></h3>
+<pre><code class="language-python">import numpy as np
+from typing import List, Tuple
+
+class VectorMemory:
+    """Simple vector-based memory"""
+    
+    def __init__(self):
+        self.memories = []
+        self.embeddings = []
+    
+    def add(self, text: str, metadata: dict = None):
+        """Store memory with embedding"""
+        # Get embedding
+        embedding = self.get_embedding(text)
+        
+        self.memories.append({
+            "text": text,
+            "metadata": metadata or {},
+            "timestamp": time.time()
+        })
+        self.embeddings.append(embedding)
+    
+    def get_embedding(self, text: str) -&gt; np.ndarray:
+        """Get embedding for text"""
+        # Using OpenAI embeddings
+        response = openai.embeddings.create(
+            model="text-embedding-3-small",
+            input=text
+        )
+        return np.array(response.data[0].embedding)
+    
+    def search(self, query: str, top_k: int = 5) -&gt; List[dict]:
+        """Search for relevant memories"""
+        if not self.memories:
+            return []
+        
+        # Get query embedding
+        query_embedding = self.get_embedding(query)
+        
+        # Calculate similarities
+        similarities = []
+        for i, emb in enumerate(self.embeddings):
+            similarity = self.cosine_similarity(query_embedding, emb)
+            similarities.append((i, similarity))
+        
+        # Sort by similarity
+        similarities.sort(key=lambda x: x[1], reverse=True)
+        
+        # Return top k
+        results = []
+        for i, score in similarities[:top_k]:
+            result = self.memories[i].copy()
+            result["similarity"] = score
+            results.append(result)
+        
+        return results
+    
+    def cosine_similarity(self, a: np.ndarray, b: np.ndarray) -&gt; float:
+        """Calculate cosine similarity"""
+        return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+</code></pre>
+<h3 id="using-chroma"><a class="header" href="#using-chroma">Using Chroma</a></h3>
+<pre><code class="language-python">import chromadb
+from chromadb.config import Settings
+
+class ChromaMemory:
+    """Memory using ChromaDB"""
+    
+    def __init__(self, collection_name="agent_memory"):
+        self.client = chromadb.Client(Settings(
+            chroma_db_impl="duckdb+parquet",
+            persist_directory="./chroma_db"
+        ))
+        
+        self.collection = self.client.get_or_create_collection(
+            name=collection_name,
+            metadata={"description": "Agent memory storage"}
+        )
+    
+    def add(self, text: str, metadata: dict = None):
+        """Add memory"""
+        doc_id = f"mem_{int(time.time() * 1000)}"
+        
+        self.collection.add(
+            documents=[text],
+            metadatas=[metadata or {}],
+            ids=[doc_id]
+        )
+    
+    def search(self, query: str, n_results: int = 5) -&gt; List[dict]:
+        """Search memories"""
+        results = self.collection.query(
+            query_texts=[query],
+            n_results=n_results
+        )
+        
+        memories = []
+        for i in range(len(results['documents'][0])):
+            memories.append({
+                "text": results['documents'][0][i],
+                "metadata": results['metadatas'][0][i],
+                "distance": results['distances'][0][i]
+            })
+        
+        return memories
+    
+    def delete_all(self):
+        """Clear all memories"""
+        self.client.delete_collection(self.collection.name)
+</code></pre>
+<h3 id="using-pinecone"><a class="header" href="#using-pinecone">Using Pinecone</a></h3>
+<pre><code class="language-python">import pinecone
+
+class PineconeMemory:
+    """Memory using Pinecone"""
+    
+    def __init__(self, index_name="agent-memory"):
+        pinecone.init(
+            api_key=os.getenv("PINECONE_API_KEY"),
+            environment=os.getenv("PINECONE_ENV")
+        )
+        
+        # Create index if doesn't exist
+        if index_name not in pinecone.list_indexes():
+            pinecone.create_index(
+                name=index_name,
+                dimension=1536,  # OpenAI embedding size
+                metric="cosine"
+            )
+        
+        self.index = pinecone.Index(index_name)
+    
+    def add(self, text: str, metadata: dict = None):
+        """Add memory"""
+        # Get embedding
+        embedding = self.get_embedding(text)
+        
+        # Generate ID
+        doc_id = f"mem_{int(time.time() * 1000)}"
+        
+        # Upsert to Pinecone
+        self.index.upsert([(
+            doc_id,
+            embedding,
+            {
+                "text": text,
+                **(metadata or {})
+            }
+        )])
+    
+    def search(self, query: str, top_k: int = 5) -&gt; List[dict]:
+        """Search memories"""
+        query_embedding = self.get_embedding(query)
+        
+        results = self.index.query(
+            vector=query_embedding,
+            top_k=top_k,
+            include_metadata=True
+        )
+        
+        memories = []
+        for match in results['matches']:
+            memories.append({
+                "text": match['metadata']['text'],
+                "score": match['score'],
+                "metadata": match['metadata']
+            })
+        
+        return memories
+</code></pre>
+<h2 id="entity-tracking-and-state-management"><a class="header" href="#entity-tracking-and-state-management">Entity Tracking and State Management</a></h2>
+<p>Track entities (people, places, things) mentioned in conversations.</p>
+<h3 id="entity-extraction"><a class="header" href="#entity-extraction">Entity Extraction</a></h3>
+<pre><code class="language-python">class EntityTracker:
+    """Track entities across conversation"""
+    
+    def __init__(self):
+        self.entities = {}
+    
+    def extract_entities(self, text: str) -&gt; dict:
+        """Extract entities from text"""
+        prompt = f"""Extract entities from this text:
+
+Text: {text}
+
+Return as JSON:
+{{
+  "people": ["name1", "name2"],
+  "places": ["place1"],
+  "organizations": ["org1"],
+  "dates": ["date1"],
+  "other": ["thing1"]
+}}"""
+        
+        response = llm.generate(prompt)
+        return json.loads(response)
+    
+    def update(self, text: str):
+        """Update entity tracking"""
+        entities = self.extract_entities(text)
+        
+        for entity_type, items in entities.items():
+            if entity_type not in self.entities:
+                self.entities[entity_type] = {}
+            
+            for item in items:
+                if item not in self.entities[entity_type]:
+                    self.entities[entity_type][item] = {
+                        "first_seen": time.time(),
+                        "mentions": 0,
+                        "context": []
+                    }
+                
+                self.entities[entity_type][item]["mentions"] += 1
+                self.entities[entity_type][item]["context"].append(text)
+    
+    def get_entity_info(self, entity: str) -&gt; dict:
+        """Get information about an entity"""
+        for entity_type, items in self.entities.items():
+            if entity in items:
+                return {
+                    "type": entity_type,
+                    **items[entity]
+                }
+        return None
+</code></pre>
+<h3 id="state-management"><a class="header" href="#state-management">State Management</a></h3>
+<pre><code class="language-python">class StateManager:
+    """Manage agent state"""
+    
+    def __init__(self):
+        self.state = {
+            "user_info": {},
+            "current_task": None,
+            "preferences": {},
+            "context": {}
+        }
+    
+    def update(self, key: str, value: any):
+        """Update state"""
+        keys = key.split('.')
+        current = self.state
+        
+        for k in keys[:-1]:
+            if k not in current:
+                current[k] = {}
+            current = current[k]
+        
+        current[keys[-1]] = value
+    
+    def get(self, key: str, default=None):
+        """Get state value"""
+        keys = key.split('.')
+        current = self.state
+        
+        for k in keys:
+            if k not in current:
+                return default
+            current = current[k]
+        
+        return current
+    
+    def save(self, filepath: str):
+        """Save state to file"""
+        with open(filepath, 'w') as f:
+            json.dump(self.state, f, indent=2)
+    
+    def load(self, filepath: str):
+        """Load state from file"""
+        with open(filepath, 'r') as f:
+            self.state = json.load(f)
+</code></pre>
+<h2 id="memory-retrieval-strategies"><a class="header" href="#memory-retrieval-strategies">Memory Retrieval Strategies</a></h2>
+<p>How to find relevant memories efficiently.</p>
+<h3 id="recency-based-retrieval"><a class="header" href="#recency-based-retrieval">Recency-Based Retrieval</a></h3>
+<pre><code class="language-python">def get_recent_memories(memories: List[dict], n: int = 5) -&gt; List[dict]:
+    """Get most recent memories"""
+    sorted_memories = sorted(
+        memories,
+        key=lambda x: x.get('timestamp', 0),
+        reverse=True
+    )
+    return sorted_memories[:n]
+</code></pre>
+<h3 id="relevance-based-retrieval"><a class="header" href="#relevance-based-retrieval">Relevance-Based Retrieval</a></h3>
+<pre><code class="language-python">def get_relevant_memories(
+    query: str,
+    memories: List[dict],
+    n: int = 5
+) -&gt; List[dict]:
+    """Get most relevant memories using embeddings"""
+    query_embedding = get_embedding(query)
+    
+    scored_memories = []
+    for memory in memories:
+        memory_embedding = memory.get('embedding')
+        if memory_embedding:
+            score = cosine_similarity(query_embedding, memory_embedding)
+            scored_memories.append((memory, score))
+    
+    scored_memories.sort(key=lambda x: x[1], reverse=True)
+    return [m for m, s in scored_memories[:n]]
+</code></pre>
+<h3 id="hybrid-retrieval"><a class="header" href="#hybrid-retrieval">Hybrid Retrieval</a></h3>
+<p>Combine multiple factors:</p>
+<pre><code class="language-python">def hybrid_retrieval(
+    query: str,
+    memories: List[dict],
+    n: int = 5,
+    recency_weight: float = 0.3,
+    relevance_weight: float = 0.7
+) -&gt; List[dict]:
+    """Combine recency and relevance"""
+    
+    query_embedding = get_embedding(query)
+    current_time = time.time()
+    
+    scored_memories = []
+    for memory in memories:
+        # Relevance score
+        relevance = cosine_similarity(
+            query_embedding,
+            memory['embedding']
+        )
+        
+        # Recency score (decay over time)
+        age = current_time - memory['timestamp']
+        recency = np.exp(-age / (24 * 3600))  # Decay over days
+        
+        # Combined score
+        score = (
+            relevance_weight * relevance +
+            recency_weight * recency
+        )
+        
+        scored_memories.append((memory, score))
+    
+    scored_memories.sort(key=lambda x: x[1], reverse=True)
+    return [m for m, s in scored_memories[:n]]
+</code></pre>
+<h3 id="importance-based-retrieval"><a class="header" href="#importance-based-retrieval">Importance-Based Retrieval</a></h3>
+<pre><code class="language-python">def get_important_memories(
+    memories: List[dict],
+    n: int = 5
+) -&gt; List[dict]:
+    """Get memories marked as important"""
+    
+    # Score by importance
+    scored = []
+    for memory in memories:
+        importance = memory.get('importance', 0)
+        scored.append((memory, importance))
+    
+    scored.sort(key=lambda x: x[1], reverse=True)
+    return [m for m, s in scored[:n]]
+
+def calculate_importance(memory: dict) -&gt; float:
+    """Calculate memory importance"""
+    prompt = f"""Rate the importance of remembering this information (0-10):
+
+{memory['text']}
+
+Consider:
+- Is it about user preferences?
+- Is it a key fact?
+- Will it be useful later?
+
+Importance (0-10):"""
+    
+    response = llm.generate(prompt)
+    return float(response.strip())
+</code></pre>
+<h2 id="complete-memory-system"><a class="header" href="#complete-memory-system">Complete Memory System</a></h2>
+<pre><code class="language-python">class ComprehensiveMemory:
+    """Full-featured memory system"""
+    
+    def __init__(self):
+        # Short-term memory
+        self.conversation = TokenAwareMemory(max_tokens=4000)
+        
+        # Long-term memory
+        self.long_term = ChromaMemory()
+        
+        # Entity tracking
+        self.entities = EntityTracker()
+        
+        # State management
+        self.state = StateManager()
+    
+    def add_message(self, role: str, content: str):
+        """Add message to conversation"""
+        message = {
+            "role": role,
+            "content": content,
+            "timestamp": time.time()
+        }
+        
+        # Add to short-term
+        self.conversation.add(message)
+        
+        # Extract and track entities
+        if role == "user":
+            self.entities.update(content)
+        
+        # Store important messages in long-term
+        if self.is_important(content):
+            self.long_term.add(
+                content,
+                metadata={
+                    "role": role,
+                    "timestamp": time.time()
+                }
+            )
+    
+    def is_important(self, text: str) -&gt; bool:
+        """Determine if message should be stored long-term"""
+        keywords = [
+            "my name is", "i prefer", "remember",
+            "always", "never", "i like", "i don't like"
+        ]
+        return any(kw in text.lower() for kw in keywords)
+    
+    def get_context(self, query: str = None) -&gt; List[dict]:
+        """Get relevant context for current query"""
+        context = []
+        
+        # Add relevant long-term memories
+        if query:
+            relevant = self.long_term.search(query, n_results=3)
+            if relevant:
+                context.append({
+                    "role": "system",
+                    "content": "Relevant information from past:\n" +
+                               "\n".join([m['text'] for m in relevant])
+                })
+        
+        # Add recent conversation
+        context.extend(self.conversation.get_context())
+        
+        return context
+    
+    def save(self, filepath: str):
+        """Save memory state"""
+        data = {
+            "entities": self.entities.entities,
+            "state": self.state.state,
+            "timestamp": time.time()
+        }
+        
+        with open(filepath, 'w') as f:
+            json.dump(data, f, indent=2)
+    
+    def load(self, filepath: str):
+        """Load memory state"""
+        with open(filepath, 'r') as f:
+            data = json.load(f)
+        
+        self.entities.entities = data.get('entities', {})
+        self.state.state = data.get('state', {})
+</code></pre>
+<h2 id="using-memory-in-agents"><a class="header" href="#using-memory-in-agents">Using Memory in Agents</a></h2>
+<pre><code class="language-python">class MemoryAgent:
+    """Agent with comprehensive memory"""
+    
+    def __init__(self):
+        self.memory = ComprehensiveMemory()
+        self.client = openai.OpenAI()
+    
+    def chat(self, user_input: str) -&gt; str:
+        """Chat with memory"""
+        
+        # Add user message to memory
+        self.memory.add_message("user", user_input)
+        
+        # Get context with relevant memories
+        context = self.memory.get_context(query=user_input)
+        
+        # Generate response
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=context
+        )
+        
+        assistant_message = response.choices[0].message.content
+        
+        # Add assistant response to memory
+        self.memory.add_message("assistant", assistant_message)
+        
+        return assistant_message
+    
+    def save_session(self):
+        """Save memory for later"""
+        self.memory.save("session_memory.json")
+    
+    def load_session(self):
+        """Load previous session"""
+        self.memory.load("session_memory.json")
+</code></pre>
+<h2 id="best-practices"><a class="header" href="#best-practices">Best Practices</a></h2>
+<ol>
+<li><strong>Separate short and long-term</strong>: Different storage for different needs</li>
+<li><strong>Be selective</strong>: Don’t store everything</li>
+<li><strong>Use semantic search</strong>: Find by meaning, not keywords</li>
+<li><strong>Track importance</strong>: Prioritize valuable information</li>
+<li><strong>Manage token budgets</strong>: Don’t overflow context</li>
+<li><strong>Summarize old conversations</strong>: Compress history</li>
+<li><strong>Update entities</strong>: Track what’s mentioned</li>
+<li><strong>Persist critical data</strong>: Save to disk/database</li>
+<li><strong>Retrieve strategically</strong>: Balance recency, relevance, importance</li>
+<li><strong>Test retrieval</strong>: Ensure you find what you need</li>
+</ol>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
+<p>With memory systems in place, agents can maintain context and learn from experience. Next, we’ll explore multi-agent systems where multiple agents collaborate!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../module3/3_1_planning.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../module3/3_3_multi_agent.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../module3/3_1_planning.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../module3/3_3_multi_agent.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,956 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Monitoring &amp; Observability - AI Agents: Zero to Hero</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-c3e257ac.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-65a70cec.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">AI Agents: Zero to Hero</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="monitoring--observability"><a class="header" href="#monitoring--observability">Monitoring &amp; Observability</a></h1>
+<h2 id="logging-and-tracing"><a class="header" href="#logging-and-tracing">Logging and Tracing</a></h2>
+<p>Track what your agent is doing at every step.</p>
+<h3 id="structured-logging"><a class="header" href="#structured-logging">Structured Logging</a></h3>
+<pre><code class="language-python">import logging
+import json
+from datetime import datetime
+from typing import Any, Dict
+
+class AgentLogger:
+    """Structured logging for agents"""
+    
+    def __init__(self, agent_id: str, log_file: str = "agent.log"):
+        self.agent_id = agent_id
+        self.logger = logging.getLogger(agent_id)
+        self.logger.setLevel(logging.INFO)
+        
+        # File handler
+        handler = logging.FileHandler(log_file)
+        handler.setFormatter(logging.Formatter('%(message)s'))
+        self.logger.addHandler(handler)
+        
+        # Console handler
+        console = logging.StreamHandler()
+        console.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
+        self.logger.addHandler(console)
+    
+    def log_event(self, 
+                  event_type: str,
+                  data: Dict[str, Any],
+                  level: str = "info"):
+        """Log structured event"""
+        log_entry = {
+            "timestamp": datetime.utcnow().isoformat(),
+            "agent_id": self.agent_id,
+            "event_type": event_type,
+            "data": data
+        }
+        
+        log_message = json.dumps(log_entry)
+        
+        if level == "info":
+            self.logger.info(log_message)
+        elif level == "warning":
+            self.logger.warning(log_message)
+        elif level == "error":
+            self.logger.error(log_message)
+        elif level == "debug":
+            self.logger.debug(log_message)
+    
+    def log_request(self, user_id: str, input_text: str):
+        """Log incoming request"""
+        self.log_event("request", {
+            "user_id": user_id,
+            "input": input_text[:200],  # Truncate long inputs
+            "input_length": len(input_text)
+        })
+    
+    def log_response(self, user_id: str, output_text: str, execution_time: float):
+        """Log response"""
+        self.log_event("response", {
+            "user_id": user_id,
+            "output": output_text[:200],
+            "output_length": len(output_text),
+            "execution_time": execution_time
+        })
+    
+    def log_tool_call(self, tool_name: str, parameters: dict, result: Any):
+        """Log tool execution"""
+        self.log_event("tool_call", {
+            "tool": tool_name,
+            "parameters": parameters,
+            "result": str(result)[:200],
+            "success": result is not None
+        })
+    
+    def log_error(self, error_type: str, error_message: str, context: dict = None):
+        """Log error"""
+        self.log_event("error", {
+            "error_type": error_type,
+            "message": error_message,
+            "context": context or {}
+        }, level="error")
+
+# Usage
+logger = AgentLogger("agent-001")
+logger.log_request("user123", "What is the weather?")
+logger.log_tool_call("weather_api", {"location": "NYC"}, {"temp": 72})
+logger.log_response("user123", "It's 72°F in NYC", 1.5)
+</code></pre>
+<h3 id="distributed-tracing"><a class="header" href="#distributed-tracing">Distributed Tracing</a></h3>
+<pre><code class="language-python">import uuid
+from contextlib import contextmanager
+from typing import Optional
+
+class Tracer:
+    """Distributed tracing for agent operations"""
+    
+    def __init__(self):
+        self.traces = {}
+        self.current_trace = None
+    
+    @contextmanager
+    def trace(self, operation_name: str, parent_id: Optional[str] = None):
+        """Create trace span"""
+        span_id = str(uuid.uuid4())
+        trace_id = parent_id or str(uuid.uuid4())
+        
+        span = {
+            "span_id": span_id,
+            "trace_id": trace_id,
+            "operation": operation_name,
+            "start_time": time.time(),
+            "parent_id": parent_id,
+            "children": [],
+            "metadata": {}
+        }
+        
+        # Store current trace
+        previous_trace = self.current_trace
+        self.current_trace = span_id
+        self.traces[span_id] = span
+        
+        try:
+            yield span
+        finally:
+            # End span
+            span["end_time"] = time.time()
+            span["duration"] = span["end_time"] - span["start_time"]
+            
+            # Restore previous trace
+            self.current_trace = previous_trace
+    
+    def add_metadata(self, key: str, value: Any):
+        """Add metadata to current span"""
+        if self.current_trace:
+            self.traces[self.current_trace]["metadata"][key] = value
+    
+    def get_trace(self, trace_id: str) -&gt; dict:
+        """Get full trace"""
+        spans = [s for s in self.traces.values() if s["trace_id"] == trace_id]
+        
+        # Build tree
+        root = [s for s in spans if s["parent_id"] is None][0]
+        self._build_tree(root, spans)
+        
+        return root
+    
+    def _build_tree(self, node: dict, all_spans: list):
+        """Build trace tree"""
+        children = [s for s in all_spans if s["parent_id"] == node["span_id"]]
+        node["children"] = children
+        
+        for child in children:
+            self._build_tree(child, all_spans)
+
+# Usage
+tracer = Tracer()
+
+with tracer.trace("agent_request") as trace:
+    tracer.add_metadata("user_id", "user123")
+    
+    with tracer.trace("tool_call", parent_id=trace["span_id"]):
+        tracer.add_metadata("tool", "search")
+        # Execute tool
+        pass
+    
+    with tracer.trace("generate_response", parent_id=trace["span_id"]):
+        # Generate response
+        pass
+
+# View trace
+full_trace = tracer.get_trace(trace["trace_id"])
+</code></pre>
+<h2 id="performance-metrics"><a class="header" href="#performance-metrics">Performance Metrics</a></h2>
+<p>Track agent performance in real-time.</p>
+<h3 id="metrics-collector"><a class="header" href="#metrics-collector">Metrics Collector</a></h3>
+<pre><code class="language-python">from collections import defaultdict
+from threading import Lock
+import time
+
+class MetricsCollector:
+    """Collect and aggregate metrics"""
+    
+    def __init__(self):
+        self.metrics = defaultdict(list)
+        self.counters = defaultdict(int)
+        self.lock = Lock()
+    
+    def record_metric(self, name: str, value: float, tags: dict = None):
+        """Record a metric value"""
+        with self.lock:
+            self.metrics[name].append({
+                "value": value,
+                "timestamp": time.time(),
+                "tags": tags or {}
+            })
+    
+    def increment_counter(self, name: str, amount: int = 1):
+        """Increment counter"""
+        with self.lock:
+            self.counters[name] += amount
+    
+    def get_stats(self, name: str, window_seconds: int = 3600) -&gt; dict:
+        """Get statistics for metric"""
+        with self.lock:
+            current_time = time.time()
+            
+            # Filter to time window
+            values = [
+                m["value"] for m in self.metrics[name]
+                if current_time - m["timestamp"] &lt; window_seconds
+            ]
+            
+            if not values:
+                return {}
+            
+            return {
+                "count": len(values),
+                "min": min(values),
+                "max": max(values),
+                "avg": sum(values) / len(values),
+                "p50": self._percentile(values, 50),
+                "p95": self._percentile(values, 95),
+                "p99": self._percentile(values, 99)
+            }
+    
+    def _percentile(self, values: list, percentile: int) -&gt; float:
+        """Calculate percentile"""
+        sorted_values = sorted(values)
+        index = int(len(sorted_values) * percentile / 100)
+        return sorted_values[min(index, len(sorted_values) - 1)]
+    
+    def get_counter(self, name: str) -&gt; int:
+        """Get counter value"""
+        with self.lock:
+            return self.counters[name]
+    
+    def reset(self):
+        """Reset all metrics"""
+        with self.lock:
+            self.metrics.clear()
+            self.counters.clear()
+
+# Usage
+metrics = MetricsCollector()
+
+# Record metrics
+metrics.record_metric("response_time", 1.5, {"user": "user123"})
+metrics.record_metric("response_time", 2.1, {"user": "user456"})
+metrics.increment_counter("total_requests")
+metrics.increment_counter("successful_requests")
+
+# Get stats
+stats = metrics.get_stats("response_time")
+print(f"Avg response time: {stats['avg']:.2f}s")
+print(f"P95 response time: {stats['p95']:.2f}s")
+</code></pre>
+<h3 id="real-time-dashboard"><a class="header" href="#real-time-dashboard">Real-Time Dashboard</a></h3>
+<pre><code class="language-python">class MetricsDashboard:
+    """Real-time metrics dashboard"""
+    
+    def __init__(self, metrics_collector: MetricsCollector):
+        self.metrics = metrics_collector
+    
+    def display(self):
+        """Display current metrics"""
+        print("\n" + "="*60)
+        print("AGENT METRICS DASHBOARD")
+        print("="*60)
+        
+        # Request metrics
+        total = self.metrics.get_counter("total_requests")
+        successful = self.metrics.get_counter("successful_requests")
+        failed = self.metrics.get_counter("failed_requests")
+        
+        print(f"\nRequests:")
+        print(f"  Total: {total}")
+        print(f"  Successful: {successful}")
+        print(f"  Failed: {failed}")
+        if total &gt; 0:
+            print(f"  Success Rate: {successful/total:.1%}")
+        
+        # Response time
+        response_stats = self.metrics.get_stats("response_time")
+        if response_stats:
+            print(f"\nResponse Time:")
+            print(f"  Average: {response_stats['avg']:.2f}s")
+            print(f"  P50: {response_stats['p50']:.2f}s")
+            print(f"  P95: {response_stats['p95']:.2f}s")
+            print(f"  P99: {response_stats['p99']:.2f}s")
+        
+        # Tool usage
+        tool_calls = self.metrics.get_counter("tool_calls")
+        print(f"\nTool Calls: {tool_calls}")
+        
+        # Cost
+        total_cost = self.metrics.get_counter("total_cost_cents") / 100
+        print(f"\nTotal Cost: ${total_cost:.2f}")
+        
+        print("="*60 + "\n")
+</code></pre>
+<h2 id="cost-tracking"><a class="header" href="#cost-tracking">Cost Tracking</a></h2>
+<p>Monitor spending in real-time.</p>
+<h3 id="cost-monitor"><a class="header" href="#cost-monitor">Cost Monitor</a></h3>
+<pre><code class="language-python">class CostMonitor:
+    """Monitor and alert on costs"""
+    
+    def __init__(self, budget_limit: float = 100.0):
+        self.budget_limit = budget_limit
+        self.costs = defaultdict(float)
+        self.lock = Lock()
+        self.alerts = []
+    
+    def record_cost(self, 
+                   user_id: str,
+                   cost: float,
+                   model: str,
+                   tokens: int):
+        """Record cost"""
+        with self.lock:
+            self.costs[user_id] += cost
+            
+            # Check for alerts
+            if self.costs[user_id] &gt; self.budget_limit * 0.8:
+                self.add_alert(
+                    "warning",
+                    f"User {user_id} at 80% of budget: ${self.costs[user_id]:.2f}"
+                )
+            
+            if self.costs[user_id] &gt; self.budget_limit:
+                self.add_alert(
+                    "critical",
+                    f"User {user_id} exceeded budget: ${self.costs[user_id]:.2f}"
+                )
+    
+    def add_alert(self, level: str, message: str):
+        """Add alert"""
+        alert = {
+            "level": level,
+            "message": message,
+            "timestamp": time.time()
+        }
+        self.alerts.append(alert)
+        
+        # Log alert
+        if level == "critical":
+            logger.log_event("cost_alert", alert, level="error")
+        else:
+            logger.log_event("cost_alert", alert, level="warning")
+    
+    def get_user_cost(self, user_id: str) -&gt; dict:
+        """Get user's cost"""
+        with self.lock:
+            cost = self.costs[user_id]
+            return {
+                "cost": cost,
+                "budget": self.budget_limit,
+                "remaining": self.budget_limit - cost,
+                "percentage": (cost / self.budget_limit) * 100
+            }
+    
+    def get_total_cost(self) -&gt; float:
+        """Get total cost across all users"""
+        with self.lock:
+            return sum(self.costs.values())
+    
+    def get_alerts(self, level: str = None) -&gt; list:
+        """Get alerts"""
+        if level:
+            return [a for a in self.alerts if a["level"] == level]
+        return self.alerts
+</code></pre>
+<h2 id="user-feedback-loops"><a class="header" href="#user-feedback-loops">User Feedback Loops</a></h2>
+<p>Collect and act on user feedback.</p>
+<h3 id="feedback-collector"><a class="header" href="#feedback-collector">Feedback Collector</a></h3>
+<pre><code class="language-python">class FeedbackCollector:
+    """Collect user feedback"""
+    
+    def __init__(self):
+        self.feedback = []
+        self.ratings = defaultdict(list)
+    
+    def collect_rating(self, 
+                      user_id: str,
+                      interaction_id: str,
+                      rating: int,
+                      comment: str = ""):
+        """Collect user rating (1-5)"""
+        feedback = {
+            "user_id": user_id,
+            "interaction_id": interaction_id,
+            "rating": rating,
+            "comment": comment,
+            "timestamp": time.time()
+        }
+        
+        self.feedback.append(feedback)
+        self.ratings[user_id].append(rating)
+        
+        # Log feedback
+        logger.log_event("user_feedback", feedback)
+        
+        # Alert on low ratings
+        if rating &lt;= 2:
+            logger.log_event("low_rating", feedback, level="warning")
+    
+    def get_average_rating(self, user_id: str = None) -&gt; float:
+        """Get average rating"""
+        if user_id:
+            ratings = self.ratings[user_id]
+        else:
+            ratings = [f["rating"] for f in self.feedback]
+        
+        if not ratings:
+            return 0.0
+        
+        return sum(ratings) / len(ratings)
+    
+    def get_recent_feedback(self, limit: int = 10) -&gt; list:
+        """Get recent feedback"""
+        return sorted(
+            self.feedback,
+            key=lambda x: x["timestamp"],
+            reverse=True
+        )[:limit]
+    
+    def get_low_ratings(self, threshold: int = 2) -&gt; list:
+        """Get low-rated interactions"""
+        return [
+            f for f in self.feedback
+            if f["rating"] &lt;= threshold
+        ]
+</code></pre>
+<h3 id="feedback-analysis"><a class="header" href="#feedback-analysis">Feedback Analysis</a></h3>
+<pre><code class="language-python">class FeedbackAnalyzer:
+    """Analyze feedback patterns"""
+    
+    def __init__(self, feedback_collector: FeedbackCollector):
+        self.collector = feedback_collector
+        self.client = openai.OpenAI()
+    
+    def analyze_trends(self) -&gt; dict:
+        """Analyze feedback trends"""
+        recent = self.collector.get_recent_feedback(limit=100)
+        
+        if not recent:
+            return {}
+        
+        # Calculate trends
+        ratings = [f["rating"] for f in recent]
+        
+        return {
+            "average_rating": sum(ratings) / len(ratings),
+            "total_feedback": len(recent),
+            "rating_distribution": {
+                "5_star": sum(1 for r in ratings if r == 5),
+                "4_star": sum(1 for r in ratings if r == 4),
+                "3_star": sum(1 for r in ratings if r == 3),
+                "2_star": sum(1 for r in ratings if r == 2),
+                "1_star": sum(1 for r in ratings if r == 1),
+            }
+        }
+    
+    def identify_issues(self) -&gt; list:
+        """Identify common issues from feedback"""
+        low_ratings = self.collector.get_low_ratings()
+        
+        if not low_ratings:
+            return []
+        
+        # Extract comments
+        comments = [f["comment"] for f in low_ratings if f["comment"]]
+        
+        if not comments:
+            return []
+        
+        # Use LLM to identify themes
+        prompt = f"""Analyze these negative feedback comments and identify common themes:
+
+{chr(10).join(comments[:20])}
+
+List the top 3 issues:"""
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}]
+        )
+        
+        return response.choices[0].message.content.split('\n')
+</code></pre>
+<h2 id="complete-monitoring-system"><a class="header" href="#complete-monitoring-system">Complete Monitoring System</a></h2>
+<pre><code class="language-python">class AgentMonitor:
+    """Complete monitoring system"""
+    
+    def __init__(self, agent_id: str):
+        self.agent_id = agent_id
+        self.logger = AgentLogger(agent_id)
+        self.tracer = Tracer()
+        self.metrics = MetricsCollector()
+        self.cost_monitor = CostMonitor()
+        self.feedback = FeedbackCollector()
+    
+    def monitor_request(self, user_id: str, input_text: str):
+        """Monitor incoming request"""
+        self.logger.log_request(user_id, input_text)
+        self.metrics.increment_counter("total_requests")
+        
+        return {
+            "trace_id": str(uuid.uuid4()),
+            "start_time": time.time()
+        }
+    
+    def monitor_response(self, 
+                        user_id: str,
+                        output_text: str,
+                        context: dict):
+        """Monitor response"""
+        execution_time = time.time() - context["start_time"]
+        
+        self.logger.log_response(user_id, output_text, execution_time)
+        self.metrics.record_metric("response_time", execution_time)
+        self.metrics.increment_counter("successful_requests")
+    
+    def monitor_tool_call(self, tool_name: str, parameters: dict, result: Any):
+        """Monitor tool execution"""
+        self.logger.log_tool_call(tool_name, parameters, result)
+        self.metrics.increment_counter("tool_calls")
+        self.metrics.increment_counter(f"tool_calls_{tool_name}")
+    
+    def monitor_cost(self, 
+                    user_id: str,
+                    model: str,
+                    tokens: int,
+                    cost: float):
+        """Monitor cost"""
+        self.cost_monitor.record_cost(user_id, cost, model, tokens)
+        self.metrics.increment_counter("total_cost_cents", int(cost * 100))
+    
+    def monitor_error(self, error_type: str, error_message: str, context: dict):
+        """Monitor error"""
+        self.logger.log_error(error_type, error_message, context)
+        self.metrics.increment_counter("failed_requests")
+        self.metrics.increment_counter(f"error_{error_type}")
+    
+    def get_health_status(self) -&gt; dict:
+        """Get system health status"""
+        total = self.metrics.get_counter("total_requests")
+        successful = self.metrics.get_counter("successful_requests")
+        failed = self.metrics.get_counter("failed_requests")
+        
+        success_rate = successful / total if total &gt; 0 else 0
+        
+        response_stats = self.metrics.get_stats("response_time")
+        avg_response_time = response_stats.get("avg", 0) if response_stats else 0
+        
+        # Determine health
+        if success_rate &lt; 0.9 or avg_response_time &gt; 10:
+            health = "unhealthy"
+        elif success_rate &lt; 0.95 or avg_response_time &gt; 5:
+            health = "degraded"
+        else:
+            health = "healthy"
+        
+        return {
+            "status": health,
+            "success_rate": success_rate,
+            "avg_response_time": avg_response_time,
+            "total_requests": total,
+            "failed_requests": failed,
+            "total_cost": self.cost_monitor.get_total_cost()
+        }
+    
+    def generate_report(self) -&gt; dict:
+        """Generate monitoring report"""
+        return {
+            "agent_id": self.agent_id,
+            "timestamp": time.time(),
+            "health": self.get_health_status(),
+            "metrics": {
+                "response_time": self.metrics.get_stats("response_time"),
+                "requests": {
+                    "total": self.metrics.get_counter("total_requests"),
+                    "successful": self.metrics.get_counter("successful_requests"),
+                    "failed": self.metrics.get_counter("failed_requests")
+                },
+                "tool_calls": self.metrics.get_counter("tool_calls")
+            },
+            "cost": {
+                "total": self.cost_monitor.get_total_cost(),
+                "alerts": self.cost_monitor.get_alerts()
+            },
+            "feedback": {
+                "average_rating": self.feedback.get_average_rating(),
+                "recent": self.feedback.get_recent_feedback(limit=5)
+            }
+        }
+
+# Usage
+monitor = AgentMonitor("agent-001")
+
+# Monitor request
+context = monitor.monitor_request("user123", "What is Python?")
+
+# Monitor tool call
+monitor.monitor_tool_call("search", {"query": "Python"}, "Results...")
+
+# Monitor cost
+monitor.monitor_cost("user123", "gpt-4", 500, 0.015)
+
+# Monitor response
+monitor.monitor_response("user123", "Python is...", context)
+
+# Get health status
+health = monitor.get_health_status()
+print(f"System health: {health['status']}")
+
+# Generate report
+report = monitor.generate_report()
+</code></pre>
+<h2 id="alerting"><a class="header" href="#alerting">Alerting</a></h2>
+<p>Set up alerts for critical issues.</p>
+<h3 id="alert-manager"><a class="header" href="#alert-manager">Alert Manager</a></h3>
+<pre><code class="language-python">class AlertManager:
+    """Manage alerts and notifications"""
+    
+    def __init__(self):
+        self.alert_rules = []
+        self.active_alerts = []
+    
+    def add_rule(self, 
+                 name: str,
+                 condition: Callable,
+                 severity: str,
+                 message: str):
+        """Add alert rule"""
+        self.alert_rules.append({
+            "name": name,
+            "condition": condition,
+            "severity": severity,
+            "message": message
+        })
+    
+    def check_alerts(self, metrics: dict):
+        """Check all alert rules"""
+        new_alerts = []
+        
+        for rule in self.alert_rules:
+            if rule["condition"](metrics):
+                alert = {
+                    "name": rule["name"],
+                    "severity": rule["severity"],
+                    "message": rule["message"],
+                    "timestamp": time.time(),
+                    "metrics": metrics
+                }
+                new_alerts.append(alert)
+                self.trigger_alert(alert)
+        
+        self.active_alerts.extend(new_alerts)
+        return new_alerts
+    
+    def trigger_alert(self, alert: dict):
+        """Trigger alert notification"""
+        print(f"\n🚨 ALERT [{alert['severity']}]: {alert['name']}")
+        print(f"   {alert['message']}")
+        
+        # In production, send to:
+        # - Email
+        # - Slack
+        # - PagerDuty
+        # - etc.
+    
+    def get_active_alerts(self, severity: str = None) -&gt; list:
+        """Get active alerts"""
+        if severity:
+            return [a for a in self.active_alerts if a["severity"] == severity]
+        return self.active_alerts
+
+# Setup alerts
+alerts = AlertManager()
+
+# High error rate
+alerts.add_rule(
+    name="High Error Rate",
+    condition=lambda m: m.get("success_rate", 1) &lt; 0.9,
+    severity="critical",
+    message="Success rate below 90%"
+)
+
+# Slow response time
+alerts.add_rule(
+    name="Slow Response Time",
+    condition=lambda m: m.get("avg_response_time", 0) &gt; 5,
+    severity="warning",
+    message="Average response time above 5 seconds"
+)
+
+# High cost
+alerts.add_rule(
+    name="High Cost",
+    condition=lambda m: m.get("total_cost", 0) &gt; 50,
+    severity="warning",
+    message="Total cost exceeded $50"
+)
+</code></pre>
+<h2 id="best-practices"><a class="header" href="#best-practices">Best Practices</a></h2>
+<ol>
+<li><strong>Log everything</strong>: Requests, responses, errors, tool calls</li>
+<li><strong>Use structured logging</strong>: JSON format for easy parsing</li>
+<li><strong>Track key metrics</strong>: Response time, success rate, cost</li>
+<li><strong>Set up alerts</strong>: Be notified of issues immediately</li>
+<li><strong>Monitor costs</strong>: Track spending in real-time</li>
+<li><strong>Collect feedback</strong>: Learn from users</li>
+<li><strong>Create dashboards</strong>: Visualize metrics</li>
+<li><strong>Trace requests</strong>: Follow execution flow</li>
+<li><strong>Analyze trends</strong>: Look for patterns over time</li>
+<li><strong>Act on insights</strong>: Use data to improve</li>
+</ol>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
+<p>Module 5 (Production-Ready Agents) is complete! You now understand reliability, testing, and monitoring. You’re ready to build production-grade agents that are safe, tested, and observable.</p>
+<p>Would you like to continue with Module 6 (Specialized Agent Types)?</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../module5/5_2_evaluation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../module6/6_1_coding_agents.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../module5/5_2_evaluation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../module6/6_1_coding_agents.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

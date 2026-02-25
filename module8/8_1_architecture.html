@@ -1,0 +1,1141 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Architecture Patterns - AI Agents: Zero to Hero</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-c3e257ac.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-65a70cec.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">AI Agents: Zero to Hero</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="architecture-patterns"><a class="header" href="#architecture-patterns">Architecture Patterns</a></h1>
+<h2 id="introduction-to-enterprise-architecture"><a class="header" href="#introduction-to-enterprise-architecture">Introduction to Enterprise Architecture</a></h2>
+<p>Enterprise-scale agent systems require robust, scalable, and maintainable architectures. This section covers proven patterns for production deployments.</p>
+<h3 id="key-requirements"><a class="header" href="#key-requirements">Key Requirements</a></h3>
+<p><strong>Scalability</strong>:</p>
+<ul>
+<li>Handle increasing load</li>
+<li>Horizontal scaling</li>
+<li>Resource efficiency</li>
+<li>Performance optimization</li>
+</ul>
+<p><strong>Reliability</strong>:</p>
+<ul>
+<li>High availability (99.9%+)</li>
+<li>Fault tolerance</li>
+<li>Graceful degradation</li>
+<li>Disaster recovery</li>
+</ul>
+<p><strong>Maintainability</strong>:</p>
+<ul>
+<li>Clear separation of concerns</li>
+<li>Easy updates and rollbacks</li>
+<li>Monitoring and debugging</li>
+<li>Documentation</li>
+</ul>
+<p><strong>Security</strong>:</p>
+<ul>
+<li>Authentication and authorization</li>
+<li>Data encryption</li>
+<li>Audit logging</li>
+<li>Compliance</li>
+</ul>
+<h2 id="microservices-for-agents"><a class="header" href="#microservices-for-agents">Microservices for Agents</a></h2>
+<h3 id="agent-microservices-architecture"><a class="header" href="#agent-microservices-architecture">Agent Microservices Architecture</a></h3>
+<pre><code class="language-python">from fastapi import FastAPI, HTTPException, Depends
+from pydantic import BaseModel
+from typing import Optional, Dict, Any
+import uvicorn
+
+# Agent Service
+class AgentService:
+    """Core agent microservice"""
+    
+    def __init__(self):
+        self.app = FastAPI(title="Agent Service")
+        self.setup_routes()
+    
+    def setup_routes(self):
+        """Setup API routes"""
+        
+        @self.app.post("/agent/process")
+        async def process_request(request: AgentRequest):
+            """Process agent request"""
+            try:
+                result = await self.process(request)
+                return {"success": True, "result": result}
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=str(e))
+        
+        @self.app.get("/agent/health")
+        async def health_check():
+            """Health check endpoint"""
+            return {"status": "healthy", "service": "agent"}
+    
+    async def process(self, request: AgentRequest) -&gt; Dict:
+        """Process agent request"""
+        # Agent logic here
+        return {"response": "Processed"}
+    
+    def run(self, host: str = "0.0.0.0", port: int = 8000):
+        """Run service"""
+        uvicorn.run(self.app, host=host, port=port)
+
+class AgentRequest(BaseModel):
+    """Agent request model"""
+    user_id: str
+    input: str
+    context: Optional[Dict[str, Any]] = None
+
+# Tool Service
+class ToolService:
+    """Tool execution microservice"""
+    
+    def __init__(self):
+        self.app = FastAPI(title="Tool Service")
+        self.tools = {}
+        self.setup_routes()
+    
+    def setup_routes(self):
+        """Setup API routes"""
+        
+        @self.app.post("/tools/execute")
+        async def execute_tool(request: ToolRequest):
+            """Execute tool"""
+            try:
+                result = await self.execute(request)
+                return {"success": True, "result": result}
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=str(e))
+        
+        @self.app.get("/tools/list")
+        async def list_tools():
+            """List available tools"""
+            return {"tools": list(self.tools.keys())}
+    
+    async def execute(self, request: ToolRequest) -&gt; Any:
+        """Execute tool"""
+        if request.tool_name not in self.tools:
+            raise ValueError(f"Unknown tool: {request.tool_name}")
+        
+        tool = self.tools[request.tool_name]
+        return tool(**request.parameters)
+    
+    def register_tool(self, name: str, func):
+        """Register tool"""
+        self.tools[name] = func
+
+class ToolRequest(BaseModel):
+    """Tool request model"""
+    tool_name: str
+    parameters: Dict[str, Any]
+
+# Memory Service
+class MemoryService:
+    """Memory management microservice"""
+    
+    def __init__(self):
+        self.app = FastAPI(title="Memory Service")
+        self.storage = {}
+        self.setup_routes()
+    
+    def setup_routes(self):
+        """Setup API routes"""
+        
+        @self.app.post("/memory/store")
+        async def store_memory(request: MemoryRequest):
+            """Store memory"""
+            self.storage[request.key] = request.value
+            return {"success": True}
+        
+        @self.app.get("/memory/retrieve/{key}")
+        async def retrieve_memory(key: str):
+            """Retrieve memory"""
+            value = self.storage.get(key)
+            if value is None:
+                raise HTTPException(status_code=404, detail="Memory not found")
+            return {"key": key, "value": value}
+        
+        @self.app.delete("/memory/delete/{key}")
+        async def delete_memory(key: str):
+            """Delete memory"""
+            if key in self.storage:
+                del self.storage[key]
+            return {"success": True}
+
+class MemoryRequest(BaseModel):
+    """Memory request model"""
+    key: str
+    value: Any
+
+# API Gateway
+class APIGateway:
+    """API Gateway for routing requests"""
+    
+    def __init__(self):
+        self.app = FastAPI(title="API Gateway")
+        self.services = {
+            "agent": "http://localhost:8000",
+            "tools": "http://localhost:8001",
+            "memory": "http://localhost:8002"
+        }
+        self.setup_routes()
+    
+    def setup_routes(self):
+        """Setup gateway routes"""
+        
+        @self.app.post("/api/chat")
+        async def chat(request: ChatRequest):
+            """Chat endpoint"""
+            import httpx
+            
+            # Route to agent service
+            async with httpx.AsyncClient() as client:
+                response = await client.post(
+                    f"{self.services['agent']}/agent/process",
+                    json=request.dict()
+                )
+                return response.json()
+        
+        @self.app.get("/api/health")
+        async def health():
+            """Check health of all services"""
+            import httpx
+            
+            health_status = {}
+            async with httpx.AsyncClient() as client:
+                for service, url in self.services.items():
+                    try:
+                        response = await client.get(f"{url}/health", timeout=5)
+                        health_status[service] = "healthy"
+                    except:
+                        health_status[service] = "unhealthy"
+            
+            return {"services": health_status}
+
+class ChatRequest(BaseModel):
+    """Chat request model"""
+    user_id: str
+    message: str
+
+# Usage
+if __name__ == "__main__":
+    # Start services on different ports
+    agent_service = AgentService()
+    # agent_service.run(port=8000)
+    
+    tool_service = ToolService()
+    # tool_service.run(port=8001)
+    
+    memory_service = MemoryService()
+    # memory_service.run(port=8002)
+    
+    gateway = APIGateway()
+    # gateway.app.run(port=8080)
+</code></pre>
+<h3 id="service-communication"><a class="header" href="#service-communication">Service Communication</a></h3>
+<pre><code class="language-python">import httpx
+from typing import Optional
+import asyncio
+
+class ServiceClient:
+    """Client for inter-service communication"""
+    
+    def __init__(self, base_url: str, timeout: int = 30):
+        self.base_url = base_url
+        self.timeout = timeout
+        self.client = httpx.AsyncClient(timeout=timeout)
+    
+    async def call_service(self, 
+                          endpoint: str,
+                          method: str = "POST",
+                          data: Optional[Dict] = None) -&gt; Dict:
+        """Call another service"""
+        
+        url = f"{self.base_url}{endpoint}"
+        
+        try:
+            if method == "POST":
+                response = await self.client.post(url, json=data)
+            elif method == "GET":
+                response = await self.client.get(url)
+            else:
+                raise ValueError(f"Unsupported method: {method}")
+            
+            response.raise_for_status()
+            return response.json()
+            
+        except httpx.HTTPError as e:
+            return {"error": str(e)}
+    
+    async def close(self):
+        """Close client"""
+        await self.client.aclose()
+
+# Circuit Breaker for service calls
+class CircuitBreaker:
+    """Circuit breaker for service resilience"""
+    
+    def __init__(self, failure_threshold: int = 5, timeout: int = 60):
+        self.failure_threshold = failure_threshold
+        self.timeout = timeout
+        self.failures = 0
+        self.last_failure_time = None
+        self.state = "closed"  # closed, open, half-open
+    
+    async def call(self, func, *args, **kwargs):
+        """Call function with circuit breaker"""
+        
+        if self.state == "open":
+            if time.time() - self.last_failure_time &gt; self.timeout:
+                self.state = "half-open"
+            else:
+                raise Exception("Circuit breaker is OPEN")
+        
+        try:
+            result = await func(*args, **kwargs)
+            
+            if self.state == "half-open":
+                self.state = "closed"
+                self.failures = 0
+            
+            return result
+            
+        except Exception as e:
+            self.failures += 1
+            self.last_failure_time = time.time()
+            
+            if self.failures &gt;= self.failure_threshold:
+                self.state = "open"
+            
+            raise e
+
+# Service Registry
+class ServiceRegistry:
+    """Service discovery and registration"""
+    
+    def __init__(self):
+        self.services = {}
+    
+    def register(self, service_name: str, url: str, metadata: Dict = None):
+        """Register service"""
+        self.services[service_name] = {
+            "url": url,
+            "metadata": metadata or {},
+            "registered_at": time.time()
+        }
+        print(f"✅ Registered service: {service_name} at {url}")
+    
+    def discover(self, service_name: str) -&gt; Optional[str]:
+        """Discover service URL"""
+        service = self.services.get(service_name)
+        return service["url"] if service else None
+    
+    def list_services(self) -&gt; Dict:
+        """List all services"""
+        return self.services
+
+# Usage
+registry = ServiceRegistry()
+registry.register("agent-service", "http://localhost:8000")
+registry.register("tool-service", "http://localhost:8001")
+
+# Get service URL
+agent_url = registry.discover("agent-service")
+</code></pre>
+<h2 id="event-driven-architectures"><a class="header" href="#event-driven-architectures">Event-Driven Architectures</a></h2>
+<h3 id="message-queue-integration"><a class="header" href="#message-queue-integration">Message Queue Integration</a></h3>
+<pre><code class="language-python">import json
+from typing import Callable, Dict
+import asyncio
+from queue import Queue
+import threading
+
+class MessageBroker:
+    """Simple message broker"""
+    
+    def __init__(self):
+        self.queues = {}
+        self.subscribers = {}
+    
+    def create_queue(self, queue_name: str):
+        """Create message queue"""
+        if queue_name not in self.queues:
+            self.queues[queue_name] = Queue()
+            self.subscribers[queue_name] = []
+    
+    def publish(self, queue_name: str, message: Dict):
+        """Publish message to queue"""
+        if queue_name not in self.queues:
+            self.create_queue(queue_name)
+        
+        self.queues[queue_name].put(message)
+        print(f"📤 Published to {queue_name}: {message}")
+    
+    def subscribe(self, queue_name: str, handler: Callable):
+        """Subscribe to queue"""
+        if queue_name not in self.queues:
+            self.create_queue(queue_name)
+        
+        self.subscribers[queue_name].append(handler)
+        print(f"📥 Subscribed to {queue_name}")
+    
+    def start_consumer(self, queue_name: str):
+        """Start consuming messages"""
+        
+        def consume():
+            while True:
+                try:
+                    message = self.queues[queue_name].get(timeout=1)
+                    
+                    # Call all subscribers
+                    for handler in self.subscribers[queue_name]:
+                        try:
+                            handler(message)
+                        except Exception as e:
+                            print(f"❌ Handler error: {e}")
+                    
+                except:
+                    continue
+        
+        thread = threading.Thread(target=consume, daemon=True)
+        thread.start()
+
+# Event-Driven Agent
+class EventDrivenAgent:
+    """Agent using event-driven architecture"""
+    
+    def __init__(self, broker: MessageBroker):
+        self.broker = broker
+        self.setup_subscriptions()
+    
+    def setup_subscriptions(self):
+        """Setup event subscriptions"""
+        self.broker.subscribe("user_request", self.handle_user_request)
+        self.broker.subscribe("tool_result", self.handle_tool_result)
+    
+    def handle_user_request(self, message: Dict):
+        """Handle user request event"""
+        print(f"🤖 Processing request: {message}")
+        
+        # Process and publish result
+        result = {"response": f"Processed: {message.get('input')}"}
+        self.broker.publish("agent_response", result)
+    
+    def handle_tool_result(self, message: Dict):
+        """Handle tool result event"""
+        print(f"🔧 Tool result: {message}")
+
+# Usage
+broker = MessageBroker()
+agent = EventDrivenAgent(broker)
+
+# Start consumers
+broker.start_consumer("user_request")
+broker.start_consumer("tool_result")
+
+# Publish event
+broker.publish("user_request", {"user_id": "123", "input": "Hello"})
+</code></pre>
+<h3 id="kafka-integration"><a class="header" href="#kafka-integration">Kafka Integration</a></h3>
+<pre><code class="language-python">from kafka import KafkaProducer, KafkaConsumer
+import json
+
+class KafkaAgentSystem:
+    """Agent system using Kafka"""
+    
+    def __init__(self, bootstrap_servers: str = "localhost:9092"):
+        self.bootstrap_servers = bootstrap_servers
+        self.producer = KafkaProducer(
+            bootstrap_servers=bootstrap_servers,
+            value_serializer=lambda v: json.dumps(v).encode('utf-8')
+        )
+    
+    def publish_event(self, topic: str, event: Dict):
+        """Publish event to Kafka"""
+        self.producer.send(topic, event)
+        self.producer.flush()
+        print(f"📤 Published to {topic}")
+    
+    def create_consumer(self, topic: str, group_id: str):
+        """Create Kafka consumer"""
+        consumer = KafkaConsumer(
+            topic,
+            bootstrap_servers=self.bootstrap_servers,
+            group_id=group_id,
+            value_deserializer=lambda m: json.loads(m.decode('utf-8'))
+        )
+        return consumer
+    
+    def consume_events(self, topic: str, group_id: str, handler: Callable):
+        """Consume events from Kafka"""
+        consumer = self.create_consumer(topic, group_id)
+        
+        for message in consumer:
+            try:
+                handler(message.value)
+            except Exception as e:
+                print(f"❌ Error processing message: {e}")
+
+# Usage
+# kafka_system = KafkaAgentSystem()
+# kafka_system.publish_event("agent-requests", {"user_id": "123", "input": "Hello"})
+</code></pre>
+<h2 id="serverless-deployments"><a class="header" href="#serverless-deployments">Serverless Deployments</a></h2>
+<h3 id="aws-lambda-agent"><a class="header" href="#aws-lambda-agent">AWS Lambda Agent</a></h3>
+<pre><code class="language-python">import json
+import boto3
+from typing import Dict, Any
+
+class LambdaAgent:
+    """Agent deployed as AWS Lambda"""
+    
+    def __init__(self):
+        self.client = openai.OpenAI()
+        self.dynamodb = boto3.resource('dynamodb')
+        self.table = self.dynamodb.Table('agent-memory')
+    
+    def handler(self, event: Dict, context: Any) -&gt; Dict:
+        """Lambda handler function"""
+        
+        try:
+            # Parse request
+            body = json.loads(event.get('body', '{}'))
+            user_id = body.get('user_id')
+            input_text = body.get('input')
+            
+            # Get user memory
+            memory = self.get_memory(user_id)
+            
+            # Process request
+            response = self.process(input_text, memory)
+            
+            # Update memory
+            self.update_memory(user_id, response)
+            
+            return {
+                'statusCode': 200,
+                'body': json.dumps({
+                    'response': response
+                })
+            }
+            
+        except Exception as e:
+            return {
+                'statusCode': 500,
+                'body': json.dumps({
+                    'error': str(e)
+                })
+            }
+    
+    def process(self, input_text: str, memory: Dict) -&gt; str:
+        """Process request"""
+        # Build context from memory
+        context = memory.get('context', '')
+        
+        messages = [
+            {"role": "system", "content": f"Context: {context}"},
+            {"role": "user", "content": input_text}
+        ]
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=messages
+        )
+        
+        return response.choices[0].message.content
+    
+    def get_memory(self, user_id: str) -&gt; Dict:
+        """Get user memory from DynamoDB"""
+        try:
+            response = self.table.get_item(Key={'user_id': user_id})
+            return response.get('Item', {})
+        except:
+            return {}
+    
+    def update_memory(self, user_id: str, response: str):
+        """Update user memory"""
+        try:
+            self.table.put_item(
+                Item={
+                    'user_id': user_id,
+                    'context': response,
+                    'updated_at': int(time.time())
+                }
+            )
+        except Exception as e:
+            print(f"Error updating memory: {e}")
+
+# Lambda function
+def lambda_handler(event, context):
+    """AWS Lambda entry point"""
+    agent = LambdaAgent()
+    return agent.handler(event, context)
+</code></pre>
+<h3 id="serverless-framework-configuration"><a class="header" href="#serverless-framework-configuration">Serverless Framework Configuration</a></h3>
+<pre><code class="language-yaml"># serverless.yml
+service: agent-service
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-east-1
+  environment:
+    OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+      Resource: "arn:aws:dynamodb:*:*:table/agent-memory"
+
+functions:
+  agent:
+    handler: handler.lambda_handler
+    events:
+      - http:
+          path: agent/process
+          method: post
+          cors: true
+    timeout: 30
+    memorySize: 512
+
+resources:
+  Resources:
+    AgentMemoryTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: agent-memory
+        AttributeDefinitions:
+          - AttributeName: user_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: user_id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+</code></pre>
+<h2 id="scaling-strategies"><a class="header" href="#scaling-strategies">Scaling Strategies</a></h2>
+<h3 id="horizontal-scaling"><a class="header" href="#horizontal-scaling">Horizontal Scaling</a></h3>
+<pre><code class="language-python">from multiprocessing import Pool, cpu_count
+import concurrent.futures
+
+class ScalableAgentPool:
+    """Pool of agent workers for horizontal scaling"""
+    
+    def __init__(self, num_workers: int = None):
+        self.num_workers = num_workers or cpu_count()
+        self.pool = Pool(processes=self.num_workers)
+        print(f"🔧 Created pool with {self.num_workers} workers")
+    
+    def process_batch(self, requests: List[Dict]) -&gt; List[Dict]:
+        """Process batch of requests in parallel"""
+        results = self.pool.map(self.process_single, requests)
+        return results
+    
+    def process_single(self, request: Dict) -&gt; Dict:
+        """Process single request"""
+        # Agent processing logic
+        return {"response": f"Processed: {request.get('input')}"}
+    
+    def close(self):
+        """Close pool"""
+        self.pool.close()
+        self.pool.join()
+
+# Async scaling
+class AsyncAgentPool:
+    """Async agent pool"""
+    
+    def __init__(self, max_workers: int = 10):
+        self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=max_workers)
+    
+    async def process_batch(self, requests: List[Dict]) -&gt; List[Dict]:
+        """Process batch asynchronously"""
+        loop = asyncio.get_event_loop()
+        
+        tasks = [
+            loop.run_in_executor(self.executor, self.process_single, req)
+            for req in requests
+        ]
+        
+        results = await asyncio.gather(*tasks)
+        return results
+    
+    def process_single(self, request: Dict) -&gt; Dict:
+        """Process single request"""
+        return {"response": f"Processed: {request.get('input')}"}
+
+# Usage
+pool = ScalableAgentPool(num_workers=4)
+
+requests = [
+    {"input": f"Request {i}"} for i in range(100)
+]
+
+results = pool.process_batch(requests)
+print(f"Processed {len(results)} requests")
+
+pool.close()
+</code></pre>
+<h3 id="load-balancing"><a class="header" href="#load-balancing">Load Balancing</a></h3>
+<pre><code class="language-python">from typing import List
+import random
+
+class LoadBalancer:
+    """Load balancer for agent instances"""
+    
+    def __init__(self, strategy: str = "round_robin"):
+        self.strategy = strategy
+        self.instances = []
+        self.current_index = 0
+        self.instance_loads = {}
+    
+    def register_instance(self, instance_url: str):
+        """Register agent instance"""
+        self.instances.append(instance_url)
+        self.instance_loads[instance_url] = 0
+        print(f"✅ Registered instance: {instance_url}")
+    
+    def get_instance(self) -&gt; str:
+        """Get instance based on strategy"""
+        
+        if self.strategy == "round_robin":
+            return self.round_robin()
+        elif self.strategy == "least_connections":
+            return self.least_connections()
+        elif self.strategy == "random":
+            return self.random_selection()
+        else:
+            return self.round_robin()
+    
+    def round_robin(self) -&gt; str:
+        """Round-robin selection"""
+        if not self.instances:
+            raise Exception("No instances available")
+        
+        instance = self.instances[self.current_index]
+        self.current_index = (self.current_index + 1) % len(self.instances)
+        return instance
+    
+    def least_connections(self) -&gt; str:
+        """Select instance with least connections"""
+        if not self.instances:
+            raise Exception("No instances available")
+        
+        return min(self.instance_loads, key=self.instance_loads.get)
+    
+    def random_selection(self) -&gt; str:
+        """Random selection"""
+        if not self.instances:
+            raise Exception("No instances available")
+        
+        return random.choice(self.instances)
+    
+    def record_request(self, instance_url: str):
+        """Record request to instance"""
+        self.instance_loads[instance_url] += 1
+    
+    def record_completion(self, instance_url: str):
+        """Record request completion"""
+        self.instance_loads[instance_url] -= 1
+
+# Usage
+lb = LoadBalancer(strategy="least_connections")
+lb.register_instance("http://agent1:8000")
+lb.register_instance("http://agent2:8000")
+lb.register_instance("http://agent3:8000")
+
+# Route request
+instance = lb.get_instance()
+print(f"Routing to: {instance}")
+</code></pre>
+<h2 id="container-orchestration"><a class="header" href="#container-orchestration">Container Orchestration</a></h2>
+<h3 id="docker-compose-setup"><a class="header" href="#docker-compose-setup">Docker Compose Setup</a></h3>
+<pre><code class="language-yaml"># docker-compose.yml
+version: '3.8'
+
+services:
+  agent-service:
+    build: ./agent-service
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+      - postgres
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+  
+  tool-service:
+    build: ./tool-service
+    ports:
+      - "8001:8001"
+    environment:
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+  
+  memory-service:
+    build: ./memory-service
+    ports:
+      - "8002:8002"
+    environment:
+      - POSTGRES_URL=postgresql://user:pass@postgres:5432/agentdb
+    depends_on:
+      - postgres
+  
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+  
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=agentdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - agent-service
+
+volumes:
+  redis-data:
+  postgres-data:
+</code></pre>
+<h3 id="kubernetes-deployment"><a class="header" href="#kubernetes-deployment">Kubernetes Deployment</a></h3>
+<pre><code class="language-yaml"># kubernetes/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agent-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: agent-service
+  template:
+    metadata:
+      labels:
+        app: agent-service
+    spec:
+      containers:
+      - name: agent
+        image: agent-service:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: agent-secrets
+              key: openai-api-key
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agent-service
+spec:
+  selector:
+    app: agent-service
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+  type: LoadBalancer
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: agent-service-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: agent-service
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+</code></pre>
+<h2 id="best-practices"><a class="header" href="#best-practices">Best Practices</a></h2>
+<ol>
+<li><strong>Decouple services</strong>: Loose coupling, high cohesion</li>
+<li><strong>Stateless design</strong>: Store state externally</li>
+<li><strong>Idempotent operations</strong>: Safe to retry</li>
+<li><strong>Circuit breakers</strong>: Prevent cascading failures</li>
+<li><strong>Health checks</strong>: Monitor service health</li>
+<li><strong>Graceful shutdown</strong>: Clean resource cleanup</li>
+<li><strong>Configuration management</strong>: Externalize config</li>
+<li><strong>Service discovery</strong>: Dynamic service location</li>
+<li><strong>API versioning</strong>: Backward compatibility</li>
+<li><strong>Documentation</strong>: Clear API contracts</li>
+</ol>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
+<p>You now understand enterprise architecture patterns! Next, we’ll explore security and compliance for production agent systems.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../module7/7_3_frameworks.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../module8/8_2_security.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../module7/7_3_frameworks.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../module8/8_2_security.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

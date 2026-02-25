@@ -1,0 +1,1095 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Research Agents - AI Agents: Zero to Hero</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-c3e257ac.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-65a70cec.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">AI Agents: Zero to Hero</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="research-agents"><a class="header" href="#research-agents">Research Agents</a></h1>
+<h2 id="introduction-to-research-agents"><a class="header" href="#introduction-to-research-agents">Introduction to Research Agents</a></h2>
+<p>Research agents are specialized AI systems that gather, analyze, and synthesize information from multiple sources to answer complex questions or investigate topics in depth.</p>
+<h3 id="what-makes-research-agents-unique"><a class="header" href="#what-makes-research-agents-unique">What Makes Research Agents Unique?</a></h3>
+<p><strong>Core Capabilities</strong>:</p>
+<ul>
+<li>Multi-source information gathering</li>
+<li>Source credibility assessment</li>
+<li>Information synthesis and summarization</li>
+<li>Citation management</li>
+<li>Fact verification</li>
+<li>Deep topic exploration</li>
+</ul>
+<p><strong>Key Challenges</strong>:</p>
+<ul>
+<li>Information overload</li>
+<li>Source reliability</li>
+<li>Conflicting information</li>
+<li>Bias detection</li>
+<li>Citation accuracy</li>
+<li>Staying current</li>
+</ul>
+<h3 id="types-of-research-agents"><a class="header" href="#types-of-research-agents">Types of Research Agents</a></h3>
+<ol>
+<li><strong>Academic Research Agents</strong>: Literature reviews, paper analysis</li>
+<li><strong>Market Research Agents</strong>: Competitive analysis, trends</li>
+<li><strong>Investigative Agents</strong>: Deep dives, fact-checking</li>
+<li><strong>News Aggregation Agents</strong>: Current events, monitoring</li>
+<li><strong>Technical Research Agents</strong>: Documentation, specifications</li>
+</ol>
+<h2 id="information-gathering-strategies"><a class="header" href="#information-gathering-strategies">Information Gathering Strategies</a></h2>
+<h3 id="multi-source-search"><a class="header" href="#multi-source-search">Multi-Source Search</a></h3>
+<pre><code class="language-python">from typing import List, Dict
+import requests
+from bs4 import BeautifulSoup
+
+class MultiSourceSearcher:
+    """Search across multiple sources"""
+    
+    def __init__(self):
+        self.client = openai.OpenAI()
+        self.sources = {
+            "web": self.search_web,
+            "academic": self.search_academic,
+            "news": self.search_news,
+            "social": self.search_social
+        }
+    
+    def search_all_sources(self, query: str, sources: List[str] = None) -&gt; Dict:
+        """Search across all specified sources"""
+        if sources is None:
+            sources = list(self.sources.keys())
+        
+        results = {}
+        
+        for source in sources:
+            if source in self.sources:
+                print(f"Searching {source}...")
+                results[source] = self.sources[source](query)
+        
+        return results
+    
+    def search_web(self, query: str) -&gt; List[Dict]:
+        """Search general web"""
+        # Using a search API (example with Google Custom Search)
+        api_key = os.getenv("GOOGLE_API_KEY")
+        search_engine_id = os.getenv("GOOGLE_SEARCH_ENGINE_ID")
+        
+        url = "https://www.googleapis.com/customsearch/v1"
+        params = {
+            "key": api_key,
+            "cx": search_engine_id,
+            "q": query,
+            "num": 10
+        }
+        
+        try:
+            response = requests.get(url, params=params, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+            
+            results = []
+            for item in data.get("items", []):
+                results.append({
+                    "title": item["title"],
+                    "url": item["link"],
+                    "snippet": item["snippet"],
+                    "source": "web"
+                })
+            
+            return results
+        except Exception as e:
+            print(f"Web search error: {e}")
+            return []
+    
+    def search_academic(self, query: str) -&gt; List[Dict]:
+        """Search academic sources (arXiv, PubMed, etc.)"""
+        # Example with arXiv API
+        url = "http://export.arxiv.org/api/query"
+        params = {
+            "search_query": f"all:{query}",
+            "start": 0,
+            "max_results": 10
+        }
+        
+        try:
+            response = requests.get(url, params=params, timeout=10)
+            response.raise_for_status()
+            
+            # Parse XML response
+            from xml.etree import ElementTree as ET
+            root = ET.fromstring(response.content)
+            
+            results = []
+            for entry in root.findall("{http://www.w3.org/2005/Atom}entry"):
+                title = entry.find("{http://www.w3.org/2005/Atom}title").text
+                summary = entry.find("{http://www.w3.org/2005/Atom}summary").text
+                link = entry.find("{http://www.w3.org/2005/Atom}id").text
+                
+                results.append({
+                    "title": title.strip(),
+                    "url": link,
+                    "snippet": summary.strip()[:200],
+                    "source": "academic"
+                })
+            
+            return results
+        except Exception as e:
+            print(f"Academic search error: {e}")
+            return []
+    
+    def search_news(self, query: str) -&gt; List[Dict]:
+        """Search news sources"""
+        # Example with News API
+        api_key = os.getenv("NEWS_API_KEY")
+        url = "https://newsapi.org/v2/everything"
+        params = {
+            "q": query,
+            "apiKey": api_key,
+            "pageSize": 10,
+            "sortBy": "relevancy"
+        }
+        
+        try:
+            response = requests.get(url, params=params, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+            
+            results = []
+            for article in data.get("articles", []):
+                results.append({
+                    "title": article["title"],
+                    "url": article["url"],
+                    "snippet": article["description"],
+                    "source": "news",
+                    "published": article.get("publishedAt")
+                })
+            
+            return results
+        except Exception as e:
+            print(f"News search error: {e}")
+            return []
+    
+    def search_social(self, query: str) -&gt; List[Dict]:
+        """Search social media (Twitter, Reddit, etc.)"""
+        # Example implementation for Reddit
+        url = f"https://www.reddit.com/search.json"
+        params = {
+            "q": query,
+            "limit": 10,
+            "sort": "relevance"
+        }
+        headers = {"User-Agent": "ResearchAgent/1.0"}
+        
+        try:
+            response = requests.get(url, params=params, headers=headers, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+            
+            results = []
+            for post in data["data"]["children"]:
+                post_data = post["data"]
+                results.append({
+                    "title": post_data["title"],
+                    "url": f"https://reddit.com{post_data['permalink']}",
+                    "snippet": post_data.get("selftext", "")[:200],
+                    "source": "social",
+                    "score": post_data.get("score", 0)
+                })
+            
+            return results
+        except Exception as e:
+            print(f"Social search error: {e}")
+            return []
+
+# Usage
+searcher = MultiSourceSearcher()
+results = searcher.search_all_sources("artificial intelligence agents")
+
+for source, items in results.items():
+    print(f"\n{source.upper()} Results: {len(items)}")
+    for item in items[:3]:
+        print(f"  - {item['title']}")
+</code></pre>
+<h3 id="deep-content-extraction"><a class="header" href="#deep-content-extraction">Deep Content Extraction</a></h3>
+<pre><code class="language-python">class ContentExtractor:
+    """Extract and process content from sources"""
+    
+    def __init__(self):
+        self.client = openai.OpenAI()
+    
+    def extract_from_url(self, url: str) -&gt; Dict:
+        """Extract main content from URL"""
+        try:
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+            }
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+            
+            soup = BeautifulSoup(response.content, 'html.parser')
+            
+            # Remove script and style elements
+            for script in soup(["script", "style"]):
+                script.decompose()
+            
+            # Get text
+            text = soup.get_text(separator='\n', strip=True)
+            
+            # Extract metadata
+            title = soup.find('title')
+            title_text = title.string if title else ""
+            
+            meta_desc = soup.find('meta', attrs={'name': 'description'})
+            description = meta_desc['content'] if meta_desc else ""
+            
+            return {
+                "url": url,
+                "title": title_text,
+                "description": description,
+                "content": text[:10000],  # Limit content
+                "word_count": len(text.split())
+            }
+            
+        except Exception as e:
+            return {
+                "url": url,
+                "error": str(e)
+            }
+    
+    def extract_key_points(self, content: str) -&gt; List[str]:
+        """Extract key points from content"""
+        prompt = f"""Extract the key points from this content:
+
+{content[:4000]}
+
+Provide 5-7 bullet points of the most important information:"""
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3
+        )
+        
+        points = response.choices[0].message.content.strip().split('\n')
+        return [p.strip('- ').strip() for p in points if p.strip()]
+    
+    def extract_quotes(self, content: str, topic: str) -&gt; List[Dict]:
+        """Extract relevant quotes"""
+        prompt = f"""Find relevant quotes about "{topic}" from this content:
+
+{content[:4000]}
+
+Provide 3-5 direct quotes with context:"""
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3
+        )
+        
+        # Parse quotes
+        quotes_text = response.choices[0].message.content
+        # Simple parsing - in production, use more robust method
+        quotes = []
+        for line in quotes_text.split('\n'):
+            if line.strip().startswith('"'):
+                quotes.append({"quote": line.strip(), "context": ""})
+        
+        return quotes
+
+# Usage
+extractor = ContentExtractor()
+
+# Extract content
+content = extractor.extract_from_url("https://example.com/article")
+print(f"Title: {content['title']}")
+print(f"Words: {content['word_count']}")
+
+# Extract key points
+key_points = extractor.extract_key_points(content['content'])
+for point in key_points:
+    print(f"  • {point}")
+</code></pre>
+<h2 id="source-verification"><a class="header" href="#source-verification">Source Verification</a></h2>
+<h3 id="credibility-assessment"><a class="header" href="#credibility-assessment">Credibility Assessment</a></h3>
+<pre><code class="language-python">class SourceVerifier:
+    """Verify source credibility and reliability"""
+    
+    def __init__(self):
+        self.client = openai.OpenAI()
+        self.trusted_domains = {
+            "academic": [".edu", ".gov", "arxiv.org", "pubmed.gov"],
+            "news": ["reuters.com", "apnews.com", "bbc.com"],
+            "tech": ["github.com", "stackoverflow.com"]
+        }
+    
+    def assess_credibility(self, url: str, content: str = None) -&gt; Dict:
+        """Assess source credibility"""
+        from urllib.parse import urlparse
+        
+        domain = urlparse(url).netloc
+        
+        # Check against trusted domains
+        trust_level = "unknown"
+        for category, domains in self.trusted_domains.items():
+            if any(trusted in domain for trusted in domains):
+                trust_level = "high"
+                break
+        
+        # Analyze content if provided
+        content_score = None
+        if content:
+            content_score = self.analyze_content_quality(content)
+        
+        return {
+            "url": url,
+            "domain": domain,
+            "trust_level": trust_level,
+            "content_quality": content_score,
+            "is_trusted": trust_level == "high"
+        }
+    
+    def analyze_content_quality(self, content: str) -&gt; Dict:
+        """Analyze content quality indicators"""
+        prompt = f"""Analyze the quality and credibility of this content:
+
+{content[:2000]}
+
+Rate (1-5) on:
+1. Factual accuracy (based on claims made)
+2. Objectivity (bias level)
+3. Citation quality (references provided)
+4. Writing quality (clarity, professionalism)
+5. Depth of analysis
+
+Provide scores and brief explanation:"""
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3
+        )
+        
+        return self.parse_quality_scores(response.choices[0].message.content)
+    
+    def cross_reference(self, claim: str, sources: List[Dict]) -&gt; Dict:
+        """Cross-reference a claim across sources"""
+        confirmations = 0
+        contradictions = 0
+        
+        for source in sources:
+            result = self.check_claim_in_source(claim, source.get("content", ""))
+            
+            if result == "confirms":
+                confirmations += 1
+            elif result == "contradicts":
+                contradictions += 1
+        
+        return {
+            "claim": claim,
+            "confirmations": confirmations,
+            "contradictions": contradictions,
+            "confidence": confirmations / len(sources) if sources else 0
+        }
+    
+    def check_claim_in_source(self, claim: str, content: str) -&gt; str:
+        """Check if source confirms, contradicts, or is neutral on claim"""
+        prompt = f"""Does this content confirm, contradict, or neither regarding this claim?
+
+Claim: {claim}
+
+Content: {content[:1000]}
+
+Answer with just: confirms, contradicts, or neutral"""
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.1
+        )
+        
+        return response.choices[0].message.content.strip().lower()
+
+# Usage
+verifier = SourceVerifier()
+
+# Assess credibility
+credibility = verifier.assess_credibility(
+    "https://arxiv.org/abs/2023.12345",
+    "This paper presents..."
+)
+print(f"Trust level: {credibility['trust_level']}")
+
+# Cross-reference claim
+claim = "AI agents can autonomously complete complex tasks"
+sources = [
+    {"content": "Research shows AI agents are capable of..."},
+    {"content": "Studies indicate autonomous agents can..."}
+]
+verification = verifier.cross_reference(claim, sources)
+print(f"Confidence: {verification['confidence']:.0%}")
+</code></pre>
+<h2 id="synthesis-and-summarization"><a class="header" href="#synthesis-and-summarization">Synthesis and Summarization</a></h2>
+<h3 id="information-synthesis"><a class="header" href="#information-synthesis">Information Synthesis</a></h3>
+<pre><code class="language-python">class InformationSynthesizer:
+    """Synthesize information from multiple sources"""
+    
+    def __init__(self):
+        self.client = openai.OpenAI()
+    
+    def synthesize_sources(self, 
+                          query: str,
+                          sources: List[Dict],
+                          style: str = "comprehensive") -&gt; str:
+        """Synthesize information from multiple sources"""
+        
+        # Prepare source summaries
+        source_texts = []
+        for i, source in enumerate(sources[:10], 1):  # Limit to 10 sources
+            source_texts.append(f"""
+Source {i}: {source.get('title', 'Unknown')}
+URL: {source.get('url', 'N/A')}
+Content: {source.get('snippet', source.get('content', ''))[:500]}
+""")
+        
+        sources_combined = "\n---\n".join(source_texts)
+        
+        style_instructions = {
+            "comprehensive": "Provide a detailed, thorough analysis",
+            "concise": "Provide a brief, focused summary",
+            "academic": "Use formal, academic tone with citations",
+            "casual": "Use conversational, accessible language"
+        }
+        
+        prompt = f"""Synthesize information about: {query}
+
+Sources:
+{sources_combined}
+
+{style_instructions.get(style, style_instructions['comprehensive'])}.
+
+Requirements:
+- Integrate information from multiple sources
+- Identify common themes and patterns
+- Note any contradictions
+- Cite sources [1], [2], etc.
+- Provide balanced perspective
+
+Synthesis:"""
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.4,
+            max_tokens=2000
+        )
+        
+        synthesis = response.choices[0].message.content
+        
+        # Add source list
+        source_list = "\n\nSources:\n"
+        for i, source in enumerate(sources[:10], 1):
+            source_list += f"[{i}] {source.get('title', 'Unknown')} - {source.get('url', 'N/A')}\n"
+        
+        return synthesis + source_list
+    
+    def identify_themes(self, sources: List[Dict]) -&gt; List[Dict]:
+        """Identify common themes across sources"""
+        # Combine content
+        combined_content = "\n\n".join([
+            s.get('snippet', s.get('content', ''))[:500]
+            for s in sources[:20]
+        ])
+        
+        prompt = f"""Identify the main themes in these sources:
+
+{combined_content}
+
+List 5-7 key themes with:
+- Theme name
+- Brief description
+- How many sources mention it
+
+Themes:"""
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3
+        )
+        
+        return self.parse_themes(response.choices[0].message.content)
+    
+    def find_contradictions(self, sources: List[Dict]) -&gt; List[Dict]:
+        """Find contradictions between sources"""
+        contradictions = []
+        
+        # Compare sources pairwise (simplified)
+        for i in range(min(5, len(sources))):
+            for j in range(i+1, min(5, len(sources))):
+                source_a = sources[i]
+                source_b = sources[j]
+                
+                prompt = f"""Do these sources contradict each other?
+
+Source A: {source_a.get('snippet', '')[:300]}
+
+Source B: {source_b.get('snippet', '')[:300]}
+
+If yes, explain the contradiction. If no, say "no contradiction".
+
+Analysis:"""
+                
+                response = self.client.chat.completions.create(
+                    model="gpt-4",
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.2
+                )
+                
+                result = response.choices[0].message.content
+                
+                if "no contradiction" not in result.lower():
+                    contradictions.append({
+                        "source_a": source_a.get('title'),
+                        "source_b": source_b.get('title'),
+                        "contradiction": result
+                    })
+        
+        return contradictions
+
+# Usage
+synthesizer = InformationSynthesizer()
+
+sources = [
+    {"title": "AI Agents Overview", "url": "...", "snippet": "AI agents are..."},
+    {"title": "Agent Architectures", "url": "...", "snippet": "Modern agents use..."},
+    # ... more sources
+]
+
+# Synthesize
+synthesis = synthesizer.synthesize_sources(
+    "What are AI agents?",
+    sources,
+    style="comprehensive"
+)
+print(synthesis)
+
+# Identify themes
+themes = synthesizer.identify_themes(sources)
+for theme in themes:
+    print(f"Theme: {theme}")
+</code></pre>
+<h2 id="citation-management"><a class="header" href="#citation-management">Citation Management</a></h2>
+<h3 id="automatic-citation-generation"><a class="header" href="#automatic-citation-generation">Automatic Citation Generation</a></h3>
+<pre><code class="language-python">class CitationManager:
+    """Manage citations and references"""
+    
+    def __init__(self):
+        self.citations = []
+        self.citation_style = "APA"  # APA, MLA, Chicago
+    
+    def add_citation(self, source: Dict) -&gt; int:
+        """Add source and return citation number"""
+        self.citations.append(source)
+        return len(self.citations)
+    
+    def format_citation(self, source: Dict, style: str = None) -&gt; str:
+        """Format citation in specified style"""
+        style = style or self.citation_style
+        
+        if style == "APA":
+            return self.format_apa(source)
+        elif style == "MLA":
+            return self.format_mla(source)
+        elif style == "Chicago":
+            return self.format_chicago(source)
+        else:
+            return self.format_simple(source)
+    
+    def format_apa(self, source: Dict) -&gt; str:
+        """Format in APA style"""
+        author = source.get('author', 'Unknown')
+        year = source.get('year', 'n.d.')
+        title = source.get('title', 'Untitled')
+        url = source.get('url', '')
+        
+        return f"{author}. ({year}). {title}. Retrieved from {url}"
+    
+    def format_mla(self, source: Dict) -&gt; str:
+        """Format in MLA style"""
+        author = source.get('author', 'Unknown')
+        title = source.get('title', 'Untitled')
+        website = source.get('website', 'Web')
+        url = source.get('url', '')
+        
+        return f'{author}. "{title}." {website}. {url}.'
+    
+    def format_simple(self, source: Dict) -&gt; str:
+        """Simple format"""
+        title = source.get('title', 'Untitled')
+        url = source.get('url', '')
+        return f"{title} - {url}"
+    
+    def generate_bibliography(self) -&gt; str:
+        """Generate full bibliography"""
+        bibliography = "References:\n\n"
+        
+        for i, source in enumerate(self.citations, 1):
+            citation = self.format_citation(source)
+            bibliography += f"{i}. {citation}\n"
+        
+        return bibliography
+    
+    def inline_cite(self, text: str, citation_num: int) -&gt; str:
+        """Add inline citation to text"""
+        return f"{text} [{citation_num}]"
+
+# Usage
+citations = CitationManager()
+
+# Add sources
+source1 = {
+    "author": "Smith, J.",
+    "year": "2023",
+    "title": "Understanding AI Agents",
+    "url": "https://example.com/article"
+}
+
+cite_num = citations.add_citation(source1)
+
+# Use in text
+text = citations.inline_cite("AI agents are autonomous systems", cite_num)
+print(text)  # "AI agents are autonomous systems [1]"
+
+# Generate bibliography
+print(citations.generate_bibliography())
+</code></pre>
+<h2 id="complete-research-agent"><a class="header" href="#complete-research-agent">Complete Research Agent</a></h2>
+<pre><code class="language-python">class ResearchAgent:
+    """Complete research agent system"""
+    
+    def __init__(self):
+        self.searcher = MultiSourceSearcher()
+        self.extractor = ContentExtractor()
+        self.verifier = SourceVerifier()
+        self.synthesizer = InformationSynthesizer()
+        self.citations = CitationManager()
+        self.client = openai.OpenAI()
+    
+    def research(self, 
+                query: str,
+                depth: str = "medium",
+                sources: List[str] = None) -&gt; Dict:
+        """Conduct comprehensive research"""
+        
+        print(f"🔍 Researching: {query}\n")
+        
+        # 1. Search multiple sources
+        print("📚 Gathering sources...")
+        search_results = self.searcher.search_all_sources(query, sources)
+        
+        all_sources = []
+        for source_type, results in search_results.items():
+            all_sources.extend(results)
+        
+        print(f"Found {len(all_sources)} sources\n")
+        
+        # 2. Extract and verify content
+        print("📖 Extracting content...")
+        verified_sources = []
+        
+        for source in all_sources[:20]:  # Limit processing
+            # Extract content
+            if 'content' not in source:
+                content_data = self.extractor.extract_from_url(source['url'])
+                source['content'] = content_data.get('content', source.get('snippet', ''))
+            
+            # Verify credibility
+            credibility = self.verifier.assess_credibility(
+                source['url'],
+                source.get('content', '')
+            )
+            
+            if credibility['is_trusted'] or credibility['trust_level'] != 'low':
+                source['credibility'] = credibility
+                verified_sources.append(source)
+                
+                # Add citation
+                cite_num = self.citations.add_citation(source)
+                source['citation_num'] = cite_num
+        
+        print(f"Verified {len(verified_sources)} sources\n")
+        
+        # 3. Synthesize information
+        print("✍️  Synthesizing findings...")
+        synthesis = self.synthesizer.synthesize_sources(
+            query,
+            verified_sources,
+            style="comprehensive" if depth == "deep" else "concise"
+        )
+        
+        # 4. Identify themes
+        themes = self.synthesizer.identify_themes(verified_sources)
+        
+        # 5. Find contradictions
+        contradictions = self.synthesizer.find_contradictions(verified_sources)
+        
+        # 6. Generate bibliography
+        bibliography = self.citations.generate_bibliography()
+        
+        return {
+            "query": query,
+            "synthesis": synthesis,
+            "themes": themes,
+            "contradictions": contradictions,
+            "sources": verified_sources,
+            "bibliography": bibliography,
+            "source_count": len(verified_sources)
+        }
+    
+    def deep_dive(self, topic: str, subtopics: List[str] = None) -&gt; Dict:
+        """Deep research on topic with subtopics"""
+        
+        if not subtopics:
+            # Generate subtopics
+            subtopics = self.generate_subtopics(topic)
+        
+        results = {
+            "topic": topic,
+            "subtopics": {}
+        }
+        
+        for subtopic in subtopics:
+            print(f"\n📌 Researching subtopic: {subtopic}")
+            result = self.research(f"{topic}: {subtopic}", depth="medium")
+            results["subtopics"][subtopic] = result
+        
+        # Create overall synthesis
+        print("\n🔗 Creating overall synthesis...")
+        overall = self.synthesize_deep_dive(topic, results["subtopics"])
+        results["overall_synthesis"] = overall
+        
+        return results
+    
+    def generate_subtopics(self, topic: str) -&gt; List[str]:
+        """Generate relevant subtopics"""
+        prompt = f"""Generate 5 key subtopics for researching: {topic}
+
+Subtopics should:
+- Cover different aspects
+- Be specific and focused
+- Be researchable
+
+List:"""
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.5
+        )
+        
+        subtopics = response.choices[0].message.content.strip().split('\n')
+        return [s.strip('- 0123456789.').strip() for s in subtopics if s.strip()]
+    
+    def synthesize_deep_dive(self, topic: str, subtopic_results: Dict) -&gt; str:
+        """Synthesize results from deep dive"""
+        # Combine all syntheses
+        combined = f"# Comprehensive Research: {topic}\n\n"
+        
+        for subtopic, result in subtopic_results.items():
+            combined += f"## {subtopic}\n\n"
+            combined += result['synthesis'] + "\n\n"
+        
+        return combined
+    
+    def fact_check(self, claim: str) -&gt; Dict:
+        """Fact-check a specific claim"""
+        print(f"🔎 Fact-checking: {claim}\n")
+        
+        # Search for information about the claim
+        results = self.research(claim, depth="medium")
+        
+        # Cross-reference
+        verification = self.verifier.cross_reference(
+            claim,
+            results['sources']
+        )
+        
+        # Determine verdict
+        if verification['confidence'] &gt; 0.7:
+            verdict = "Likely True"
+        elif verification['confidence'] &lt; 0.3:
+            verdict = "Likely False"
+        else:
+            verdict = "Unclear/Mixed Evidence"
+        
+        return {
+            "claim": claim,
+            "verdict": verdict,
+            "confidence": verification['confidence'],
+            "confirmations": verification['confirmations'],
+            "contradictions": verification['contradictions'],
+            "sources": results['sources'][:5],
+            "explanation": results['synthesis']
+        }
+
+# Usage
+agent = ResearchAgent()
+
+# Basic research
+result = agent.research("What are the latest developments in AI agents?")
+print(result['synthesis'])
+print(f"\nSources: {result['source_count']}")
+
+# Deep dive
+deep_result = agent.deep_dive(
+    "AI Agent Architectures",
+    subtopics=["ReAct Pattern", "Memory Systems", "Tool Use"]
+)
+
+# Fact check
+fact_result = agent.fact_check("AI agents can autonomously write production code")
+print(f"Verdict: {fact_result['verdict']}")
+print(f"Confidence: {fact_result['confidence']:.0%}")
+</code></pre>
+<h2 id="best-practices"><a class="header" href="#best-practices">Best Practices</a></h2>
+<ol>
+<li><strong>Multi-source verification</strong>: Never rely on single source</li>
+<li><strong>Assess credibility</strong>: Check source reliability</li>
+<li><strong>Cite properly</strong>: Always attribute information</li>
+<li><strong>Check recency</strong>: Ensure information is current</li>
+<li><strong>Cross-reference</strong>: Verify claims across sources</li>
+<li><strong>Note contradictions</strong>: Highlight conflicting information</li>
+<li><strong>Maintain objectivity</strong>: Present balanced view</li>
+<li><strong>Track sources</strong>: Keep detailed records</li>
+<li><strong>Update regularly</strong>: Refresh research periodically</li>
+<li><strong>Human review</strong>: Critical research needs expert review</li>
+</ol>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
+<p>You now have comprehensive knowledge of research agents! Next, we’ll explore task automation agents that handle repetitive workflows.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../module6/6_1_coding_agents.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../module6/6_3_automation_agents.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../module6/6_1_coding_agents.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../module6/6_3_automation_agents.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,926 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Web Interaction - AI Agents: Zero to Hero</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-c3e257ac.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-65a70cec.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">AI Agents: Zero to Hero</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="web-interaction"><a class="header" href="#web-interaction">Web Interaction</a></h1>
+<h2 id="browser-automation"><a class="header" href="#browser-automation">Browser Automation</a></h2>
+<p>Agents can interact with websites like humans do—clicking, typing, scrolling, and extracting information.</p>
+<h3 id="why-browser-automation"><a class="header" href="#why-browser-automation">Why Browser Automation?</a></h3>
+<ul>
+<li>Access dynamic content (JavaScript-rendered)</li>
+<li>Interact with web applications</li>
+<li>Fill forms and submit data</li>
+<li>Navigate multi-page workflows</li>
+<li>Handle authentication</li>
+</ul>
+<h3 id="playwright-basics"><a class="header" href="#playwright-basics">Playwright Basics</a></h3>
+<pre><code class="language-python">from playwright.sync_api import sync_playwright
+from typing import Optional
+
+class BrowserAgent:
+    """Agent with browser automation capabilities"""
+    
+    def __init__(self, headless: bool = True):
+        self.headless = headless
+        self.playwright = None
+        self.browser = None
+        self.page = None
+    
+    def start(self):
+        """Start browser"""
+        self.playwright = sync_playwright().start()
+        self.browser = self.playwright.chromium.launch(headless=self.headless)
+        self.page = self.browser.new_page()
+    
+    def stop(self):
+        """Stop browser"""
+        if self.browser:
+            self.browser.close()
+        if self.playwright:
+            self.playwright.stop()
+    
+    def navigate(self, url: str) -&gt; dict:
+        """Navigate to URL"""
+        try:
+            self.page.goto(url, wait_until="networkidle")
+            return {
+                "success": True,
+                "url": self.page.url,
+                "title": self.page.title()
+            }
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e)
+            }
+    
+    def click(self, selector: str) -&gt; dict:
+        """Click element"""
+        try:
+            self.page.click(selector)
+            return {"success": True}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+    
+    def type_text(self, selector: str, text: str) -&gt; dict:
+        """Type text into element"""
+        try:
+            self.page.fill(selector, text)
+            return {"success": True}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+    
+    def get_text(self, selector: str) -&gt; Optional[str]:
+        """Get text from element"""
+        try:
+            return self.page.text_content(selector)
+        except:
+            return None
+    
+    def screenshot(self, path: str = "screenshot.png") -&gt; dict:
+        """Take screenshot"""
+        try:
+            self.page.screenshot(path=path)
+            return {"success": True, "path": path}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+    
+    def get_page_content(self) -&gt; str:
+        """Get full page HTML"""
+        return self.page.content()
+
+# Usage
+agent = BrowserAgent()
+agent.start()
+
+# Navigate
+agent.navigate("https://example.com")
+
+# Interact
+agent.type_text("#search", "AI agents")
+agent.click("button[type='submit']")
+
+# Extract
+results = agent.get_text(".results")
+
+agent.stop()
+</code></pre>
+<h3 id="selenium-alternative"><a class="header" href="#selenium-alternative">Selenium Alternative</a></h3>
+<pre><code class="language-python">from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+class SeleniumAgent:
+    """Browser automation with Selenium"""
+    
+    def __init__(self):
+        options = webdriver.ChromeOptions()
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        self.driver = webdriver.Chrome(options=options)
+        self.wait = WebDriverWait(self.driver, 10)
+    
+    def navigate(self, url: str):
+        """Navigate to URL"""
+        self.driver.get(url)
+    
+    def click(self, selector: str, by: By = By.CSS_SELECTOR):
+        """Click element"""
+        element = self.wait.until(
+            EC.element_to_be_clickable((by, selector))
+        )
+        element.click()
+    
+    def type_text(self, selector: str, text: str, by: By = By.CSS_SELECTOR):
+        """Type text"""
+        element = self.wait.until(
+            EC.presence_of_element_located((by, selector))
+        )
+        element.clear()
+        element.send_keys(text)
+    
+    def get_text(self, selector: str, by: By = By.CSS_SELECTOR) -&gt; str:
+        """Get element text"""
+        element = self.wait.until(
+            EC.presence_of_element_located((by, selector))
+        )
+        return element.text
+    
+    def close(self):
+        """Close browser"""
+        self.driver.quit()
+</code></pre>
+<h2 id="web-scraping"><a class="header" href="#web-scraping">Web Scraping</a></h2>
+<p>Extract structured data from websites.</p>
+<h3 id="beautifulsoup-scraping"><a class="header" href="#beautifulsoup-scraping">BeautifulSoup Scraping</a></h3>
+<pre><code class="language-python">import requests
+from bs4 import BeautifulSoup
+from typing import List, Dict
+
+class WebScraper:
+    """Web scraping agent"""
+    
+    def __init__(self):
+        self.session = requests.Session()
+        self.session.headers.update({
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        })
+    
+    def fetch_page(self, url: str) -&gt; Optional[BeautifulSoup]:
+        """Fetch and parse page"""
+        try:
+            response = self.session.get(url, timeout=10)
+            response.raise_for_status()
+            return BeautifulSoup(response.content, 'html.parser')
+        except Exception as e:
+            print(f"Error fetching {url}: {e}")
+            return None
+    
+    def extract_links(self, url: str) -&gt; List[str]:
+        """Extract all links from page"""
+        soup = self.fetch_page(url)
+        if not soup:
+            return []
+        
+        links = []
+        for a in soup.find_all('a', href=True):
+            href = a['href']
+            # Convert relative to absolute
+            if href.startswith('/'):
+                from urllib.parse import urljoin
+                href = urljoin(url, href)
+            links.append(href)
+        
+        return links
+    
+    def extract_text(self, url: str, selector: Optional[str] = None) -&gt; str:
+        """Extract text from page"""
+        soup = self.fetch_page(url)
+        if not soup:
+            return ""
+        
+        if selector:
+            element = soup.select_one(selector)
+            return element.get_text(strip=True) if element else ""
+        else:
+            return soup.get_text(separator='\n', strip=True)
+    
+    def extract_structured_data(self, url: str, schema: dict) -&gt; List[Dict]:
+        """Extract structured data based on schema"""
+        soup = self.fetch_page(url)
+        if not soup:
+            return []
+        
+        results = []
+        
+        # Find all items matching container selector
+        items = soup.select(schema['container'])
+        
+        for item in items:
+            data = {}
+            for field, selector in schema['fields'].items():
+                element = item.select_one(selector)
+                if element:
+                    data[field] = element.get_text(strip=True)
+            
+            if data:
+                results.append(data)
+        
+        return results
+
+# Usage
+scraper = WebScraper()
+
+# Extract structured data
+schema = {
+    'container': '.product',
+    'fields': {
+        'name': '.product-name',
+        'price': '.product-price',
+        'rating': '.product-rating'
+    }
+}
+
+products = scraper.extract_structured_data('https://example.com/products', schema)
+</code></pre>
+<h3 id="handling-dynamic-content"><a class="header" href="#handling-dynamic-content">Handling Dynamic Content</a></h3>
+<pre><code class="language-python">class DynamicScraper:
+    """Scrape JavaScript-rendered content"""
+    
+    def __init__(self):
+        self.browser = BrowserAgent()
+        self.browser.start()
+    
+    def scrape_dynamic(self, url: str, wait_selector: str = None) -&gt; str:
+        """Scrape page with JavaScript"""
+        self.browser.navigate(url)
+        
+        # Wait for content to load
+        if wait_selector:
+            self.browser.page.wait_for_selector(wait_selector)
+        else:
+            self.browser.page.wait_for_load_state("networkidle")
+        
+        # Get rendered HTML
+        return self.browser.get_page_content()
+    
+    def scrape_infinite_scroll(self, url: str, max_scrolls: int = 10) -&gt; str:
+        """Scrape infinite scroll pages"""
+        self.browser.navigate(url)
+        
+        for _ in range(max_scrolls):
+            # Scroll to bottom
+            self.browser.page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+            
+            # Wait for new content
+            self.browser.page.wait_for_timeout(1000)
+        
+        return self.browser.get_page_content()
+    
+    def close(self):
+        """Close browser"""
+        self.browser.stop()
+</code></pre>
+<h2 id="form-filling-and-navigation"><a class="header" href="#form-filling-and-navigation">Form Filling and Navigation</a></h2>
+<h3 id="automated-form-submission"><a class="header" href="#automated-form-submission">Automated Form Submission</a></h3>
+<pre><code class="language-python">class FormAgent:
+    """Agent that can fill and submit forms"""
+    
+    def __init__(self):
+        self.browser = BrowserAgent()
+        self.browser.start()
+    
+    def fill_form(self, url: str, form_data: dict) -&gt; dict:
+        """Fill and submit form"""
+        try:
+            # Navigate to page
+            self.browser.navigate(url)
+            
+            # Fill fields
+            for selector, value in form_data.items():
+                if isinstance(value, str):
+                    self.browser.type_text(selector, value)
+                elif value.get('type') == 'click':
+                    self.browser.click(selector)
+                elif value.get('type') == 'select':
+                    self.browser.page.select_option(selector, value['value'])
+            
+            # Submit form
+            submit_button = form_data.get('submit_button', 'button[type="submit"]')
+            self.browser.click(submit_button)
+            
+            # Wait for response
+            self.browser.page.wait_for_load_state("networkidle")
+            
+            return {
+                "success": True,
+                "url": self.browser.page.url,
+                "title": self.browser.page.title()
+            }
+            
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e)
+            }
+    
+    def close(self):
+        """Close browser"""
+        self.browser.stop()
+
+# Usage
+agent = FormAgent()
+
+form_data = {
+    '#name': 'John Doe',
+    '#email': 'john@example.com',
+    '#message': 'Hello from agent!',
+    'submit_button': '#submit-btn'
+}
+
+result = agent.fill_form('https://example.com/contact', form_data)
+agent.close()
+</code></pre>
+<h3 id="multi-step-navigation"><a class="header" href="#multi-step-navigation">Multi-Step Navigation</a></h3>
+<pre><code class="language-python">class NavigationAgent:
+    """Agent for multi-step web workflows"""
+    
+    def __init__(self):
+        self.browser = BrowserAgent()
+        self.browser.start()
+        self.history = []
+    
+    def execute_workflow(self, steps: List[dict]) -&gt; dict:
+        """Execute multi-step workflow"""
+        results = []
+        
+        for i, step in enumerate(steps):
+            print(f"Step {i+1}: {step['action']}")
+            
+            try:
+                if step['action'] == 'navigate':
+                    result = self.browser.navigate(step['url'])
+                
+                elif step['action'] == 'click':
+                    result = self.browser.click(step['selector'])
+                
+                elif step['action'] == 'type':
+                    result = self.browser.type_text(step['selector'], step['text'])
+                
+                elif step['action'] == 'wait':
+                    self.browser.page.wait_for_timeout(step['duration'])
+                    result = {"success": True}
+                
+                elif step['action'] == 'extract':
+                    text = self.browser.get_text(step['selector'])
+                    result = {"success": True, "data": text}
+                
+                elif step['action'] == 'screenshot':
+                    result = self.browser.screenshot(step.get('path', f'step_{i}.png'))
+                
+                else:
+                    result = {"success": False, "error": "Unknown action"}
+                
+                results.append({
+                    "step": i + 1,
+                    "action": step['action'],
+                    "result": result
+                })
+                
+                self.history.append({
+                    "url": self.browser.page.url,
+                    "title": self.browser.page.title()
+                })
+                
+                if not result.get('success', False):
+                    break
+                    
+            except Exception as e:
+                results.append({
+                    "step": i + 1,
+                    "action": step['action'],
+                    "result": {"success": False, "error": str(e)}
+                })
+                break
+        
+        return {
+            "completed": len(results),
+            "total": len(steps),
+            "results": results,
+            "history": self.history
+        }
+    
+    def close(self):
+        """Close browser"""
+        self.browser.stop()
+
+# Usage
+agent = NavigationAgent()
+
+workflow = [
+    {"action": "navigate", "url": "https://example.com"},
+    {"action": "click", "selector": "#login-btn"},
+    {"action": "type", "selector": "#username", "text": "user@example.com"},
+    {"action": "type", "selector": "#password", "text": "password123"},
+    {"action": "click", "selector": "#submit"},
+    {"action": "wait", "duration": 2000},
+    {"action": "extract", "selector": ".welcome-message"},
+    {"action": "screenshot", "path": "logged-in.png"}
+]
+
+result = agent.execute_workflow(workflow)
+agent.close()
+</code></pre>
+<h2 id="screenshot-and-visual-understanding"><a class="header" href="#screenshot-and-visual-understanding">Screenshot and Visual Understanding</a></h2>
+<h3 id="taking-screenshots"><a class="header" href="#taking-screenshots">Taking Screenshots</a></h3>
+<pre><code class="language-python">class ScreenshotAgent:
+    """Agent for visual capture and analysis"""
+    
+    def __init__(self):
+        self.browser = BrowserAgent()
+        self.browser.start()
+        self.client = openai.OpenAI()
+    
+    def capture_and_analyze(self, url: str, question: str) -&gt; dict:
+        """Capture screenshot and analyze with vision model"""
+        # Navigate and capture
+        self.browser.navigate(url)
+        screenshot_path = "temp_screenshot.png"
+        self.browser.screenshot(screenshot_path)
+        
+        # Analyze with vision model
+        import base64
+        with open(screenshot_path, "rb") as f:
+            image_data = base64.b64encode(f.read()).decode()
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4-vision-preview",
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": question},
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/png;base64,{image_data}"
+                            }
+                        }
+                    ]
+                }
+            ],
+            max_tokens=500
+        )
+        
+        return {
+            "url": url,
+            "question": question,
+            "analysis": response.choices[0].message.content,
+            "screenshot": screenshot_path
+        }
+    
+    def compare_pages(self, url1: str, url2: str) -&gt; dict:
+        """Compare two pages visually"""
+        # Capture both
+        self.browser.navigate(url1)
+        self.browser.screenshot("page1.png")
+        
+        self.browser.navigate(url2)
+        self.browser.screenshot("page2.png")
+        
+        # Compare with vision model
+        question = "What are the main differences between these two pages?"
+        
+        # Would need to send both images to vision model
+        # Implementation depends on specific vision API
+        
+        return {
+            "url1": url1,
+            "url2": url2,
+            "screenshot1": "page1.png",
+            "screenshot2": "page2.png"
+        }
+    
+    def close(self):
+        """Close browser"""
+        self.browser.stop()
+</code></pre>
+<h3 id="element-detection"><a class="header" href="#element-detection">Element Detection</a></h3>
+<pre><code class="language-python">class ElementDetector:
+    """Detect and locate elements on page"""
+    
+    def __init__(self):
+        self.browser = BrowserAgent()
+        self.browser.start()
+    
+    def find_element_by_description(self, url: str, description: str) -&gt; Optional[str]:
+        """Find element selector by natural language description"""
+        self.browser.navigate(url)
+        
+        # Get page structure
+        elements = self.browser.page.evaluate("""
+            () =&gt; {
+                const elements = [];
+                document.querySelectorAll('button, a, input, select, textarea').forEach(el =&gt; {
+                    elements.push({
+                        tag: el.tagName,
+                        text: el.textContent.trim(),
+                        id: el.id,
+                        class: el.className,
+                        type: el.type
+                    });
+                });
+                return elements;
+            }
+        """)
+        
+        # Use LLM to match description to element
+        prompt = f"""Find the element matching this description: {description}
+
+Available elements:
+{json.dumps(elements, indent=2)}
+
+Return the best CSS selector to target this element:"""
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}]
+        )
+        
+        return response.choices[0].message.content.strip()
+    
+    def close(self):
+        """Close browser"""
+        self.browser.stop()
+</code></pre>
+<h2 id="complete-web-interaction-agent"><a class="header" href="#complete-web-interaction-agent">Complete Web Interaction Agent</a></h2>
+<pre><code class="language-python">class WebAgent:
+    """Complete web interaction agent"""
+    
+    def __init__(self):
+        self.browser = BrowserAgent()
+        self.browser.start()
+        self.scraper = WebScraper()
+        self.client = openai.OpenAI()
+    
+    def execute_task(self, task: str, url: str) -&gt; str:
+        """Execute web task from natural language"""
+        # Generate action plan
+        plan = self.generate_plan(task, url)
+        
+        # Execute plan
+        results = []
+        for step in plan:
+            result = self.execute_step(step)
+            results.append(result)
+        
+        # Summarize results
+        return self.summarize_results(task, results)
+    
+    def generate_plan(self, task: str, url: str) -&gt; List[dict]:
+        """Generate action plan for task"""
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {
+                    "role": "system",
+                    "content": """Generate a step-by-step plan for web automation.
+
+Available actions:
+- navigate: Go to URL
+- click: Click element (provide selector)
+- type: Type text (provide selector and text)
+- extract: Extract text (provide selector)
+- wait: Wait for duration (milliseconds)
+- screenshot: Take screenshot
+
+Return JSON array of steps."""
+                },
+                {
+                    "role": "user",
+                    "content": f"Task: {task}\nStarting URL: {url}"
+                }
+            ],
+            temperature=0.2
+        )
+        
+        import json
+        return json.loads(response.choices[0].message.content)
+    
+    def execute_step(self, step: dict) -&gt; dict:
+        """Execute single step"""
+        action = step['action']
+        
+        try:
+            if action == 'navigate':
+                return self.browser.navigate(step['url'])
+            elif action == 'click':
+                return self.browser.click(step['selector'])
+            elif action == 'type':
+                return self.browser.type_text(step['selector'], step['text'])
+            elif action == 'extract':
+                text = self.browser.get_text(step['selector'])
+                return {"success": True, "data": text}
+            elif action == 'wait':
+                self.browser.page.wait_for_timeout(step['duration'])
+                return {"success": True}
+            elif action == 'screenshot':
+                return self.browser.screenshot(step.get('path', 'screenshot.png'))
+            else:
+                return {"success": False, "error": f"Unknown action: {action}"}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+    
+    def summarize_results(self, task: str, results: List[dict]) -&gt; str:
+        """Summarize execution results"""
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"""Summarize the results of this web automation task:
+
+Task: {task}
+
+Results:
+{json.dumps(results, indent=2)}
+
+Provide a clear summary of what was accomplished:"""
+                }
+            ]
+        )
+        
+        return response.choices[0].message.content
+    
+    def close(self):
+        """Close browser"""
+        self.browser.stop()
+
+# Usage
+agent = WebAgent()
+result = agent.execute_task(
+    "Search for 'AI agents' on the website and extract the top 3 results",
+    "https://example.com"
+)
+print(result)
+agent.close()
+</code></pre>
+<h2 id="best-practices"><a class="header" href="#best-practices">Best Practices</a></h2>
+<ol>
+<li><strong>Respect robots.txt</strong>: Check if scraping is allowed</li>
+<li><strong>Rate limiting</strong>: Don’t overwhelm servers</li>
+<li><strong>Use headless mode</strong>: Faster and less resource-intensive</li>
+<li><strong>Handle timeouts</strong>: Set reasonable wait times</li>
+<li><strong>Error recovery</strong>: Retry failed operations</li>
+<li><strong>Clean up resources</strong>: Close browsers properly</li>
+<li><strong>User agent</strong>: Identify your bot appropriately</li>
+<li><strong>Cache responses</strong>: Avoid redundant requests</li>
+<li><strong>Validate selectors</strong>: Check elements exist before interacting</li>
+<li><strong>Monitor performance</strong>: Track execution time</li>
+</ol>
+<h2 id="common-pitfalls"><a class="header" href="#common-pitfalls">Common Pitfalls</a></h2>
+<h3 id="pitfall-1-stale-selectors"><a class="header" href="#pitfall-1-stale-selectors">Pitfall 1: Stale Selectors</a></h3>
+<p><strong>Problem</strong>: Element selectors change
+<strong>Solution</strong>: Use more robust selectors (data attributes, ARIA labels)</p>
+<h3 id="pitfall-2-race-conditions"><a class="header" href="#pitfall-2-race-conditions">Pitfall 2: Race Conditions</a></h3>
+<p><strong>Problem</strong>: Clicking before element is ready
+<strong>Solution</strong>: Use explicit waits</p>
+<h3 id="pitfall-3-memory-leaks"><a class="header" href="#pitfall-3-memory-leaks">Pitfall 3: Memory Leaks</a></h3>
+<p><strong>Problem</strong>: Not closing browsers
+<strong>Solution</strong>: Always close in finally block or use context managers</p>
+<h3 id="pitfall-4-detection"><a class="header" href="#pitfall-4-detection">Pitfall 4: Detection</a></h3>
+<p><strong>Problem</strong>: Website blocks automated access
+<strong>Solution</strong>: Use stealth plugins, rotate user agents, add delays</p>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
+<p>Module 4 (Agent Tools &amp; Capabilities) is complete! You now understand code execution, data access, and web interaction. In Module 5, we’ll explore production-ready agents including reliability, testing, and monitoring.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../module4/4_2_data_access.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../module5/5_1_reliability.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../module4/4_2_data_access.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../module5/5_1_reliability.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

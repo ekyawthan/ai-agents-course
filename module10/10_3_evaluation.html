@@ -1,0 +1,1041 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Evaluation &amp; Iteration - AI Agents: Zero to Hero</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-c3e257ac.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-65a70cec.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">AI Agents: Zero to Hero</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="evaluation--iteration"><a class="header" href="#evaluation--iteration">Evaluation &amp; Iteration</a></h1>
+<h2 id="evaluating-your-agent"><a class="header" href="#evaluating-your-agent">Evaluating Your Agent</a></h2>
+<p>Now that you’ve built the Autonomous Software Engineering Agent, let’s evaluate its performance and iterate to improve it.</p>
+<h2 id="evaluation-framework"><a class="header" href="#evaluation-framework">Evaluation Framework</a></h2>
+<h3 id="test-suite-design"><a class="header" href="#test-suite-design">Test Suite Design</a></h3>
+<pre><code class="language-python"># tests/evaluation/test_suite.py
+from typing import Dict, List
+from dataclasses import dataclass
+
+@dataclass
+class TestCase:
+    name: str
+    input_code: str
+    expected_issues: List[str]
+    expected_fix_pattern: str
+    difficulty: str  # easy, medium, hard
+
+class EvaluationSuite:
+    """Comprehensive evaluation suite"""
+    
+    def __init__(self):
+        self.test_cases = self.create_test_cases()
+        self.results = []
+    
+    def create_test_cases(self) -&gt; List[TestCase]:
+        """Create diverse test cases"""
+        
+        return [
+            TestCase(
+                name="Division by zero",
+                input_code="def divide(a, b): return a / b",
+                expected_issues=["ZeroDivisionError"],
+                expected_fix_pattern="if b == 0",
+                difficulty="easy"
+            ),
+            TestCase(
+                name="SQL injection",
+                input_code='query = f"SELECT * FROM users WHERE id = {user_id}"',
+                expected_issues=["SQL injection"],
+                expected_fix_pattern="parameterized",
+                difficulty="medium"
+            ),
+            TestCase(
+                name="Race condition",
+                input_code="""
+counter = 0
+def increment():
+    global counter
+    temp = counter
+    counter = temp + 1
+""",
+                expected_issues=["race condition"],
+                expected_fix_pattern="lock",
+                difficulty="hard"
+            )
+        ]
+    
+    def run_evaluation(self, agent) -&gt; Dict:
+        """Run full evaluation"""
+        
+        results = {
+            "total": len(self.test_cases),
+            "passed": 0,
+            "by_difficulty": {"easy": 0, "medium": 0, "hard": 0}
+        }
+        
+        for test_case in self.test_cases:
+            result = self.evaluate_test_case(agent, test_case)
+            self.results.append(result)
+            
+            if result["passed"]:
+                results["passed"] += 1
+                results["by_difficulty"][test_case.difficulty] += 1
+        
+        results["accuracy"] = results["passed"] / results["total"]
+        
+        return results
+    
+    def evaluate_test_case(self, agent, test_case: TestCase) -&gt; Dict:
+        """Evaluate single test case"""
+        
+        # Write test code to file
+        test_file = f"tests/fixtures/{test_case.name.replace(' ', '_')}.py"
+        with open(test_file, 'w') as f:
+            f.write(test_case.input_code)
+        
+        # Run agent
+        result = agent.process_request(
+            f"Analyze and fix issues in {test_file}",
+            test_file
+        )
+        
+        # Check if issues detected
+        issues_found = result["results"][0].get("issues", [])
+        detected_expected = any(
+            expected in str(issues_found).lower()
+            for expected in test_case.expected_issues
+        )
+        
+        # Check if fix applied correctly
+        fixed_code = result["results"][1].get("fixed_code", "")
+        fix_correct = test_case.expected_fix_pattern.lower() in fixed_code.lower()
+        
+        return {
+            "test_case": test_case.name,
+            "passed": detected_expected and fix_correct,
+            "issues_detected": detected_expected,
+            "fix_correct": fix_correct,
+            "difficulty": test_case.difficulty
+        }
+</code></pre>
+<h3 id="performance-benchmarks"><a class="header" href="#performance-benchmarks">Performance Benchmarks</a></h3>
+<pre><code class="language-python"># tests/evaluation/benchmarks.py
+import time
+from typing import Dict
+
+class PerformanceBenchmark:
+    """Benchmark agent performance"""
+    
+    def __init__(self):
+        self.metrics = {}
+    
+    def benchmark_analysis_speed(self, agent, file_sizes: List[int]) -&gt; Dict:
+        """Benchmark analysis speed"""
+        
+        results = {}
+        
+        for size in file_sizes:
+            # Generate code of specific size
+            code = self.generate_code(size)
+            test_file = f"tests/fixtures/size_{size}.py"
+            
+            with open(test_file, 'w') as f:
+                f.write(code)
+            
+            # Time analysis
+            start = time.time()
+            agent.process_request(f"Analyze {test_file}", test_file)
+            duration = time.time() - start
+            
+            results[size] = {
+                "duration": duration,
+                "lines_per_second": size / duration
+            }
+        
+        return results
+    
+    def benchmark_fix_quality(self, agent, test_cases: List[TestCase]) -&gt; Dict:
+        """Benchmark fix quality"""
+        
+        metrics = {
+            "fixes_attempted": 0,
+            "fixes_successful": 0,
+            "fixes_optimal": 0,
+            "avg_fix_time": []
+        }
+        
+        for test_case in test_cases:
+            start = time.time()
+            
+            # Generate fix
+            result = agent.process_request(
+                f"Fix issues in {test_case.name}",
+                test_case.name
+            )
+            
+            duration = time.time() - start
+            metrics["avg_fix_time"].append(duration)
+            metrics["fixes_attempted"] += 1
+            
+            if result["results"][-1]["success"]:
+                metrics["fixes_successful"] += 1
+                
+                # Check if optimal
+                if self.is_optimal_fix(result["results"][-1]["fixed_code"]):
+                    metrics["fixes_optimal"] += 1
+        
+        return metrics
+    
+    def generate_code(self, lines: int) -&gt; str:
+        """Generate code of specific size"""
+        return "\n".join([f"# Line {i}" for i in range(lines)])
+    
+    def is_optimal_fix(self, code: str) -&gt; bool:
+        """Check if fix is optimal"""
+        # Simplified check
+        return "try" in code or "if" in code
+</code></pre>
+<h2 id="real-world-testing"><a class="header" href="#real-world-testing">Real-World Testing</a></h2>
+<h3 id="beta-testing-strategy"><a class="header" href="#beta-testing-strategy">Beta Testing Strategy</a></h3>
+<pre><code class="language-python">class BetaTester:
+    """Coordinate beta testing"""
+    
+    def __init__(self):
+        self.testers = []
+        self.feedback = []
+    
+    def run_beta_test(self, agent, duration_days: int = 7) -&gt; Dict:
+        """Run beta test program"""
+        
+        print(f"Starting {duration_days}-day beta test...")
+        
+        # Collect usage data
+        usage_data = self.collect_usage_data(agent, duration_days)
+        
+        # Collect feedback
+        feedback = self.collect_feedback()
+        
+        # Analyze results
+        analysis = self.analyze_beta_results(usage_data, feedback)
+        
+        return analysis
+    
+    def collect_usage_data(self, agent, days: int) -&gt; Dict:
+        """Collect usage metrics"""
+        
+        return {
+            "total_requests": 0,
+            "successful_requests": 0,
+            "avg_response_time": 0,
+            "most_common_tasks": [],
+            "error_rate": 0
+        }
+    
+    def collect_feedback(self) -&gt; List[Dict]:
+        """Collect user feedback"""
+        
+        return [
+            {
+                "user": "tester1",
+                "rating": 4,
+                "comments": "Works well for simple bugs",
+                "issues": ["Slow on large files"]
+            }
+        ]
+    
+    def analyze_beta_results(self, usage: Dict, feedback: List[Dict]) -&gt; Dict:
+        """Analyze beta test results"""
+        
+        avg_rating = sum(f["rating"] for f in feedback) / len(feedback)
+        
+        return {
+            "usage_stats": usage,
+            "avg_rating": avg_rating,
+            "key_issues": self.extract_key_issues(feedback),
+            "recommendations": self.generate_recommendations(usage, feedback)
+        }
+    
+    def extract_key_issues(self, feedback: List[Dict]) -&gt; List[str]:
+        """Extract common issues"""
+        
+        all_issues = []
+        for f in feedback:
+            all_issues.extend(f.get("issues", []))
+        
+        # Count frequency
+        from collections import Counter
+        return [issue for issue, count in Counter(all_issues).most_common(5)]
+    
+    def generate_recommendations(self, usage: Dict, feedback: List[Dict]) -&gt; List[str]:
+        """Generate improvement recommendations"""
+        
+        recommendations = []
+        
+        if usage["error_rate"] &gt; 0.1:
+            recommendations.append("Improve error handling")
+        
+        if usage["avg_response_time"] &gt; 10:
+            recommendations.append("Optimize performance")
+        
+        return recommendations
+</code></pre>
+<h2 id="iteration-process"><a class="header" href="#iteration-process">Iteration Process</a></h2>
+<h3 id="continuous-improvement-loop"><a class="header" href="#continuous-improvement-loop">Continuous Improvement Loop</a></h3>
+<pre><code class="language-python">class ImprovementLoop:
+    """Continuous improvement system"""
+    
+    def __init__(self, agent):
+        self.agent = agent
+        self.version = 1
+        self.performance_history = []
+    
+    def iterate(self, evaluation_results: Dict) -&gt; Dict:
+        """Improve based on evaluation"""
+        
+        # Identify weaknesses
+        weaknesses = self.identify_weaknesses(evaluation_results)
+        
+        # Generate improvements
+        improvements = self.generate_improvements(weaknesses)
+        
+        # Apply improvements
+        self.apply_improvements(improvements)
+        
+        # Re-evaluate
+        new_results = self.evaluate()
+        
+        # Track progress
+        self.performance_history.append({
+            "version": self.version,
+            "results": new_results
+        })
+        
+        self.version += 1
+        
+        return {
+            "improvements_made": len(improvements),
+            "performance_change": self.calculate_improvement(evaluation_results, new_results)
+        }
+    
+    def identify_weaknesses(self, results: Dict) -&gt; List[str]:
+        """Identify areas needing improvement"""
+        
+        weaknesses = []
+        
+        if results["accuracy"] &lt; 0.8:
+            weaknesses.append("low_accuracy")
+        
+        if results.get("avg_response_time", 0) &gt; 10:
+            weaknesses.append("slow_performance")
+        
+        if results.get("error_rate", 0) &gt; 0.05:
+            weaknesses.append("high_error_rate")
+        
+        return weaknesses
+    
+    def generate_improvements(self, weaknesses: List[str]) -&gt; List[Dict]:
+        """Generate improvement strategies"""
+        
+        improvements = []
+        
+        for weakness in weaknesses:
+            if weakness == "low_accuracy":
+                improvements.append({
+                    "area": "prompts",
+                    "action": "Refine analysis prompts with more examples"
+                })
+            
+            elif weakness == "slow_performance":
+                improvements.append({
+                    "area": "caching",
+                    "action": "Add caching for repeated analyses"
+                })
+            
+            elif weakness == "high_error_rate":
+                improvements.append({
+                    "area": "error_handling",
+                    "action": "Add more robust error handling"
+                })
+        
+        return improvements
+    
+    def apply_improvements(self, improvements: List[Dict]):
+        """Apply improvements to agent"""
+        
+        for improvement in improvements:
+            print(f"Applying: {improvement['action']}")
+            # Apply improvement
+            # In practice, would modify agent configuration or code
+    
+    def evaluate(self) -&gt; Dict:
+        """Run evaluation"""
+        suite = EvaluationSuite()
+        return suite.run_evaluation(self.agent)
+    
+    def calculate_improvement(self, old: Dict, new: Dict) -&gt; float:
+        """Calculate improvement percentage"""
+        
+        old_acc = old.get("accuracy", 0)
+        new_acc = new.get("accuracy", 0)
+        
+        return ((new_acc - old_acc) / old_acc * 100) if old_acc &gt; 0 else 0
+</code></pre>
+<h2 id="production-deployment"><a class="header" href="#production-deployment">Production Deployment</a></h2>
+<h3 id="deployment-checklist"><a class="header" href="#deployment-checklist">Deployment Checklist</a></h3>
+<ul>
+<li><input disabled="" type="checkbox"> All tests passing</li>
+<li><input disabled="" type="checkbox"> Performance benchmarks met</li>
+<li><input disabled="" type="checkbox"> Security audit completed</li>
+<li><input disabled="" type="checkbox"> Documentation updated</li>
+<li><input disabled="" type="checkbox"> Monitoring configured</li>
+<li><input disabled="" type="checkbox"> Rollback plan ready</li>
+<li><input disabled="" type="checkbox"> User training completed</li>
+<li><input disabled="" type="checkbox"> Feedback system active</li>
+</ul>
+<h3 id="monitoring-setup"><a class="header" href="#monitoring-setup">Monitoring Setup</a></h3>
+<pre><code class="language-python"># src/monitoring/metrics.py
+from prometheus_client import Counter, Histogram, Gauge
+import time
+
+# Define metrics
+requests_total = Counter('agent_requests_total', 'Total requests', ['task_type'])
+request_duration = Histogram('agent_request_duration_seconds', 'Request duration')
+active_tasks = Gauge('agent_active_tasks', 'Active tasks')
+errors_total = Counter('agent_errors_total', 'Total errors', ['error_type'])
+
+class MonitoredAgent:
+    """Agent with monitoring"""
+    
+    def __init__(self, agent):
+        self.agent = agent
+    
+    def process_request(self, request: str, target: str) -&gt; Dict:
+        """Process with monitoring"""
+        
+        active_tasks.inc()
+        start = time.time()
+        
+        try:
+            result = self.agent.process_request(request, target)
+            
+            # Record metrics
+            requests_total.labels(task_type=result.get("task_type", "unknown")).inc()
+            request_duration.observe(time.time() - start)
+            
+            return result
+            
+        except Exception as e:
+            errors_total.labels(error_type=type(e).__name__).inc()
+            raise
+        
+        finally:
+            active_tasks.dec()
+</code></pre>
+<h3 id="logging-strategy"><a class="header" href="#logging-strategy">Logging Strategy</a></h3>
+<pre><code class="language-python"># src/monitoring/logging_config.py
+import logging
+import json
+
+class StructuredLogger:
+    """Structured logging for agent"""
+    
+    def __init__(self):
+        self.logger = logging.getLogger("se_agent")
+        self.logger.setLevel(logging.INFO)
+        
+        handler = logging.FileHandler("agent.log")
+        handler.setFormatter(logging.Formatter('%(message)s'))
+        self.logger.addHandler(handler)
+    
+    def log_request(self, request: str, target: str):
+        """Log incoming request"""
+        self.logger.info(json.dumps({
+            "event": "request",
+            "request": request,
+            "target": target,
+            "timestamp": time.time()
+        }))
+    
+    def log_result(self, result: Dict):
+        """Log result"""
+        self.logger.info(json.dumps({
+            "event": "result",
+            "success": result.get("success"),
+            "timestamp": time.time()
+        }))
+    
+    def log_error(self, error: Exception):
+        """Log error"""
+        self.logger.error(json.dumps({
+            "event": "error",
+            "error_type": type(error).__name__,
+            "error_message": str(error),
+            "timestamp": time.time()
+        }))
+</code></pre>
+<h2 id="user-feedback-collection"><a class="header" href="#user-feedback-collection">User Feedback Collection</a></h2>
+<h3 id="feedback-system"><a class="header" href="#feedback-system">Feedback System</a></h3>
+<pre><code class="language-python"># src/feedback/collector.py
+from typing import Dict, Optional
+import sqlite3
+
+class FeedbackCollector:
+    """Collect and analyze user feedback"""
+    
+    def __init__(self, db_path: str = "data/feedback.db"):
+        self.db_path = db_path
+        self.init_db()
+    
+    def init_db(self):
+        """Initialize feedback database"""
+        
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS feedback (
+                id INTEGER PRIMARY KEY,
+                task_id TEXT,
+                rating INTEGER,
+                comments TEXT,
+                accepted BOOLEAN,
+                timestamp REAL
+            )
+        ''')
+        
+        conn.commit()
+        conn.close()
+    
+    def collect(self, task_id: str, rating: int, comments: str, accepted: bool):
+        """Store feedback"""
+        
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            INSERT INTO feedback (task_id, rating, comments, accepted, timestamp)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (task_id, rating, comments, accepted, time.time()))
+        
+        conn.commit()
+        conn.close()
+    
+    def analyze_feedback(self) -&gt; Dict:
+        """Analyze collected feedback"""
+        
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        
+        # Get statistics
+        cursor.execute('SELECT AVG(rating), COUNT(*) FROM feedback')
+        avg_rating, total = cursor.fetchone()
+        
+        cursor.execute('SELECT COUNT(*) FROM feedback WHERE accepted = 1')
+        accepted = cursor.fetchone()[0]
+        
+        conn.close()
+        
+        return {
+            "avg_rating": avg_rating,
+            "total_feedback": total,
+            "acceptance_rate": accepted / total if total &gt; 0 else 0
+        }
+    
+    def get_improvement_suggestions(self) -&gt; List[str]:
+        """Extract improvement suggestions from feedback"""
+        
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        
+        # Get low-rated feedback
+        cursor.execute('SELECT comments FROM feedback WHERE rating &lt; 3')
+        low_rated = cursor.fetchall()
+        
+        conn.close()
+        
+        # Extract common themes
+        suggestions = []
+        for (comment,) in low_rated:
+            if comment:
+                suggestions.append(comment)
+        
+        return suggestions
+</code></pre>
+<h2 id="ab-testing"><a class="header" href="#ab-testing">A/B Testing</a></h2>
+<h3 id="comparing-agent-versions"><a class="header" href="#comparing-agent-versions">Comparing Agent Versions</a></h3>
+<pre><code class="language-python">class ABTester:
+    """A/B test different agent versions"""
+    
+    def __init__(self, agent_a, agent_b):
+        self.agent_a = agent_a
+        self.agent_b = agent_b
+        self.results_a = []
+        self.results_b = []
+    
+    def run_ab_test(self, test_cases: List[TestCase]) -&gt; Dict:
+        """Run A/B test"""
+        
+        import random
+        
+        for test_case in test_cases:
+            # Randomly assign to A or B
+            if random.random() &lt; 0.5:
+                result = self.test_agent(self.agent_a, test_case)
+                self.results_a.append(result)
+            else:
+                result = self.test_agent(self.agent_b, test_case)
+                self.results_b.append(result)
+        
+        # Compare results
+        return self.compare_results()
+    
+    def test_agent(self, agent, test_case: TestCase) -&gt; Dict:
+        """Test single agent"""
+        
+        start = time.time()
+        result = agent.process_request(test_case.name, test_case.name)
+        duration = time.time() - start
+        
+        return {
+            "success": result.get("success", False),
+            "duration": duration
+        }
+    
+    def compare_results(self) -&gt; Dict:
+        """Compare A vs B"""
+        
+        a_success = sum(1 for r in self.results_a if r["success"]) / len(self.results_a)
+        b_success = sum(1 for r in self.results_b if r["success"]) / len(self.results_b)
+        
+        a_speed = sum(r["duration"] for r in self.results_a) / len(self.results_a)
+        b_speed = sum(r["duration"] for r in self.results_b) / len(self.results_b)
+        
+        return {
+            "agent_a": {"success_rate": a_success, "avg_duration": a_speed},
+            "agent_b": {"success_rate": b_success, "avg_duration": b_speed},
+            "winner": "A" if a_success &gt; b_success else "B"
+        }
+</code></pre>
+<h2 id="iteration-examples"><a class="header" href="#iteration-examples">Iteration Examples</a></h2>
+<h3 id="iteration-1-improve-accuracy"><a class="header" href="#iteration-1-improve-accuracy">Iteration 1: Improve Accuracy</a></h3>
+<p><strong>Problem</strong>: Agent missing 30% of bugs</p>
+<p><strong>Analysis</strong>:</p>
+<pre><code class="language-python"># Analyze false negatives
+false_negatives = [
+    "Off-by-one errors",
+    "Null pointer issues",
+    "Type mismatches"
+]
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-python"># Enhanced analysis prompt
+enhanced_prompt = """Analyze code for:
+1. Logic errors (off-by-one, boundary conditions)
+2. Null/None handling
+3. Type safety
+4. Resource leaks
+5. Concurrency issues
+
+Be thorough and check edge cases."""
+
+# Update analyzer
+analyzer.system_prompt = enhanced_prompt
+</code></pre>
+<p><strong>Result</strong>: Accuracy improved from 70% → 85%</p>
+<h3 id="iteration-2-optimize-performance"><a class="header" href="#iteration-2-optimize-performance">Iteration 2: Optimize Performance</a></h3>
+<p><strong>Problem</strong>: Analysis takes 15s per file (target: &lt;5s)</p>
+<p><strong>Analysis</strong>:</p>
+<pre><code class="language-python"># Profile performance
+import cProfile
+
+profiler = cProfile.Profile()
+profiler.enable()
+agent.process_request("Analyze file.py", "file.py")
+profiler.disable()
+profiler.print_stats(sort='cumtime')
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-python"># Add caching
+class CachedAnalyzer:
+    def __init__(self):
+        self.cache = {}
+    
+    def analyze(self, file_path: str) -&gt; Dict:
+        # Check cache
+        file_hash = self.hash_file(file_path)
+        
+        if file_hash in self.cache:
+            return self.cache[file_hash]
+        
+        # Analyze
+        result = self.do_analysis(file_path)
+        
+        # Cache result
+        self.cache[file_hash] = result
+        
+        return result
+</code></pre>
+<p><strong>Result</strong>: Analysis time reduced to 3s per file</p>
+<h3 id="iteration-3-reduce-false-positives"><a class="header" href="#iteration-3-reduce-false-positives">Iteration 3: Reduce False Positives</a></h3>
+<p><strong>Problem</strong>: 40% of reported issues are false positives</p>
+<p><strong>Analysis</strong>:</p>
+<pre><code class="language-python"># Analyze false positives
+fp_analysis = {
+    "style_issues_as_bugs": 15,
+    "context_misunderstanding": 12,
+    "overly_strict_checks": 8
+}
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-python"># Add confidence scoring
+class ConfidenceScorer:
+    def score_issue(self, issue: Dict) -&gt; float:
+        """Score issue confidence"""
+        
+        score = 0.5  # Base
+        
+        # Increase for multiple sources
+        if issue["source"] == "static" and issue.get("llm_confirmed"):
+            score += 0.3
+        
+        # Increase for severity
+        if issue["severity"] == "critical":
+            score += 0.2
+        
+        return min(score, 1.0)
+
+# Filter low-confidence issues
+filtered_issues = [i for i in issues if scorer.score_issue(i) &gt; 0.6]
+</code></pre>
+<p><strong>Result</strong>: False positive rate reduced from 40% → 15%</p>
+<h2 id="production-metrics"><a class="header" href="#production-metrics">Production Metrics</a></h2>
+<h3 id="key-metrics-to-track"><a class="header" href="#key-metrics-to-track">Key Metrics to Track</a></h3>
+<pre><code class="language-python">class ProductionMetrics:
+    """Track production metrics"""
+    
+    def __init__(self):
+        self.metrics = {
+            "requests_per_day": 0,
+            "success_rate": 0,
+            "avg_response_time": 0,
+            "user_satisfaction": 0,
+            "bugs_fixed": 0,
+            "tests_generated": 0,
+            "code_quality_improvement": 0
+        }
+    
+    def daily_report(self) -&gt; Dict:
+        """Generate daily metrics report"""
+        
+        return {
+            "date": time.strftime("%Y-%m-%d"),
+            "metrics": self.metrics,
+            "alerts": self.check_alerts()
+        }
+    
+    def check_alerts(self) -&gt; List[str]:
+        """Check for metric alerts"""
+        
+        alerts = []
+        
+        if self.metrics["success_rate"] &lt; 0.9:
+            alerts.append("Success rate below threshold")
+        
+        if self.metrics["avg_response_time"] &gt; 10:
+            alerts.append("Response time above threshold")
+        
+        return alerts
+</code></pre>
+<h2 id="final-evaluation"><a class="header" href="#final-evaluation">Final Evaluation</a></h2>
+<h3 id="comprehensive-assessment"><a class="header" href="#comprehensive-assessment">Comprehensive Assessment</a></h3>
+<pre><code class="language-python">def final_evaluation(agent) -&gt; Dict:
+    """Comprehensive final evaluation"""
+    
+    # Run test suite
+    suite = EvaluationSuite()
+    test_results = suite.run_evaluation(agent)
+    
+    # Run benchmarks
+    benchmark = PerformanceBenchmark()
+    perf_results = benchmark.benchmark_analysis_speed(agent, [100, 500, 1000])
+    
+    # Analyze feedback
+    feedback = FeedbackCollector()
+    feedback_analysis = feedback.analyze_feedback()
+    
+    # Generate report
+    report = {
+        "test_results": test_results,
+        "performance": perf_results,
+        "user_feedback": feedback_analysis,
+        "overall_score": calculate_overall_score(test_results, perf_results, feedback_analysis)
+    }
+    
+    return report
+
+def calculate_overall_score(tests: Dict, perf: Dict, feedback: Dict) -&gt; float:
+    """Calculate overall score"""
+    
+    # Weighted average
+    test_score = tests["accuracy"] * 0.4
+    perf_score = (1.0 if perf[100]["duration"] &lt; 5 else 0.5) * 0.3
+    feedback_score = feedback["acceptance_rate"] * 0.3
+    
+    return test_score + perf_score + feedback_score
+</code></pre>
+<h2 id="congratulations"><a class="header" href="#congratulations">Congratulations!</a></h2>
+<p>You’ve completed the capstone project! You’ve built a sophisticated Autonomous Software Engineering Agent that:</p>
+<p>✅ Analyzes code for bugs and quality issues
+✅ Generates fixes with explanations
+✅ Writes comprehensive tests
+✅ Operates safely with validation
+✅ Learns from feedback
+✅ Scales to production workloads</p>
+<h3 id="what-youve-learned"><a class="header" href="#what-youve-learned">What You’ve Learned</a></h3>
+<p>Throughout this course, you’ve mastered:</p>
+<ul>
+<li><strong>Foundations</strong>: Agent architecture and LLM fundamentals</li>
+<li><strong>Building</strong>: ReAct patterns and tool integration</li>
+<li><strong>Advanced Patterns</strong>: Planning, memory, multi-agent systems</li>
+<li><strong>Tools</strong>: Code execution, data access, web interaction</li>
+<li><strong>Production</strong>: Reliability, testing, monitoring</li>
+<li><strong>Specialization</strong>: Coding, research, automation agents</li>
+<li><strong>Advanced Topics</strong>: Learning, multimodal, frameworks</li>
+<li><strong>Enterprise</strong>: Architecture, security, cost optimization</li>
+<li><strong>Research</strong>: Frontier capabilities, emerging paradigms</li>
+<li><strong>Capstone</strong>: Complete production-ready agent</li>
+</ul>
+<h3 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h3>
+<ol>
+<li><strong>Deploy your agent</strong>: Put it into production</li>
+<li><strong>Contribute</strong>: Share your implementation</li>
+<li><strong>Research</strong>: Explore open problems</li>
+<li><strong>Build more</strong>: Create specialized agents</li>
+<li><strong>Teach</strong>: Share your knowledge</li>
+</ol>
+<p>Thank you for completing the AI Agents: Zero to Hero course!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../module10/10_2_implementation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../appendix/tools.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../module10/10_2_implementation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../appendix/tools.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

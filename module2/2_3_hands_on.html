@@ -1,0 +1,845 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Hands-On Project - AI Agents: Zero to Hero</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-c3e257ac.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-65a70cec.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">AI Agents: Zero to Hero</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="hands-on-project-shopping-research-assistant"><a class="header" href="#hands-on-project-shopping-research-assistant">Hands-On Project: Shopping Research Assistant</a></h1>
+<h2 id="project-overview"><a class="header" href="#project-overview">Project Overview</a></h2>
+<p>Build a <strong>Shopping Research Assistant</strong> that helps users make informed purchasing decisions by:</p>
+<ul>
+<li>Searching for products across multiple sources</li>
+<li>Comparing prices and features</li>
+<li>Reading product reviews</li>
+<li>Summarizing pros and cons</li>
+<li>Providing recommendations with reasoning</li>
+</ul>
+<p>This project combines everything you’ve learned: ReAct pattern, tool integration, multi-step reasoning, and error handling.</p>
+<h2 id="what-youll-build"><a class="header" href="#what-youll-build">What You’ll Build</a></h2>
+<p>An agent that can handle queries like:</p>
+<ul>
+<li>“Find the best laptop under $1000 for programming”</li>
+<li>“Compare noise-canceling headphones”</li>
+<li>“What are the top-rated coffee makers?”</li>
+<li>“Should I buy the iPhone 15 or Samsung S24?”</li>
+</ul>
+<h2 id="project-setup"><a class="header" href="#project-setup">Project Setup</a></h2>
+<h3 id="dependencies"><a class="header" href="#dependencies">Dependencies</a></h3>
+<pre><code class="language-bash">pip install openai requests beautifulsoup4 python-dotenv
+</code></pre>
+<h3 id="project-structure"><a class="header" href="#project-structure">Project Structure</a></h3>
+<pre><code>shopping_agent/
+├── agent.py           # Main agent implementation
+├── tools.py           # Tool definitions
+├── config.py          # Configuration
+├── .env              # API keys
+└── test_agent.py     # Test cases
+</code></pre>
+<h3 id="configuration"><a class="header" href="#configuration">Configuration</a></h3>
+<pre><code class="language-python"># config.py
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+MODEL = "gpt-4"
+MAX_STEPS = 15
+TEMPERATURE = 0.7
+</code></pre>
+<h2 id="implement-the-tools"><a class="header" href="#implement-the-tools">Implement the Tools</a></h2>
+<h3 id="tool-1-product-search"><a class="header" href="#tool-1-product-search">Tool 1: Product Search</a></h3>
+<pre><code class="language-python"># tools.py
+import requests
+from typing import Dict, List
+
+def search_products(query: str, max_results: int = 5) -&gt; str:
+    """
+    Search for products matching the query.
+    Returns product names, prices, and URLs.
+    """
+    try:
+        # Using a mock API for demonstration
+        # In production, use real APIs like Amazon Product API, eBay, etc.
+        
+        # Simulate search results
+        results = [
+            {
+                "name": f"Product {i+1} for {query}",
+                "price": f"${100 + i*50}",
+                "rating": f"{4.0 + i*0.2:.1f}/5.0",
+                "url": f"https://example.com/product-{i+1}"
+            }
+            for i in range(max_results)
+        ]
+        
+        # Format results
+        output = f"Found {len(results)} products:\n\n"
+        for i, product in enumerate(results, 1):
+            output += f"{i}. {product['name']}\n"
+            output += f"   Price: {product['price']}\n"
+            output += f"   Rating: {product['rating']}\n"
+            output += f"   URL: {product['url']}\n\n"
+        
+        return output
+    
+    except Exception as e:
+        return f"Error searching products: {str(e)}"
+
+
+def search_products_real(query: str, max_results: int = 5) -&gt; str:
+    """
+    Real implementation using web search.
+    Searches Google Shopping or similar.
+    """
+    try:
+        # Example with Google Custom Search API
+        api_key = os.getenv("GOOGLE_API_KEY")
+        search_engine_id = os.getenv("GOOGLE_SEARCH_ENGINE_ID")
+        
+        url = "https://www.googleapis.com/customsearch/v1"
+        params = {
+            "key": api_key,
+            "cx": search_engine_id,
+            "q": query + " buy price",
+            "num": max_results
+        }
+        
+        response = requests.get(url, params=params, timeout=10)
+        response.raise_for_status()
+        
+        data = response.json()
+        items = data.get("items", [])
+        
+        output = f"Found {len(items)} products:\n\n"
+        for i, item in enumerate(items, 1):
+            output += f"{i}. {item['title']}\n"
+            output += f"   {item['snippet']}\n"
+            output += f"   URL: {item['link']}\n\n"
+        
+        return output
+    
+    except Exception as e:
+        return f"Error: {str(e)}"
+</code></pre>
+<h3 id="tool-2-get-product-details"><a class="header" href="#tool-2-get-product-details">Tool 2: Get Product Details</a></h3>
+<pre><code class="language-python">from bs4 import BeautifulSoup
+
+def get_product_details(url: str) -&gt; str:
+    """
+    Extract detailed information from a product page.
+    Returns specs, description, and reviews summary.
+    """
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        }
+        
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()
+        
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        # Extract text (simplified)
+        # In production, use specific selectors for each site
+        text = soup.get_text(separator='\n', strip=True)
+        
+        # Limit length
+        max_length = 2000
+        if len(text) &gt; max_length:
+            text = text[:max_length] + "..."
+        
+        return f"Product details from {url}:\n\n{text}"
+    
+    except Exception as e:
+        return f"Error fetching product details: {str(e)}"
+</code></pre>
+<h3 id="tool-3-compare-products"><a class="header" href="#tool-3-compare-products">Tool 3: Compare Products</a></h3>
+<pre><code class="language-python">def compare_products(product_list: str) -&gt; str:
+    """
+    Compare multiple products based on provided information.
+    Input: Comma-separated product names or descriptions.
+    Returns: Comparison table.
+    """
+    try:
+        products = [p.strip() for p in product_list.split(',')]
+        
+        if len(products) &lt; 2:
+            return "Error: Need at least 2 products to compare"
+        
+        output = "Product Comparison:\n\n"
+        output += "To compare these products effectively, I need their details.\n"
+        output += "Please use get_product_details for each product first.\n\n"
+        output += f"Products to compare: {', '.join(products)}"
+        
+        return output
+    
+    except Exception as e:
+        return f"Error comparing products: {str(e)}"
+</code></pre>
+<h3 id="tool-4-get-reviews-summary"><a class="header" href="#tool-4-get-reviews-summary">Tool 4: Get Reviews Summary</a></h3>
+<pre><code class="language-python">def get_reviews_summary(product_name: str) -&gt; str:
+    """
+    Get a summary of customer reviews for a product.
+    Returns common pros, cons, and overall sentiment.
+    """
+    try:
+        # Mock implementation
+        # In production, scrape from Amazon, Reddit, review sites
+        
+        reviews = {
+            "overall_rating": "4.3/5.0",
+            "total_reviews": 1247,
+            "pros": [
+                "Excellent build quality",
+                "Great performance",
+                "Good value for money"
+            ],
+            "cons": [
+                "Battery life could be better",
+                "Slightly heavy",
+                "Limited color options"
+            ],
+            "common_themes": [
+                "Users love the performance",
+                "Some complaints about weight",
+                "Generally recommended"
+            ]
+        }
+        
+        output = f"Reviews Summary for {product_name}:\n\n"
+        output += f"Overall Rating: {reviews['overall_rating']} ({reviews['total_reviews']} reviews)\n\n"
+        output += "Pros:\n"
+        for pro in reviews['pros']:
+            output += f"  ✓ {pro}\n"
+        output += "\nCons:\n"
+        for con in reviews['cons']:
+            output += f"  ✗ {con}\n"
+        output += "\nCommon Themes:\n"
+        for theme in reviews['common_themes']:
+            output += f"  • {theme}\n"
+        
+        return output
+    
+    except Exception as e:
+        return f"Error getting reviews: {str(e)}"
+</code></pre>
+<h3 id="tool-5-price-history"><a class="header" href="#tool-5-price-history">Tool 5: Price History</a></h3>
+<pre><code class="language-python">def get_price_history(product_name: str) -&gt; str:
+    """
+    Get price history and trends for a product.
+    Helps determine if current price is good.
+    """
+    try:
+        # Mock implementation
+        # In production, use CamelCamelCamel API, Keepa, etc.
+        
+        history = {
+            "current_price": "$899",
+            "lowest_price": "$799 (3 months ago)",
+            "highest_price": "$999 (6 months ago)",
+            "average_price": "$879",
+            "trend": "stable",
+            "recommendation": "Current price is close to average. Good time to buy."
+        }
+        
+        output = f"Price History for {product_name}:\n\n"
+        output += f"Current Price: {history['current_price']}\n"
+        output += f"Lowest Price: {history['lowest_price']}\n"
+        output += f"Highest Price: {history['highest_price']}\n"
+        output += f"Average Price: {history['average_price']}\n"
+        output += f"Trend: {history['trend']}\n\n"
+        output += f"💡 {history['recommendation']}"
+        
+        return output
+    
+    except Exception as e:
+        return f"Error getting price history: {str(e)}"
+</code></pre>
+<h2 id="build-the-agent"><a class="header" href="#build-the-agent">Build the Agent</a></h2>
+<h3 id="tool-registry"><a class="header" href="#tool-registry">Tool Registry</a></h3>
+<pre><code class="language-python"># agent.py
+from tools import (
+    search_products,
+    get_product_details,
+    compare_products,
+    get_reviews_summary,
+    get_price_history
+)
+
+class ShoppingAgent:
+    """Shopping Research Assistant Agent"""
+    
+    def __init__(self):
+        self.tools = self._create_tool_schemas()
+        self.client = openai.OpenAI()
+    
+    def _create_tool_schemas(self):
+        """Define tool schemas for OpenAI function calling"""
+        return [
+            {
+                "type": "function",
+                "function": {
+                    "name": "search_products",
+                    "description": "Search for products matching a query. Use when user asks to find or search for products.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query": {
+                                "type": "string",
+                                "description": "Product search query (e.g., 'laptop under $1000')"
+                            },
+                            "max_results": {
+                                "type": "integer",
+                                "description": "Maximum number of results (default: 5)",
+                                "default": 5
+                            }
+                        },
+                        "required": ["query"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "get_product_details",
+                    "description": "Get detailed information about a specific product from its URL.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "url": {
+                                "type": "string",
+                                "description": "Product page URL"
+                            }
+                        },
+                        "required": ["url"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "get_reviews_summary",
+                    "description": "Get summary of customer reviews including pros, cons, and ratings.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "product_name": {
+                                "type": "string",
+                                "description": "Product name"
+                            }
+                        },
+                        "required": ["product_name"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "get_price_history",
+                    "description": "Get price history and determine if current price is good.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "product_name": {
+                                "type": "string",
+                                "description": "Product name"
+                            }
+                        },
+                        "required": ["product_name"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "compare_products",
+                    "description": "Compare multiple products. Use after gathering details about each product.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "product_list": {
+                                "type": "string",
+                                "description": "Comma-separated list of product names"
+                            }
+                        },
+                        "required": ["product_list"]
+                    }
+                }
+            }
+        ]
+    
+    def _execute_tool(self, tool_name: str, arguments: dict) -&gt; str:
+        """Execute a tool and return result"""
+        tool_map = {
+            "search_products": search_products,
+            "get_product_details": get_product_details,
+            "compare_products": compare_products,
+            "get_reviews_summary": get_reviews_summary,
+            "get_price_history": get_price_history
+        }
+        
+        if tool_name not in tool_map:
+            return f"Error: Unknown tool {tool_name}"
+        
+        try:
+            result = tool_map[tool_name](**arguments)
+            return result
+        except Exception as e:
+            return f"Error executing {tool_name}: {str(e)}"
+    
+    def run(self, user_query: str, max_steps: int = 15) -&gt; str:
+        """Run the shopping assistant agent"""
+        messages = [
+            {
+                "role": "system",
+                "content": """You are a helpful shopping research assistant. 
+                
+Your goal is to help users make informed purchasing decisions by:
+1. Searching for relevant products
+2. Gathering detailed information and reviews
+3. Comparing options
+4. Providing clear recommendations with reasoning
+
+Always:
+- Search for products before making recommendations
+- Check reviews and ratings
+- Consider price history when available
+- Compare multiple options when relevant
+- Cite specific information from your research
+- Be honest about limitations
+
+Format your final recommendation clearly with pros, cons, and reasoning."""
+            },
+            {"role": "user", "content": user_query}
+        ]
+        
+        print(f"🛍️  User: {user_query}\n")
+        
+        for step in range(max_steps):
+            # Get LLM response
+            response = self.client.chat.completions.create(
+                model="gpt-4",
+                messages=messages,
+                tools=self.tools,
+                tool_choice="auto",
+                temperature=0.7
+            )
+            
+            message = response.choices[0].message
+            
+            # If no tool calls, we're done
+            if not message.tool_calls:
+                print(f"🤖 Assistant: {message.content}\n")
+                return message.content
+            
+            # Add assistant message
+            messages.append(message)
+            
+            # Execute tool calls
+            for tool_call in message.tool_calls:
+                function_name = tool_call.function.name
+                arguments = json.loads(tool_call.function.arguments)
+                
+                print(f"🔧 Using tool: {function_name}({arguments})")
+                
+                # Execute tool
+                result = self._execute_tool(function_name, arguments)
+                print(f"📊 Result: {result[:200]}...\n")
+                
+                # Add tool result to messages
+                messages.append({
+                    "role": "tool",
+                    "tool_call_id": tool_call.id,
+                    "content": result
+                })
+        
+        return "⚠️  Max steps reached without completing the task"
+</code></pre>
+<h2 id="complete-implementation"><a class="header" href="#complete-implementation">Complete Implementation</a></h2>
+<pre><code class="language-python"># agent.py (complete file)
+import openai
+import json
+from config import OPENAI_API_KEY, MODEL
+from tools import (
+    search_products,
+    get_product_details,
+    compare_products,
+    get_reviews_summary,
+    get_price_history
+)
+
+openai.api_key = OPENAI_API_KEY
+
+# [ShoppingAgent class from above]
+
+def main():
+    """Test the shopping agent"""
+    agent = ShoppingAgent()
+    
+    # Example queries
+    queries = [
+        "Find the best noise-canceling headphones under $300",
+        "Compare iPhone 15 Pro and Samsung Galaxy S24",
+        "What's a good coffee maker for home use?"
+    ]
+    
+    for query in queries:
+        print("=" * 60)
+        result = agent.run(query)
+        print("=" * 60)
+        print()
+
+if __name__ == "__main__":
+    main()
+</code></pre>
+<h2 id="test-cases"><a class="header" href="#test-cases">Test Cases</a></h2>
+<pre><code class="language-python"># test_agent.py
+from agent import ShoppingAgent
+
+def test_product_search():
+    """Test basic product search"""
+    agent = ShoppingAgent()
+    result = agent.run("Find wireless keyboards under $50")
+    assert "Product" in result or "keyboard" in result.lower()
+    print("✓ Product search test passed")
+
+def test_comparison():
+    """Test product comparison"""
+    agent = ShoppingAgent()
+    result = agent.run("Compare MacBook Air vs Dell XPS 13")
+    assert len(result) &gt; 100  # Should have substantial response
+    print("✓ Comparison test passed")
+
+def test_reviews():
+    """Test review gathering"""
+    agent = ShoppingAgent()
+    result = agent.run("What do people say about AirPods Pro?")
+    assert "review" in result.lower() or "rating" in result.lower()
+    print("✓ Reviews test passed")
+
+if __name__ == "__main__":
+    test_product_search()
+    test_comparison()
+    test_reviews()
+    print("\n✅ All tests passed!")
+</code></pre>
+<h2 id="debug-common-issues"><a class="header" href="#debug-common-issues">Debug Common Issues</a></h2>
+<h3 id="issue-1-agent-doesnt-use-tools"><a class="header" href="#issue-1-agent-doesnt-use-tools">Issue 1: Agent Doesn’t Use Tools</a></h3>
+<p><strong>Problem</strong>: Agent responds without searching</p>
+<p><strong>Solution</strong>: Strengthen system prompt</p>
+<pre><code class="language-python">"You MUST use the search_products tool before making any recommendations.
+Never rely on prior knowledge about products or prices."
+</code></pre>
+<h3 id="issue-2-infinite-search-loop"><a class="header" href="#issue-2-infinite-search-loop">Issue 2: Infinite Search Loop</a></h3>
+<p><strong>Problem</strong>: Agent keeps searching without concluding</p>
+<p><strong>Solution</strong>: Add step tracking and guidance</p>
+<pre><code class="language-python"># Track tool usage
+tool_usage = {}
+if tool_name in tool_usage:
+    tool_usage[tool_name] += 1
+    if tool_usage[tool_name] &gt; 3:
+        return "You've used this tool multiple times. Please synthesize your findings."
+</code></pre>
+<h3 id="issue-3-hallucinated-product-info"><a class="header" href="#issue-3-hallucinated-product-info">Issue 3: Hallucinated Product Info</a></h3>
+<p><strong>Problem</strong>: Agent invents product details</p>
+<p><strong>Solution</strong>: Emphasize tool-only information</p>
+<pre><code class="language-python">"CRITICAL: Only use information from tool results. 
+If a tool doesn't return information, say so explicitly.
+Never make up product names, prices, or specifications."
+</code></pre>
+<h3 id="issue-4-poor-recommendations"><a class="header" href="#issue-4-poor-recommendations">Issue 4: Poor Recommendations</a></h3>
+<p><strong>Problem</strong>: Recommendations lack depth</p>
+<p><strong>Solution</strong>: Add structured output requirement</p>
+<pre><code class="language-python">"Format your final recommendation as:
+
+**Recommendation**: [Product name]
+
+**Why**: [2-3 key reasons]
+
+**Pros**:
+- [Pro 1]
+- [Pro 2]
+
+**Cons**:
+- [Con 1]
+- [Con 2]
+
+**Price**: [Current price and value assessment]"
+</code></pre>
+<h2 id="enhancements"><a class="header" href="#enhancements">Enhancements</a></h2>
+<h3 id="1-add-budget-tracking"><a class="header" href="#1-add-budget-tracking">1. Add Budget Tracking</a></h3>
+<pre><code class="language-python">def check_budget(price: str, budget: float) -&gt; bool:
+    """Check if price is within budget"""
+    # Extract numeric price
+    price_num = float(price.replace('$', '').replace(',', ''))
+    return price_num &lt;= budget
+</code></pre>
+<h3 id="2-save-research-sessions"><a class="header" href="#2-save-research-sessions">2. Save Research Sessions</a></h3>
+<pre><code class="language-python">def save_research(query: str, results: str):
+    """Save research for later reference"""
+    with open(f"research_{timestamp}.txt", "w") as f:
+        f.write(f"Query: {query}\n\n{results}")
+</code></pre>
+<h3 id="3-multi-store-price-comparison"><a class="header" href="#3-multi-store-price-comparison">3. Multi-Store Price Comparison</a></h3>
+<pre><code class="language-python">def compare_prices_across_stores(product: str) -&gt; dict:
+    """Check prices at Amazon, Walmart, Best Buy, etc."""
+    stores = ["Amazon", "Walmart", "Best Buy"]
+    prices = {}
+    for store in stores:
+        prices[store] = search_store_price(store, product)
+    return prices
+</code></pre>
+<h3 id="4-deal-alerts"><a class="header" href="#4-deal-alerts">4. Deal Alerts</a></h3>
+<pre><code class="language-python">def check_for_deals(product: str) -&gt; str:
+    """Check if product is on sale or has coupons"""
+    # Check deal sites, coupon codes, etc.
+    pass
+</code></pre>
+<h3 id="5-personalization"><a class="header" href="#5-personalization">5. Personalization</a></h3>
+<pre><code class="language-python">def get_user_preferences() -&gt; dict:
+    """Load user preferences (brands, price range, features)"""
+    return {
+        "preferred_brands": ["Sony", "Apple"],
+        "max_price": 500,
+        "must_have_features": ["wireless", "noise-canceling"]
+    }
+</code></pre>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
+<p>Congratulations! You’ve built a complete shopping research assistant. You now understand:</p>
+<ul>
+<li>✅ ReAct pattern implementation</li>
+<li>✅ Tool integration and validation</li>
+<li>✅ Multi-step reasoning</li>
+<li>✅ Error handling and debugging</li>
+<li>✅ Real-world agent applications</li>
+</ul>
+<p>In Module 3, we’ll explore advanced agent patterns including planning, memory systems, and multi-agent collaboration!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../module2/2_2_tool_integration.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../module3/3_1_planning.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../module2/2_2_tool_integration.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../module3/3_1_planning.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

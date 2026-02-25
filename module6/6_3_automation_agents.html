@@ -1,0 +1,1099 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Task Automation Agents - AI Agents: Zero to Hero</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-c3e257ac.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-65a70cec.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">AI Agents: Zero to Hero</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="task-automation-agents"><a class="header" href="#task-automation-agents">Task Automation Agents</a></h1>
+<h2 id="introduction-to-task-automation"><a class="header" href="#introduction-to-task-automation">Introduction to Task Automation</a></h2>
+<p>Task automation agents handle repetitive workflows, orchestrate complex processes, and integrate with existing tools to save time and reduce errors.</p>
+<h3 id="what-makes-automation-agents-special"><a class="header" href="#what-makes-automation-agents-special">What Makes Automation Agents Special?</a></h3>
+<p><strong>Core Capabilities</strong>:</p>
+<ul>
+<li>Workflow orchestration</li>
+<li>Event-driven triggers</li>
+<li>Integration with multiple tools</li>
+<li>Scheduled operations</li>
+<li>Error handling and recovery</li>
+<li>State management across tasks</li>
+</ul>
+<p><strong>Key Benefits</strong>:</p>
+<ul>
+<li>Eliminate repetitive work</li>
+<li>Reduce human error</li>
+<li>24/7 operation</li>
+<li>Consistent execution</li>
+<li>Scalable processing</li>
+<li>Audit trails</li>
+</ul>
+<h3 id="types-of-automation-agents"><a class="header" href="#types-of-automation-agents">Types of Automation Agents</a></h3>
+<ol>
+<li><strong>Workflow Agents</strong>: Multi-step process automation</li>
+<li><strong>Scheduling Agents</strong>: Time-based task execution</li>
+<li><strong>Integration Agents</strong>: Connect different systems</li>
+<li><strong>Monitoring Agents</strong>: Watch and respond to events</li>
+<li><strong>Data Processing Agents</strong>: ETL and transformation</li>
+</ol>
+<h2 id="workflow-orchestration"><a class="header" href="#workflow-orchestration">Workflow Orchestration</a></h2>
+<h3 id="building-workflow-engine"><a class="header" href="#building-workflow-engine">Building Workflow Engine</a></h3>
+<pre><code class="language-python">from dataclasses import dataclass
+from typing import List, Dict, Callable, Any
+from enum import Enum
+import time
+
+class TaskStatus(Enum):
+    PENDING = "pending"
+    RUNNING = "running"
+    COMPLETED = "completed"
+    FAILED = "failed"
+    SKIPPED = "skipped"
+
+@dataclass
+class Task:
+    """Single task in workflow"""
+    id: str
+    name: str
+    action: Callable
+    params: Dict[str, Any]
+    dependencies: List[str] = None
+    retry_count: int = 3
+    timeout: int = 300
+    status: TaskStatus = TaskStatus.PENDING
+    result: Any = None
+    error: str = None
+
+class WorkflowEngine:
+    """Orchestrate complex workflows"""
+    
+    def __init__(self):
+        self.tasks = {}
+        self.execution_log = []
+    
+    def add_task(self, task: Task):
+        """Add task to workflow"""
+        self.tasks[task.id] = task
+    
+    def execute_workflow(self) -&gt; Dict:
+        """Execute all tasks respecting dependencies"""
+        print("🚀 Starting workflow execution\n")
+        
+        completed = set()
+        failed = set()
+        
+        while len(completed) + len(failed) &lt; len(self.tasks):
+            # Find tasks ready to execute
+            ready_tasks = self.get_ready_tasks(completed, failed)
+            
+            if not ready_tasks:
+                # Check if we're stuck
+                pending = [t for t in self.tasks.values() if t.status == TaskStatus.PENDING]
+                if pending:
+                    print("⚠️  Workflow stuck - circular dependencies or all tasks failed")
+                    break
+                else:
+                    break
+            
+            # Execute ready tasks
+            for task in ready_tasks:
+                result = self.execute_task(task)
+                
+                if result['success']:
+                    completed.add(task.id)
+                else:
+                    failed.add(task.id)
+        
+        return self.generate_report(completed, failed)
+    
+    def get_ready_tasks(self, completed: set, failed: set) -&gt; List[Task]:
+        """Get tasks ready to execute"""
+        ready = []
+        
+        for task in self.tasks.values():
+            if task.status != TaskStatus.PENDING:
+                continue
+            
+            # Check dependencies
+            if task.dependencies:
+                deps_met = all(dep in completed for dep in task.dependencies)
+                deps_failed = any(dep in failed for dep in task.dependencies)
+                
+                if deps_failed:
+                    task.status = TaskStatus.SKIPPED
+                    task.error = "Dependency failed"
+                    continue
+                
+                if not deps_met:
+                    continue
+            
+            ready.append(task)
+        
+        return ready
+    
+    def execute_task(self, task: Task) -&gt; Dict:
+        """Execute single task with retry logic"""
+        print(f"▶️  Executing: {task.name}")
+        task.status = TaskStatus.RUNNING
+        
+        for attempt in range(task.retry_count):
+            try:
+                # Execute task action
+                start_time = time.time()
+                result = task.action(**task.params)
+                execution_time = time.time() - start_time
+                
+                # Success
+                task.status = TaskStatus.COMPLETED
+                task.result = result
+                
+                log_entry = {
+                    "task_id": task.id,
+                    "task_name": task.name,
+                    "status": "success",
+                    "execution_time": execution_time,
+                    "attempt": attempt + 1
+                }
+                self.execution_log.append(log_entry)
+                
+                print(f"✅ Completed: {task.name} ({execution_time:.2f}s)\n")
+                
+                return {"success": True, "result": result}
+                
+            except Exception as e:
+                error_msg = str(e)
+                print(f"❌ Attempt {attempt + 1} failed: {error_msg}")
+                
+                if attempt &lt; task.retry_count - 1:
+                    wait_time = 2 ** attempt  # Exponential backoff
+                    print(f"⏳ Retrying in {wait_time}s...")
+                    time.sleep(wait_time)
+                else:
+                    # Final failure
+                    task.status = TaskStatus.FAILED
+                    task.error = error_msg
+                    
+                    log_entry = {
+                        "task_id": task.id,
+                        "task_name": task.name,
+                        "status": "failed",
+                        "error": error_msg,
+                        "attempts": task.retry_count
+                    }
+                    self.execution_log.append(log_entry)
+                    
+                    print(f"💥 Failed: {task.name}\n")
+                    
+                    return {"success": False, "error": error_msg}
+    
+    def generate_report(self, completed: set, failed: set) -&gt; Dict:
+        """Generate execution report"""
+        total = len(self.tasks)
+        skipped = sum(1 for t in self.tasks.values() if t.status == TaskStatus.SKIPPED)
+        
+        report = {
+            "total_tasks": total,
+            "completed": len(completed),
+            "failed": len(failed),
+            "skipped": skipped,
+            "success_rate": len(completed) / total if total &gt; 0 else 0,
+            "execution_log": self.execution_log
+        }
+        
+        print("=" * 50)
+        print("WORKFLOW EXECUTION REPORT")
+        print("=" * 50)
+        print(f"Total Tasks: {total}")
+        print(f"Completed: {len(completed)}")
+        print(f"Failed: {len(failed)}")
+        print(f"Skipped: {skipped}")
+        print(f"Success Rate: {report['success_rate']:.1%}")
+        print("=" * 50)
+        
+        return report
+
+# Usage
+workflow = WorkflowEngine()
+
+# Define tasks
+def fetch_data(source):
+    print(f"  Fetching from {source}...")
+    time.sleep(1)
+    return {"data": f"Data from {source}"}
+
+def process_data(data):
+    print(f"  Processing data...")
+    time.sleep(1)
+    return {"processed": True}
+
+def save_results(data):
+    print(f"  Saving results...")
+    time.sleep(1)
+    return {"saved": True}
+
+# Add tasks
+workflow.add_task(Task(
+    id="fetch",
+    name="Fetch Data",
+    action=fetch_data,
+    params={"source": "API"}
+))
+
+workflow.add_task(Task(
+    id="process",
+    name="Process Data",
+    action=process_data,
+    params={"data": {}},
+    dependencies=["fetch"]
+))
+
+workflow.add_task(Task(
+    id="save",
+    name="Save Results",
+    action=save_results,
+    params={"data": {}},
+    dependencies=["process"]
+))
+
+# Execute
+report = workflow.execute_workflow()
+</code></pre>
+<h3 id="parallel-workflow-execution"><a class="header" href="#parallel-workflow-execution">Parallel Workflow Execution</a></h3>
+<pre><code class="language-python">import asyncio
+from concurrent.futures import ThreadPoolExecutor
+
+class ParallelWorkflowEngine(WorkflowEngine):
+    """Execute independent tasks in parallel"""
+    
+    def __init__(self, max_workers: int = 4):
+        super().__init__()
+        self.max_workers = max_workers
+        self.executor = ThreadPoolExecutor(max_workers=max_workers)
+    
+    async def execute_workflow_async(self) -&gt; Dict:
+        """Execute workflow with parallel execution"""
+        print("🚀 Starting parallel workflow execution\n")
+        
+        completed = set()
+        failed = set()
+        
+        while len(completed) + len(failed) &lt; len(self.tasks):
+            # Get ready tasks
+            ready_tasks = self.get_ready_tasks(completed, failed)
+            
+            if not ready_tasks:
+                break
+            
+            # Execute tasks in parallel
+            tasks_futures = [
+                self.execute_task_async(task)
+                for task in ready_tasks
+            ]
+            
+            results = await asyncio.gather(*tasks_futures)
+            
+            # Update completed/failed
+            for task, result in zip(ready_tasks, results):
+                if result['success']:
+                    completed.add(task.id)
+                else:
+                    failed.add(task.id)
+        
+        return self.generate_report(completed, failed)
+    
+    async def execute_task_async(self, task: Task) -&gt; Dict:
+        """Execute task asynchronously"""
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(
+            self.executor,
+            self.execute_task,
+            task
+        )
+
+# Usage
+async def main():
+    workflow = ParallelWorkflowEngine(max_workers=3)
+    
+    # Add independent tasks that can run in parallel
+    for i in range(5):
+        workflow.add_task(Task(
+            id=f"task_{i}",
+            name=f"Task {i}",
+            action=lambda x: time.sleep(1) or f"Result {x}",
+            params={"x": i}
+        ))
+    
+    report = await workflow.execute_workflow_async()
+
+# Run
+# asyncio.run(main())
+</code></pre>
+<h2 id="scheduled-operations"><a class="header" href="#scheduled-operations">Scheduled Operations</a></h2>
+<h3 id="task-scheduler"><a class="header" href="#task-scheduler">Task Scheduler</a></h3>
+<pre><code class="language-python">from datetime import datetime, timedelta
+import schedule
+import threading
+
+class TaskScheduler:
+    """Schedule tasks to run at specific times"""
+    
+    def __init__(self):
+        self.scheduled_tasks = []
+        self.running = False
+        self.thread = None
+    
+    def schedule_task(self, 
+                     task: Callable,
+                     schedule_type: str,
+                     time_spec: str = None,
+                     **kwargs):
+        """Schedule a task"""
+        
+        if schedule_type == "daily":
+            job = schedule.every().day.at(time_spec).do(task, **kwargs)
+        
+        elif schedule_type == "hourly":
+            job = schedule.every().hour.do(task, **kwargs)
+        
+        elif schedule_type == "interval":
+            minutes = int(time_spec)
+            job = schedule.every(minutes).minutes.do(task, **kwargs)
+        
+        elif schedule_type == "weekly":
+            day, time = time_spec.split()
+            job = getattr(schedule.every(), day.lower()).at(time).do(task, **kwargs)
+        
+        else:
+            raise ValueError(f"Unknown schedule type: {schedule_type}")
+        
+        self.scheduled_tasks.append({
+            "job": job,
+            "task": task.__name__,
+            "schedule": schedule_type,
+            "time_spec": time_spec
+        })
+        
+        print(f"📅 Scheduled: {task.__name__} - {schedule_type} {time_spec or ''}")
+    
+    def start(self):
+        """Start scheduler"""
+        self.running = True
+        self.thread = threading.Thread(target=self._run_scheduler)
+        self.thread.daemon = True
+        self.thread.start()
+        print("🕐 Scheduler started")
+    
+    def stop(self):
+        """Stop scheduler"""
+        self.running = False
+        if self.thread:
+            self.thread.join()
+        print("🛑 Scheduler stopped")
+    
+    def _run_scheduler(self):
+        """Run scheduler loop"""
+        while self.running:
+            schedule.run_pending()
+            time.sleep(1)
+    
+    def list_scheduled_tasks(self) -&gt; List[Dict]:
+        """List all scheduled tasks"""
+        return self.scheduled_tasks
+
+# Usage
+scheduler = TaskScheduler()
+
+def backup_database():
+    print(f"💾 Running database backup at {datetime.now()}")
+    # Backup logic here
+
+def send_report():
+    print(f"📊 Sending daily report at {datetime.now()}")
+    # Report logic here
+
+def cleanup_temp_files():
+    print(f"🧹 Cleaning temp files at {datetime.now()}")
+    # Cleanup logic here
+
+# Schedule tasks
+scheduler.schedule_task(backup_database, "daily", "02:00")
+scheduler.schedule_task(send_report, "daily", "09:00")
+scheduler.schedule_task(cleanup_temp_files, "interval", "60")  # Every hour
+
+# Start scheduler
+scheduler.start()
+
+# Keep running
+# try:
+#     while True:
+#         time.sleep(1)
+# except KeyboardInterrupt:
+#     scheduler.stop()
+</code></pre>
+<h3 id="cron-style-scheduling"><a class="header" href="#cron-style-scheduling">Cron-Style Scheduling</a></h3>
+<pre><code class="language-python">from crontab import CronTab
+
+class CronScheduler:
+    """Cron-style task scheduling"""
+    
+    def __init__(self):
+        self.cron = CronTab(user=True)
+    
+    def add_cron_job(self, 
+                     command: str,
+                     schedule: str,
+                     comment: str = None):
+        """Add cron job
+        
+        Schedule format: "minute hour day month weekday"
+        Examples:
+        - "0 2 * * *" - Daily at 2 AM
+        - "*/15 * * * *" - Every 15 minutes
+        - "0 9 * * 1-5" - Weekdays at 9 AM
+        """
+        job = self.cron.new(command=command, comment=comment)
+        job.setall(schedule)
+        self.cron.write()
+        
+        print(f"✅ Added cron job: {comment or command}")
+        print(f"   Schedule: {schedule}")
+    
+    def list_jobs(self) -&gt; List[Dict]:
+        """List all cron jobs"""
+        jobs = []
+        for job in self.cron:
+            jobs.append({
+                "command": job.command,
+                "schedule": str(job.slices),
+                "comment": job.comment,
+                "enabled": job.is_enabled()
+            })
+        return jobs
+    
+    def remove_job(self, comment: str):
+        """Remove job by comment"""
+        self.cron.remove_all(comment=comment)
+        self.cron.write()
+        print(f"🗑️  Removed job: {comment}")
+
+# Usage
+# cron = CronScheduler()
+# cron.add_cron_job(
+#     "python /path/to/backup.py",
+#     "0 2 * * *",
+#     "Daily backup"
+# )
+</code></pre>
+<h2 id="event-driven-triggers"><a class="header" href="#event-driven-triggers">Event-Driven Triggers</a></h2>
+<h3 id="event-listener-system"><a class="header" href="#event-listener-system">Event Listener System</a></h3>
+<pre><code class="language-python">from typing import Callable, Dict, List
+from queue import Queue
+import threading
+
+class EventType(Enum):
+    FILE_CREATED = "file_created"
+    FILE_MODIFIED = "file_modified"
+    FILE_DELETED = "file_deleted"
+    API_CALL = "api_call"
+    THRESHOLD_EXCEEDED = "threshold_exceeded"
+    ERROR_OCCURRED = "error_occurred"
+
+@dataclass
+class Event:
+    """Event data"""
+    type: EventType
+    data: Dict[str, Any]
+    timestamp: float = None
+    
+    def __post_init__(self):
+        if self.timestamp is None:
+            self.timestamp = time.time()
+
+class EventDrivenAgent:
+    """Agent that responds to events"""
+    
+    def __init__(self):
+        self.handlers = {}
+        self.event_queue = Queue()
+        self.running = False
+        self.thread = None
+    
+    def register_handler(self, event_type: EventType, handler: Callable):
+        """Register event handler"""
+        if event_type not in self.handlers:
+            self.handlers[event_type] = []
+        
+        self.handlers[event_type].append(handler)
+        print(f"📝 Registered handler for {event_type.value}")
+    
+    def emit_event(self, event: Event):
+        """Emit an event"""
+        self.event_queue.put(event)
+    
+    def start(self):
+        """Start event processing"""
+        self.running = True
+        self.thread = threading.Thread(target=self._process_events)
+        self.thread.daemon = True
+        self.thread.start()
+        print("🎯 Event processor started")
+    
+    def stop(self):
+        """Stop event processing"""
+        self.running = False
+        if self.thread:
+            self.thread.join()
+        print("🛑 Event processor stopped")
+    
+    def _process_events(self):
+        """Process events from queue"""
+        while self.running:
+            try:
+                event = self.event_queue.get(timeout=1)
+                self._handle_event(event)
+            except:
+                continue
+    
+    def _handle_event(self, event: Event):
+        """Handle single event"""
+        print(f"⚡ Event: {event.type.value}")
+        
+        handlers = self.handlers.get(event.type, [])
+        
+        for handler in handlers:
+            try:
+                handler(event)
+            except Exception as e:
+                print(f"❌ Handler error: {e}")
+
+# Usage
+agent = EventDrivenAgent()
+
+# Register handlers
+def on_file_created(event: Event):
+    print(f"  📄 File created: {event.data['filename']}")
+    # Process new file
+
+def on_threshold_exceeded(event: Event):
+    print(f"  ⚠️  Threshold exceeded: {event.data['metric']} = {event.data['value']}")
+    # Send alert
+
+def on_error(event: Event):
+    print(f"  💥 Error occurred: {event.data['error']}")
+    # Log and notify
+
+agent.register_handler(EventType.FILE_CREATED, on_file_created)
+agent.register_handler(EventType.THRESHOLD_EXCEEDED, on_threshold_exceeded)
+agent.register_handler(EventType.ERROR_OCCURRED, on_error)
+
+# Start processing
+agent.start()
+
+# Emit events
+agent.emit_event(Event(
+    type=EventType.FILE_CREATED,
+    data={"filename": "data.csv"}
+))
+
+agent.emit_event(Event(
+    type=EventType.THRESHOLD_EXCEEDED,
+    data={"metric": "cpu_usage", "value": 95}
+))
+</code></pre>
+<h3 id="file-system-watcher"><a class="header" href="#file-system-watcher">File System Watcher</a></h3>
+<pre><code class="language-python">from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
+class FileWatcher(FileSystemEventHandler):
+    """Watch file system for changes"""
+    
+    def __init__(self, agent: EventDrivenAgent):
+        self.agent = agent
+    
+    def on_created(self, event):
+        """File created"""
+        if not event.is_directory:
+            self.agent.emit_event(Event(
+                type=EventType.FILE_CREATED,
+                data={"path": event.src_path}
+            ))
+    
+    def on_modified(self, event):
+        """File modified"""
+        if not event.is_directory:
+            self.agent.emit_event(Event(
+                type=EventType.FILE_MODIFIED,
+                data={"path": event.src_path}
+            ))
+    
+    def on_deleted(self, event):
+        """File deleted"""
+        if not event.is_directory:
+            self.agent.emit_event(Event(
+                type=EventType.FILE_DELETED,
+                data={"path": event.src_path}
+            ))
+
+def start_file_watcher(path: str, agent: EventDrivenAgent):
+    """Start watching directory"""
+    event_handler = FileWatcher(agent)
+    observer = Observer()
+    observer.schedule(event_handler, path, recursive=True)
+    observer.start()
+    print(f"👁️  Watching: {path}")
+    return observer
+
+# Usage
+# observer = start_file_watcher("/path/to/watch", agent)
+</code></pre>
+<h2 id="integration-with-existing-tools"><a class="header" href="#integration-with-existing-tools">Integration with Existing Tools</a></h2>
+<h3 id="tool-integration-framework"><a class="header" href="#tool-integration-framework">Tool Integration Framework</a></h3>
+<pre><code class="language-python">class ToolIntegration:
+    """Integrate with external tools"""
+    
+    def __init__(self):
+        self.tools = {}
+    
+    def register_tool(self, name: str, connector: Callable):
+        """Register tool connector"""
+        self.tools[name] = connector
+        print(f"🔌 Registered tool: {name}")
+    
+    def execute_tool(self, name: str, action: str, **params) -&gt; Dict:
+        """Execute tool action"""
+        if name not in self.tools:
+            return {"success": False, "error": f"Tool not found: {name}"}
+        
+        try:
+            result = self.tools[name](action, **params)
+            return {"success": True, "result": result}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+
+# Example integrations
+
+def slack_connector(action: str, **params):
+    """Slack integration"""
+    if action == "send_message":
+        channel = params.get("channel")
+        message = params.get("message")
+        # Send to Slack API
+        print(f"📱 Slack: Sending to {channel}: {message}")
+        return {"sent": True}
+    
+    elif action == "get_messages":
+        channel = params.get("channel")
+        # Get from Slack API
+        return {"messages": []}
+
+def email_connector(action: str, **params):
+    """Email integration"""
+    if action == "send":
+        to = params.get("to")
+        subject = params.get("subject")
+        body = params.get("body")
+        # Send email
+        print(f"📧 Email: Sending to {to}")
+        return {"sent": True}
+
+def database_connector(action: str, **params):
+    """Database integration"""
+    if action == "query":
+        sql = params.get("sql")
+        # Execute query
+        print(f"🗄️  Database: Executing query")
+        return {"rows": []}
+    
+    elif action == "insert":
+        table = params.get("table")
+        data = params.get("data")
+        # Insert data
+        return {"inserted": True}
+
+# Setup
+integrations = ToolIntegration()
+integrations.register_tool("slack", slack_connector)
+integrations.register_tool("email", email_connector)
+integrations.register_tool("database", database_connector)
+
+# Use
+integrations.execute_tool(
+    "slack",
+    "send_message",
+    channel="#general",
+    message="Task completed!"
+)
+</code></pre>
+<h2 id="complete-automation-agent"><a class="header" href="#complete-automation-agent">Complete Automation Agent</a></h2>
+<pre><code class="language-python">class AutomationAgent:
+    """Complete task automation agent"""
+    
+    def __init__(self):
+        self.workflow_engine = WorkflowEngine()
+        self.scheduler = TaskScheduler()
+        self.event_agent = EventDrivenAgent()
+        self.integrations = ToolIntegration()
+        self.client = openai.OpenAI()
+    
+    def create_automation(self, description: str) -&gt; Dict:
+        """Create automation from natural language"""
+        
+        # Parse description to understand automation
+        automation_spec = self.parse_automation_description(description)
+        
+        # Create workflow
+        workflow_id = self.create_workflow(automation_spec)
+        
+        # Setup triggers
+        if automation_spec.get("trigger_type") == "schedule":
+            self.setup_scheduled_trigger(workflow_id, automation_spec)
+        elif automation_spec.get("trigger_type") == "event":
+            self.setup_event_trigger(workflow_id, automation_spec)
+        
+        return {
+            "workflow_id": workflow_id,
+            "automation_spec": automation_spec,
+            "status": "active"
+        }
+    
+    def parse_automation_description(self, description: str) -&gt; Dict:
+        """Parse natural language automation description"""
+        prompt = f"""Parse this automation request into a structured specification:
+
+"{description}"
+
+Provide JSON with:
+- trigger_type: "schedule" or "event"
+- trigger_spec: schedule time or event type
+- steps: list of actions to perform
+- integrations: tools needed
+
+Specification:"""
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.2
+        )
+        
+        import json
+        return json.loads(response.choices[0].message.content)
+    
+    def create_workflow(self, spec: Dict) -&gt; str:
+        """Create workflow from specification"""
+        workflow_id = f"workflow_{int(time.time())}"
+        
+        for i, step in enumerate(spec.get("steps", [])):
+            task = Task(
+                id=f"{workflow_id}_step_{i}",
+                name=step.get("name"),
+                action=self.create_action_from_spec(step),
+                params=step.get("params", {}),
+                dependencies=step.get("dependencies", [])
+            )
+            self.workflow_engine.add_task(task)
+        
+        return workflow_id
+    
+    def create_action_from_spec(self, step_spec: Dict) -&gt; Callable:
+        """Create executable action from step specification"""
+        action_type = step_spec.get("action_type")
+        
+        if action_type == "api_call":
+            def action(**params):
+                return self.integrations.execute_tool(
+                    step_spec["tool"],
+                    step_spec["action"],
+                    **params
+                )
+            return action
+        
+        elif action_type == "data_processing":
+            def action(**params):
+                # Process data
+                return {"processed": True}
+            return action
+        
+        else:
+            def action(**params):
+                print(f"Executing: {step_spec.get('name')}")
+                return {"done": True}
+            return action
+    
+    def setup_scheduled_trigger(self, workflow_id: str, spec: Dict):
+        """Setup scheduled trigger for workflow"""
+        def run_workflow():
+            print(f"🔄 Running scheduled workflow: {workflow_id}")
+            self.workflow_engine.execute_workflow()
+        
+        self.scheduler.schedule_task(
+            run_workflow,
+            spec["trigger_spec"]["type"],
+            spec["trigger_spec"]["time"]
+        )
+    
+    def setup_event_trigger(self, workflow_id: str, spec: Dict):
+        """Setup event trigger for workflow"""
+        event_type = EventType[spec["trigger_spec"]["event"]]
+        
+        def on_event(event: Event):
+            print(f"🎯 Event triggered workflow: {workflow_id}")
+            self.workflow_engine.execute_workflow()
+        
+        self.event_agent.register_handler(event_type, on_event)
+
+# Usage
+agent = AutomationAgent()
+
+# Create automation from description
+automation = agent.create_automation("""
+Every day at 9 AM:
+1. Fetch data from the API
+2. Process and analyze the data
+3. Generate a report
+4. Send the report via email to team@company.com
+""")
+
+print(f"Created automation: {automation['workflow_id']}")
+</code></pre>
+<h2 id="best-practices"><a class="header" href="#best-practices">Best Practices</a></h2>
+<ol>
+<li><strong>Idempotency</strong>: Tasks should be safely re-runnable</li>
+<li><strong>Error handling</strong>: Always handle failures gracefully</li>
+<li><strong>Logging</strong>: Track all automation executions</li>
+<li><strong>Monitoring</strong>: Alert on failures</li>
+<li><strong>Testing</strong>: Test workflows before production</li>
+<li><strong>Documentation</strong>: Document automation logic</li>
+<li><strong>Versioning</strong>: Track automation changes</li>
+<li><strong>Rollback</strong>: Ability to revert changes</li>
+<li><strong>Rate limiting</strong>: Don’t overwhelm systems</li>
+<li><strong>Security</strong>: Secure credentials and access</li>
+</ol>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
+<p>Module 6 (Specialized Agent Types) is complete! You now have deep knowledge of coding agents, research agents, and task automation agents. These specialized agents form the foundation for building powerful, domain-specific AI systems.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../module6/6_2_research_agents.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../module7/7_1_learning.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../module6/6_2_research_agents.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../module7/7_1_learning.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
