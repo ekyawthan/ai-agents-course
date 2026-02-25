@@ -6,7 +6,7 @@ title = "Agentic Guide to AI Agents"
 
 [output.html]
 additional-css = ["theme/custom.css"]
-additional-js = ["theme/mermaid-init.js"]
+additional-js = ["theme/mermaid-init.js", "theme/logo-inject.js"]
 git-repository-url = "https://github.com/ekyawthan/ai-agents-course"
 edit-url-template = "https://github.com/ekyawthan/ai-agents-course/edit/main/{path}"
 
