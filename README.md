@@ -2,7 +2,11 @@
 
 A comprehensive course on building AI agents from foundations to production.
 
-## 📚 Course Content
+## 📚 View the Book
+
+**Live Site**: https://ekyawthan.github.io/ai-agents-course/
+
+## Course Content
 
 - **Module 1**: Foundations
 - **Module 2**: Building Your First Agent
@@ -14,10 +18,6 @@ A comprehensive course on building AI agents from foundations to production.
 - **Module 8**: Enterprise & Scale
 - **Module 9**: Cutting-Edge Research
 - **Module 10**: Capstone Project - Autonomous Software Engineering Agent
-
-## 🚀 View the Book
-
-Visit: `https://<your-username>.github.io/ai-agents-course`
 
 ## 🛠️ Local Development
 
