@@ -85,6 +85,15 @@ cargo install mdbook
 mdbook serve --open
 ```
 
+## 🤝 Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](./src/contributing.md) for guidelines.
+
+- Report issues or bugs
+- Suggest improvements
+- Submit pull requests
+- Share your agent projects
+
 ## 📝 License
 
 MIT License
