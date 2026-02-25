@@ -113,13 +113,24 @@ Modern agents extend their capabilities through tools:
 
 At their core, agents follow a continuous cycle:
 
+```mermaid
+graph LR
+    A[Perceive] --> B[Reason]
+    B --> C[Act]
+    C --> D[Observe]
+    D --> A
+    style A fill:#dbeafe
+    style B fill:#fef3c7
+    style C fill:#d1fae5
+    style D fill:#e0e7ff
 ```
-1. Perceive → Observe the current state
-2. Reason → Decide what to do next
-3. Act → Execute the chosen action
-4. Observe → See the results
-5. Repeat → Continue until goal is achieved
-```
+
+**The Perception-Reasoning-Action Loop:**
+1. **Perceive** → Observe the current state
+2. **Reason** → Decide what to do next
+3. **Act** → Execute the chosen action
+4. **Observe** → See the results
+5. **Repeat** → Continue until goal is achieved
 
 This loop enables agents to navigate complex, multi-step tasks that would be difficult to hardcode.
 
@@ -133,8 +144,22 @@ Recent advances have made practical agents feasible:
 - **Improved Reliability**: Better instruction following and fewer hallucinations
 - **Ecosystem**: Frameworks and tools for building agents quickly
 
+> **💡 Key Insight**
+>
+> The combination of LLMs with tool-calling capabilities is what makes modern AI agents fundamentally different from previous approaches. LLMs provide the "reasoning engine" while tools provide the "hands" to interact with the world.
+
 ## Looking Ahead
 
 As you progress through this course, you'll learn to build agents that combine these concepts into practical, production-ready systems. We'll start simple and gradually add sophistication.
+
+---
+
+> **✅ Key Takeaways**
+>
+> - AI agents are autonomous systems that perceive, reason, and act to achieve goals
+> - Agents differ from chatbots by using tools, planning, and maintaining memory
+> - The perception-reasoning-action loop is the core pattern
+> - Modern LLMs enable practical agent development through reasoning and tool use
+> - Agents can be simple (single-task) or complex (multi-agent systems)
 
 In the next section, we'll explore agent architecture and how these components fit together.

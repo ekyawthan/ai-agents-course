@@ -21,6 +21,22 @@ The agent alternates between thinking and acting until it solves the task.
 
 ## The ReAct Pattern
 
+```mermaid
+graph TD
+    A[User Query] --> B[Thought: Reason]
+    B --> C{Need Tool?}
+    C -->|Yes| D[Action: Use Tool]
+    C -->|No| E[Answer: Respond]
+    D --> F[Observation: Result]
+    F --> B
+    E --> G[Done]
+    style B fill:#fef3c7
+    style D fill:#d1fae5
+    style F fill:#dbeafe
+    style E fill:#f0fdf4
+```
+
+**The ReAct Loop:**
 ```
 Thought: I need to figure out what to do
 Action: tool_name(parameters)
@@ -38,6 +54,10 @@ Answer: [final response to user]
 2. **Debuggability**: Easy to identify where things go wrong
 3. **Flexibility**: Works for many types of tasks
 4. **Simplicity**: Easy to implement and understand
+
+> **⚠️ Important**
+>
+> ReAct agents can get stuck in loops or make poor decisions. Always implement max step limits and validation to prevent runaway execution.
 
 ## Building Your First ReAct Agent
 
@@ -470,6 +490,21 @@ for question, expected in test_cases:
         assert expected in result, f"Failed: {question}"
     print(f"✓ {question}")
 ```
+
+> **💡 Pro Tip**
+>
+> Start with simple test cases and gradually increase complexity. Log all reasoning traces to understand how your agent makes decisions.
+
+---
+
+> **✅ Key Takeaways**
+>
+> - ReAct combines reasoning (thinking) with acting (tool use)
+> - The agent alternates between Thought, Action, and Observation
+> - Always implement max steps to prevent infinite loops
+> - Use structured prompts to guide agent behavior
+> - Validate tool calls before execution
+> - Common pitfalls: loops, hallucinations, premature answers
 
 ## Next Steps
 

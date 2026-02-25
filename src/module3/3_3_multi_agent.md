@@ -8,11 +8,47 @@ Single agents have limitations. Multiple specialized agents working together can
 - Provide checks and balances
 - Scale better than monolithic agents
 
+```mermaid
+graph LR
+    subgraph "Single Agent"
+    S[Task] --> SA[Agent] --> SR[Result]
+    end
+    
+    subgraph "Multi-Agent System"
+    M[Task] --> MA1[Designer]
+    M --> MA2[Developer]
+    M --> MA3[Tester]
+    MA1 --> MC[Coordinator]
+    MA2 --> MC
+    MA3 --> MC
+    MC --> MR[Result]
+    end
+    
+    style SA fill:#dbeafe
+    style MA1 fill:#d1fae5
+    style MA2 fill:#d1fae5
+    style MA3 fill:#d1fae5
+    style MC fill:#fef3c7
+```
+
 **Example**: Building a website
 - **Designer Agent**: Creates UI/UX mockups
 - **Developer Agent**: Writes code
 - **Tester Agent**: Finds bugs
 - **Reviewer Agent**: Ensures quality
+
+> **💡 When to Use Multi-Agent Systems**
+>
+> Use multiple agents when:
+> - Task requires diverse expertise
+> - Parallel processing is beneficial
+> - Checks and balances are needed
+> - Scaling beyond single agent capacity
+>
+> Stick with single agent when:
+> - Task is simple and focused
+> - Coordination overhead isn't worth it
+> - Real-time response is critical
 
 ## Agent Collaboration Patterns
 

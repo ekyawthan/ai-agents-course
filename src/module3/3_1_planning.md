@@ -17,27 +17,45 @@ Simple ReAct agents decide one step at a time. **Planning agents** think ahead�
 
 ### Why Planning Matters
 
-**Without Planning (Reactive)**:
-```
-User: "Book a flight to Paris and hotel for 3 nights"
-→ Search flights
-→ Search hotels
-→ Realize dates don't match
-→ Search flights again
-→ Search hotels again
+```mermaid
+graph TB
+    subgraph "Without Planning"
+    A1[Search flights] --> A2[Search hotels]
+    A2 --> A3[Dates don't match!]
+    A3 --> A4[Search flights again]
+    A4 --> A5[Search hotels again]
+    end
+    
+    subgraph "With Planning"
+    B1[Plan all steps] --> B2[Determine dates]
+    B2 --> B3[Search flights]
+    B3 --> B4[Search hotels]
+    B4 --> B5[Done efficiently]
+    end
+    
+    style A3 fill:#fee2e2
+    style B5 fill:#d1fae5
 ```
 
+**Without Planning (Reactive)**:
+- Search flights → Search hotels → Dates mismatch → Redo everything
+- Inefficient, multiple retries
+
 **With Planning (Proactive)**:
-```
-User: "Book a flight to Paris and hotel for 3 nights"
-→ Plan:
-   1. Determine travel dates
-   2. Search flights for those dates
-   3. Search hotels for same dates
-   4. Compare options
-   5. Make bookings
-→ Execute plan efficiently
-```
+- Plan: dates → flights → hotels → booking
+- Execute efficiently in one pass
+
+> **⚠️ When to Use Planning**
+>
+> Use planning for:
+> - Multi-step tasks with dependencies
+> - Tasks requiring coordination
+> - Resource-constrained scenarios
+>
+> Skip planning for:
+> - Simple single-step tasks
+> - Highly dynamic environments
+> - When speed is critical
 
 ## Chain-of-Thought Reasoning
 
@@ -636,6 +654,17 @@ Format as numbered list."""
 5. **Set limits**: Max steps, max replans
 6. **Monitor progress**: Track what's completed
 7. **Learn from failures**: Improve planning over time
+
+---
+
+> **✅ Key Takeaways**
+>
+> - Planning agents create multi-step plans before executing
+> - Chain-of-Thought enables step-by-step reasoning
+> - Task decomposition breaks complex goals into manageable steps
+> - Plan-and-Execute pattern separates planning from execution
+> - Replanning allows adaptation when plans fail
+> - Use planning for complex, multi-step tasks with dependencies
 
 ## Next Steps
 

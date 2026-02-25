@@ -88,45 +88,44 @@ This capstone integrates nearly everything from the course:
 
 ### High-Level Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    User Interface Layer                      │
-│  (CLI, API, or Chat Interface)                              │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────────────┐
-│                  Orchestration Layer                         │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │   Planner    │  │   Router     │  │   Monitor    │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────────────┐
-│                   Agent Layer                                │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │   Analyzer   │  │   Fixer      │  │   Tester     │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
-│  ┌──────────────┐  ┌──────────────┐                        │
-│  │  Refactorer  │  │   Reviewer   │                        │
-│  └──────────────┘  └──────────────┘                        │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────────────┐
-│                    Tool Layer                                │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │  AST Parser  │  │  Executor    │  │  Git Ops     │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │  Linter      │  │  Formatter   │  │  Test Runner │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────────────┐
-│                   Storage Layer                              │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │  Vector DB   │  │  Code Cache  │  │  Feedback DB │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    UI[User Interface Layer]
+    UI --> ORC[Orchestration Layer]
+    
+    subgraph Orchestration
+    ORC --> PLAN[Planner]
+    ORC --> ROUTE[Router]
+    ORC --> MON[Monitor]
+    end
+    
+    subgraph Agents
+    ROUTE --> ANA[Analyzer Agent]
+    ROUTE --> FIX[Fixer Agent]
+    ROUTE --> TEST[Tester Agent]
+    ROUTE --> REF[Refactorer Agent]
+    ROUTE --> REV[Reviewer Agent]
+    end
+    
+    subgraph Tools
+    ANA --> AST[AST Parser]
+    FIX --> EXEC[Code Executor]
+    TEST --> RUNNER[Test Runner]
+    AST --> LINT[Linter]
+    EXEC --> GIT[Git Ops]
+    end
+    
+    subgraph Storage
+    MON --> VDB[(Vector DB)]
+    MON --> CACHE[(Code Cache)]
+    MON --> FB[(Feedback DB)]
+    end
+    
+    style UI fill:#dbeafe
+    style ORC fill:#fef3c7
+    style ANA fill:#d1fae5
+    style FIX fill:#d1fae5
+    style TEST fill:#d1fae5
 ```
 
 ### Component Design
@@ -686,6 +685,17 @@ class RobustAgent:
 **5. Learning Strategy**
 - **Choice**: Few-shot + feedback learning
 - **Rationale**: Fast adaptation without full retraining
+
+---
+
+> **✅ Key Takeaways**
+>
+> - Design requires balancing functional and non-functional requirements
+> - Multi-agent architecture provides separation of concerns
+> - Safety mechanisms are critical for code-modifying agents
+> - Memory systems enable learning from past experiences
+> - Tool selection impacts capabilities and complexity
+> - Architecture decisions should align with use case constraints
 
 ## Next Steps
 

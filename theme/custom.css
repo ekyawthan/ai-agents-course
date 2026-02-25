@@ -153,3 +153,25 @@ a:hover {
         page-break-inside: avoid;
     }
 }
+
+/* Callout Boxes with Emojis */
+blockquote p:first-child {
+    margin-top: 0;
+}
+
+/* Key Takeaways */
+blockquote:has(strong:first-child) {
+    background-color: #f0fdf4;
+    border-left: 4px solid var(--success-color);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
+}
+
+/* Mermaid diagram styling */
+.mermaid {
+    text-align: center;
+    margin: 2em auto;
+    background-color: #ffffff;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}

@@ -6,6 +6,7 @@ title = "AI Agents: Zero to Hero"
 
 [output.html]
 additional-css = ["theme/custom.css"]
+additional-js = ["theme/mermaid-init.js"]
 git-repository-url = "https://github.com/ekyawthan/ai-agents-course"
 edit-url-template = "https://github.com/ekyawthan/ai-agents-course/edit/main/{path}"
 
@@ -15,3 +16,6 @@ enable = true
 [output.html.fold]
 enable = true
 level = 0
+
+[output.html.playground]
+editable = true
