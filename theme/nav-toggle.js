@@ -1,46 +1,50 @@
 // Enhanced navigation with double-tap expand/collapse
 (function() {
     document.addEventListener('DOMContentLoaded', function() {
-        const chapterItems = document.querySelectorAll('.chapter-item');
+        // Wait for sidebar to be ready
+        setTimeout(initNavToggle, 100);
+    });
+    
+    function initNavToggle() {
+        const sidebar = document.querySelector('.sidebar-scrollbox');
+        if (!sidebar) return;
+        
+        const chapterItems = sidebar.querySelectorAll('li.chapter-item');
         
         chapterItems.forEach(item => {
             const link = item.querySelector('a');
             if (!link) return;
             
-            // Check if this item has children
-            const hasChildren = item.classList.contains('expanded') || 
-                               item.querySelector('ol') !== null;
+            // Check if item has sub-chapters (ol element)
+            const subList = item.querySelector('ol');
+            if (!subList) return;
             
-            if (hasChildren) {
-                let tapCount = 0;
-                let tapTimer = null;
+            let lastTap = 0;
+            
+            link.addEventListener('click', function(e) {
+                const now = Date.now();
+                const timeSinceLastTap = now - lastTap;
                 
-                link.addEventListener('click', function(e) {
-                    tapCount++;
+                if (timeSinceLastTap < 300 && timeSinceLastTap > 0) {
+                    // Double tap detected
+                    e.preventDefault();
+                    e.stopPropagation();
                     
-                    if (tapCount === 1) {
-                        // First tap - wait for potential second tap
-                        tapTimer = setTimeout(() => {
-                            tapCount = 0;
-                            // Single tap - default navigation
-                        }, 300);
-                    } else if (tapCount === 2) {
-                        // Double tap - toggle expand/collapse
-                        clearTimeout(tapTimer);
-                        tapCount = 0;
-                        
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        // Toggle expanded class
-                        if (item.classList.contains('expanded')) {
-                            item.classList.remove('expanded');
-                        } else {
-                            item.classList.add('expanded');
-                        }
+                    // Toggle visibility
+                    if (subList.style.display === 'none') {
+                        subList.style.display = 'block';
+                        item.classList.add('expanded');
+                    } else {
+                        subList.style.display = 'none';
+                        item.classList.remove('expanded');
                     }
-                });
-            }
+                    
+                    lastTap = 0; // Reset
+                } else {
+                    // First tap
+                    lastTap = now;
+                }
+            });
         });
-    });
+    }
 })();
