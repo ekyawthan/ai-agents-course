@@ -36,10 +36,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-49812cde.js";
+            window.path_to_searchindex_js = "../searchindex-fc81a21b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-7241d7cf.js"></script>
+        <script src="../toc-2bd97266.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -782,6 +782,133 @@ Never make up product names, prices, or specifications."
         "must_have_features": ["wireless", "noise-canceling"]
     }
 </code></pre>
+<hr>
+<h2 id="practice-exercises"><a class="header" href="#practice-exercises">Practice Exercises</a></h2>
+<h3 id="exercise-1-add-a-new-tool-easy"><a class="header" href="#exercise-1-add-a-new-tool-easy">Exercise 1: Add a New Tool (Easy)</a></h3>
+<p><strong>Task</strong>: Add a <code>compare_prices</code> tool that compares prices across products.</p>
+<p><strong>Requirements</strong>:</p>
+<ul>
+<li>Takes a list of products with prices</li>
+<li>Returns the cheapest option</li>
+<li>Handles missing price data</li>
+</ul>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">def compare_prices(products: List[Dict]) -&gt; Dict:
+    """Compare prices and find cheapest"""
+    
+    valid_products = [p for p in products if "price" in p]
+    
+    if not valid_products:
+        return {"error": "No products with prices"}
+    
+    cheapest = min(valid_products, key=lambda x: x["price"])
+    
+    return {
+        "cheapest": cheapest,
+        "savings": valid_products[0]["price"] - cheapest["price"]
+    }
+</code></pre>
+</details>
+<h3 id="exercise-2-improve-error-handling-medium"><a class="header" href="#exercise-2-improve-error-handling-medium">Exercise 2: Improve Error Handling (Medium)</a></h3>
+<p><strong>Task</strong>: Enhance the agent to handle API timeouts and retries.</p>
+<p><strong>Requirements</strong>:</p>
+<ul>
+<li>Retry failed tool calls up to 3 times</li>
+<li>Use exponential backoff</li>
+<li>Log all retry attempts</li>
+</ul>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">import time
+
+def execute_tool_with_retry(tool_name: str, args: dict, max_retries: int = 3):
+    """Execute tool with retry logic"""
+    
+    for attempt in range(max_retries):
+        try:
+            result = execute_tool(tool_name, args)
+            return result
+        except Exception as e:
+            if attempt == max_retries - 1:
+                raise
+            
+            wait_time = 2 ** attempt  # Exponential backoff
+            print(f"Retry {attempt + 1}/{max_retries} after {wait_time}s")
+            time.sleep(wait_time)
+</code></pre>
+</details>
+<h3 id="exercise-3-build-a-travel-agent-hard"><a class="header" href="#exercise-3-build-a-travel-agent-hard">Exercise 3: Build a Travel Agent (Hard)</a></h3>
+<p><strong>Task</strong>: Create a travel planning agent with these tools:</p>
+<ul>
+<li><code>search_flights(origin, destination, date)</code></li>
+<li><code>search_hotels(location, checkin, checkout)</code></li>
+<li><code>get_weather(location, date)</code></li>
+<li><code>calculate_budget(flights, hotels, days)</code></li>
+</ul>
+<p><strong>Challenge</strong>: Agent should create a complete travel plan with budget.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class TravelAgent:
+    def __init__(self):
+        self.client = openai.OpenAI()
+        self.tools = [
+            {
+                "name": "search_flights",
+                "description": "Search for flights",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "origin": {"type": "string"},
+                        "destination": {"type": "string"},
+                        "date": {"type": "string"}
+                    },
+                    "required": ["origin", "destination", "date"]
+                }
+            },
+            # Add other tools...
+        ]
+    
+    def plan_trip(self, request: str) -&gt; Dict:
+        """Plan complete trip"""
+        
+        messages = [{"role": "user", "content": request}]
+        
+        for _ in range(10):
+            response = self.client.chat.completions.create(
+                model="gpt-4",
+                messages=messages,
+                tools=self.tools
+            )
+            
+            message = response.choices[0].message
+            
+            if message.tool_calls:
+                # Execute tools and continue
+                for tool_call in message.tool_calls:
+                    result = self.execute_tool(tool_call)
+                    messages.append({
+                        "role": "tool",
+                        "content": json.dumps(result),
+                        "tool_call_id": tool_call.id
+                    })
+            else:
+                return {"plan": message.content}
+        
+        return {"error": "Max steps reached"}
+</code></pre>
+</details>
+<hr>
+<blockquote>
+<p><strong>✅ Key Takeaways</strong></p>
+<ul>
+<li>ReAct agents combine reasoning with tool use</li>
+<li>Tool integration requires clear schemas and validation</li>
+<li>Error handling and retries improve reliability</li>
+<li>Real-world agents need multiple specialized tools</li>
+<li>Practice builds intuition for agent design</li>
+</ul>
+</blockquote>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
 <p>Congratulations! You’ve built a complete shopping research assistant. You now understand:</p>
 <ul>

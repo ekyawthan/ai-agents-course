@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-49812cde.js";
+            window.path_to_searchindex_js = "searchindex-fc81a21b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-7241d7cf.js"></script>
+        <script src="toc-2bd97266.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -382,6 +382,258 @@ From foundations to frontier research, this course covers the full spectrum of a
 <p>This course is released under the MIT License. You’re free to use, modify, and share the content with attribution.</p>
 <hr>
 <p>Ready to start learning? Head to <a href="#prerequisites-1">Prerequisites</a> to get set up!</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="frequently-asked-questions"><a class="header" href="#frequently-asked-questions">Frequently Asked Questions</a></h1>
+<h2 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h2>
+<h3 id="which-llm-should-i-use"><a class="header" href="#which-llm-should-i-use">Which LLM should I use?</a></h3>
+<p><strong>For learning</strong>: Start with OpenAI’s GPT-3.5-turbo</p>
+<ul>
+<li>Affordable ($0.50-2 per million tokens)</li>
+<li>Fast responses</li>
+<li>Good function calling support</li>
+</ul>
+<p><strong>For production</strong>: Consider:</p>
+<ul>
+<li><strong>GPT-4</strong>: Best reasoning, higher cost</li>
+<li><strong>Claude 3</strong>: Long context (200K tokens), excellent for complex tasks</li>
+<li><strong>AWS Bedrock</strong>: Enterprise features, multiple models</li>
+<li><strong>Open source</strong> (Llama, Mistral): Self-hosted, no API costs</li>
+</ul>
+<h3 id="how-much-does-it-cost-to-run-agents"><a class="header" href="#how-much-does-it-cost-to-run-agents">How much does it cost to run agents?</a></h3>
+<p><strong>Development</strong> (100 requests/day):</p>
+<ul>
+<li>GPT-3.5: ~$5-10/month</li>
+<li>GPT-4: ~$30-50/month</li>
+</ul>
+<p><strong>Production</strong> (10K requests/day):</p>
+<ul>
+<li>GPT-3.5: ~$500-1000/month</li>
+<li>GPT-4: ~$3000-5000/month</li>
+</ul>
+<p><strong>Cost optimization</strong>:</p>
+<ul>
+<li>Use caching (50-70% reduction)</li>
+<li>Smaller models for simple tasks</li>
+<li>Batch requests when possible</li>
+</ul>
+<h3 id="do-i-need-a-gpu"><a class="header" href="#do-i-need-a-gpu">Do I need a GPU?</a></h3>
+<p><strong>No</strong> for most agent development:</p>
+<ul>
+<li>API-based LLMs run in the cloud</li>
+<li>Your code just makes HTTP requests</li>
+</ul>
+<p><strong>Yes</strong> if you want to:</p>
+<ul>
+<li>Run local models (Llama, Mistral)</li>
+<li>Fine-tune models</li>
+<li>Process large batches offline</li>
+</ul>
+<h3 id="can-i-use-this-commercially"><a class="header" href="#can-i-use-this-commercially">Can I use this commercially?</a></h3>
+<p><strong>Yes</strong>, but check:</p>
+<ul>
+<li>LLM provider terms (OpenAI, Anthropic allow commercial use)</li>
+<li>Open source licenses for frameworks</li>
+<li>Data privacy regulations (GDPR, etc.)</li>
+<li>Your specific use case compliance needs</li>
+</ul>
+<h2 id="technical-questions"><a class="header" href="#technical-questions">Technical Questions</a></h2>
+<h3 id="how-do-i-handle-rate-limits"><a class="header" href="#how-do-i-handle-rate-limits">How do I handle rate limits?</a></h3>
+<pre><code class="language-python">from tenacity import retry, wait_exponential, stop_after_attempt
+
+@retry(
+    wait=wait_exponential(multiplier=1, min=4, max=60),
+    stop=stop_after_attempt(5)
+)
+def call_llm(prompt):
+    return client.chat.completions.create(...)
+</code></pre>
+<h3 id="how-do-i-reduce-latency"><a class="header" href="#how-do-i-reduce-latency">How do I reduce latency?</a></h3>
+<ol>
+<li><strong>Streaming</strong>: Stream responses as they generate</li>
+<li><strong>Caching</strong>: Cache repeated queries</li>
+<li><strong>Smaller models</strong>: Use GPT-3.5 for simple tasks</li>
+<li><strong>Parallel calls</strong>: Run independent calls concurrently</li>
+<li><strong>Prompt optimization</strong>: Shorter prompts = faster responses</li>
+</ol>
+<h3 id="how-do-i-prevent-hallucinations"><a class="header" href="#how-do-i-prevent-hallucinations">How do I prevent hallucinations?</a></h3>
+<ol>
+<li><strong>Require tool use</strong>: Force agents to use tools, not memory</li>
+<li><strong>Validation</strong>: Verify outputs before using them</li>
+<li><strong>Lower temperature</strong>: Use 0.2-0.3 for factual tasks</li>
+<li><strong>Structured outputs</strong>: Use JSON mode or function calling</li>
+<li><strong>Retrieval</strong>: Use RAG to ground responses in facts</li>
+</ol>
+<h3 id="how-do-i-debug-agent-failures"><a class="header" href="#how-do-i-debug-agent-failures">How do I debug agent failures?</a></h3>
+<ol>
+<li><strong>Log everything</strong>: All thoughts, actions, observations</li>
+<li><strong>Trace execution</strong>: Use tools like LangSmith</li>
+<li><strong>Test incrementally</strong>: Start simple, add complexity</li>
+<li><strong>Validate tools</strong>: Test tools independently</li>
+<li><strong>Check prompts</strong>: Ensure clear instructions</li>
+</ol>
+<h2 id="architecture-questions"><a class="header" href="#architecture-questions">Architecture Questions</a></h2>
+<h3 id="single-agent-vs-multi-agent"><a class="header" href="#single-agent-vs-multi-agent">Single agent vs multi-agent?</a></h3>
+<p><strong>Single agent</strong> when:</p>
+<ul>
+<li>Task is focused and well-defined</li>
+<li>Simplicity is important</li>
+<li>Low latency is critical</li>
+</ul>
+<p><strong>Multi-agent</strong> when:</p>
+<ul>
+<li>Task requires diverse expertise</li>
+<li>Parallel processing helps</li>
+<li>Checks and balances needed</li>
+<li>Scaling beyond single agent</li>
+</ul>
+<h3 id="how-do-i-handle-long-running-tasks"><a class="header" href="#how-do-i-handle-long-running-tasks">How do I handle long-running tasks?</a></h3>
+<ol>
+<li><strong>Async processing</strong>: Use background jobs</li>
+<li><strong>Checkpointing</strong>: Save state periodically</li>
+<li><strong>Progress updates</strong>: Stream status to user</li>
+<li><strong>Timeouts</strong>: Set reasonable limits</li>
+<li><strong>Resumability</strong>: Allow restart from checkpoint</li>
+</ol>
+<h3 id="how-do-i-scale-to-production"><a class="header" href="#how-do-i-scale-to-production">How do I scale to production?</a></h3>
+<ol>
+<li><strong>Horizontal scaling</strong>: Multiple agent instances</li>
+<li><strong>Load balancing</strong>: Distribute requests</li>
+<li><strong>Caching</strong>: Redis for responses</li>
+<li><strong>Queue systems</strong>: RabbitMQ, SQS for async tasks</li>
+<li><strong>Monitoring</strong>: Track performance and errors</li>
+</ol>
+<h2 id="safety--security"><a class="header" href="#safety--security">Safety &amp; Security</a></h2>
+<h3 id="how-do-i-make-agents-safe"><a class="header" href="#how-do-i-make-agents-safe">How do I make agents safe?</a></h3>
+<ol>
+<li><strong>Sandboxing</strong>: Isolate code execution (Docker)</li>
+<li><strong>Validation</strong>: Check all inputs and outputs</li>
+<li><strong>Rate limiting</strong>: Prevent abuse</li>
+<li><strong>Human approval</strong>: For critical actions</li>
+<li><strong>Audit logging</strong>: Track all actions</li>
+<li><strong>Guardrails</strong>: Block harmful requests</li>
+</ol>
+<h3 id="what-about-prompt-injection"><a class="header" href="#what-about-prompt-injection">What about prompt injection?</a></h3>
+<p><strong>Defense strategies</strong>:</p>
+<ol>
+<li><strong>Input sanitization</strong>: Remove suspicious patterns</li>
+<li><strong>Separate contexts</strong>: User input vs system instructions</li>
+<li><strong>Output validation</strong>: Check for unexpected behavior</li>
+<li><strong>Monitoring</strong>: Detect anomalies</li>
+<li><strong>Least privilege</strong>: Limit tool access</li>
+</ol>
+<h3 id="how-do-i-handle-sensitive-data"><a class="header" href="#how-do-i-handle-sensitive-data">How do I handle sensitive data?</a></h3>
+<ol>
+<li><strong>Encryption</strong>: Encrypt data at rest and in transit</li>
+<li><strong>Access control</strong>: Role-based permissions</li>
+<li><strong>Data minimization</strong>: Only collect what’s needed</li>
+<li><strong>Anonymization</strong>: Remove PII when possible</li>
+<li><strong>Compliance</strong>: Follow GDPR, HIPAA, etc.</li>
+</ol>
+<h2 id="development-questions"><a class="header" href="#development-questions">Development Questions</a></h2>
+<h3 id="which-framework-should-i-use"><a class="header" href="#which-framework-should-i-use">Which framework should I use?</a></h3>
+<p><strong>LangChain</strong>: Best for rapid prototyping</p>
+<ul>
+<li>Lots of integrations</li>
+<li>Active community</li>
+<li>Good documentation</li>
+</ul>
+<p><strong>LangGraph</strong>: Best for complex workflows</p>
+<ul>
+<li>Graph-based state management</li>
+<li>Better control flow</li>
+<li>Production-ready</li>
+</ul>
+<p><strong>Custom</strong>: Best for specific needs</p>
+<ul>
+<li>Full control</li>
+<li>No framework overhead</li>
+<li>Optimized for your use case</li>
+</ul>
+<h3 id="how-do-i-test-agents"><a class="header" href="#how-do-i-test-agents">How do I test agents?</a></h3>
+<ol>
+<li><strong>Unit tests</strong>: Test individual components</li>
+<li><strong>Integration tests</strong>: Test agent workflows</li>
+<li><strong>Evaluation sets</strong>: Benchmark on standard tasks</li>
+<li><strong>A/B testing</strong>: Compare agent versions</li>
+<li><strong>User testing</strong>: Real-world feedback</li>
+</ol>
+<h3 id="how-long-does-it-take-to-build-an-agent"><a class="header" href="#how-long-does-it-take-to-build-an-agent">How long does it take to build an agent?</a></h3>
+<p><strong>Simple agent</strong> (ReAct with 3-5 tools): 1-2 days
+<strong>Production agent</strong> (with testing, monitoring): 1-2 weeks
+<strong>Complex multi-agent system</strong>: 1-3 months
+<strong>Enterprise deployment</strong>: 3-6 months</p>
+<h2 id="common-issues"><a class="header" href="#common-issues">Common Issues</a></h2>
+<h3 id="my-agent-gets-stuck-in-loops"><a class="header" href="#my-agent-gets-stuck-in-loops">“My agent gets stuck in loops”</a></h3>
+<p><strong>Solutions</strong>:</p>
+<ul>
+<li>Set max_steps limit</li>
+<li>Add loop detection</li>
+<li>Improve prompts to avoid repetition</li>
+<li>Use planning instead of pure ReAct</li>
+</ul>
+<h3 id="tool-calls-fail-frequently"><a class="header" href="#tool-calls-fail-frequently">“Tool calls fail frequently”</a></h3>
+<p><strong>Solutions</strong>:</p>
+<ul>
+<li>Validate tool schemas</li>
+<li>Add retry logic with exponential backoff</li>
+<li>Improve tool descriptions</li>
+<li>Test tools independently</li>
+<li>Add error handling</li>
+</ul>
+<h3 id="agent-is-too-slow"><a class="header" href="#agent-is-too-slow">“Agent is too slow”</a></h3>
+<p><strong>Solutions</strong>:</p>
+<ul>
+<li>Use faster models (GPT-3.5 vs GPT-4)</li>
+<li>Enable streaming</li>
+<li>Cache repeated queries</li>
+<li>Optimize prompts (shorter = faster)</li>
+<li>Run tools in parallel</li>
+</ul>
+<h3 id="costs-are-too-high"><a class="header" href="#costs-are-too-high">“Costs are too high”</a></h3>
+<p><strong>Solutions</strong>:</p>
+<ul>
+<li>Cache aggressively</li>
+<li>Use smaller models when possible</li>
+<li>Optimize prompt length</li>
+<li>Batch requests</li>
+<li>Set usage limits</li>
+</ul>
+<h2 id="learning-path-2"><a class="header" href="#learning-path-2">Learning Path</a></h2>
+<h3 id="im-a-beginner-programmer-can-i-take-this-course"><a class="header" href="#im-a-beginner-programmer-can-i-take-this-course">I’m a beginner programmer. Can I take this course?</a></h3>
+<p>You need:</p>
+<ul>
+<li>Python basics (functions, classes)</li>
+<li>API concepts</li>
+<li>Command line comfort</li>
+</ul>
+<p>If you’re missing these, spend 2-4 weeks on Python fundamentals first, then return to this course.</p>
+<h3 id="should-i-take-this-course-or-learn-langchain-first"><a class="header" href="#should-i-take-this-course-or-learn-langchain-first">Should I take this course or learn LangChain first?</a></h3>
+<p><strong>Take this course</strong> if you want to:</p>
+<ul>
+<li>Understand agent fundamentals</li>
+<li>Build from scratch</li>
+<li>Know what’s happening under the hood</li>
+</ul>
+<p><strong>Learn LangChain first</strong> if you want to:</p>
+<ul>
+<li>Build quickly with existing tools</li>
+<li>Focus on applications, not internals</li>
+</ul>
+<p>Ideally: Take this course, then use frameworks with deeper understanding.</p>
+<h3 id="how-do-i-stay-current-with-agent-research"><a class="header" href="#how-do-i-stay-current-with-agent-research">How do I stay current with agent research?</a></h3>
+<ol>
+<li><strong>Follow researchers</strong>: Twitter/X, blogs</li>
+<li><strong>Read papers</strong>: ArXiv, conferences</li>
+<li><strong>Join communities</strong>: Discord, Reddit</li>
+<li><strong>Experiment</strong>: Try new techniques</li>
+<li><strong>Contribute</strong>: Open source projects</li>
+</ol>
+<h2 id="still-have-questions"><a class="header" href="#still-have-questions">Still Have Questions?</a></h2>
+<ul>
+<li><strong>GitHub Discussions</strong>: <a href="https://github.com/ekyawthan/ai-agents-course/discussions">Ask the community</a></li>
+<li><strong>Issues</strong>: <a href="https://github.com/ekyawthan/ai-agents-course/issues">Report problems</a></li>
+<li><strong>Contributing</strong>: <a href="#contributing">Improve the course</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="what-are-ai-agents"><a class="header" href="#what-are-ai-agents">What Are AI Agents?</a></h1>
 <h2 id="module-1-learning-objectives"><a class="header" href="#module-1-learning-objectives">Module 1: Learning Objectives</a></h2>
@@ -2691,6 +2943,133 @@ Never make up product names, prices, or specifications."
         "must_have_features": ["wireless", "noise-canceling"]
     }
 </code></pre>
+<hr>
+<h2 id="practice-exercises"><a class="header" href="#practice-exercises">Practice Exercises</a></h2>
+<h3 id="exercise-1-add-a-new-tool-easy"><a class="header" href="#exercise-1-add-a-new-tool-easy">Exercise 1: Add a New Tool (Easy)</a></h3>
+<p><strong>Task</strong>: Add a <code>compare_prices</code> tool that compares prices across products.</p>
+<p><strong>Requirements</strong>:</p>
+<ul>
+<li>Takes a list of products with prices</li>
+<li>Returns the cheapest option</li>
+<li>Handles missing price data</li>
+</ul>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">def compare_prices(products: List[Dict]) -&gt; Dict:
+    """Compare prices and find cheapest"""
+    
+    valid_products = [p for p in products if "price" in p]
+    
+    if not valid_products:
+        return {"error": "No products with prices"}
+    
+    cheapest = min(valid_products, key=lambda x: x["price"])
+    
+    return {
+        "cheapest": cheapest,
+        "savings": valid_products[0]["price"] - cheapest["price"]
+    }
+</code></pre>
+</details>
+<h3 id="exercise-2-improve-error-handling-medium"><a class="header" href="#exercise-2-improve-error-handling-medium">Exercise 2: Improve Error Handling (Medium)</a></h3>
+<p><strong>Task</strong>: Enhance the agent to handle API timeouts and retries.</p>
+<p><strong>Requirements</strong>:</p>
+<ul>
+<li>Retry failed tool calls up to 3 times</li>
+<li>Use exponential backoff</li>
+<li>Log all retry attempts</li>
+</ul>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">import time
+
+def execute_tool_with_retry(tool_name: str, args: dict, max_retries: int = 3):
+    """Execute tool with retry logic"""
+    
+    for attempt in range(max_retries):
+        try:
+            result = execute_tool(tool_name, args)
+            return result
+        except Exception as e:
+            if attempt == max_retries - 1:
+                raise
+            
+            wait_time = 2 ** attempt  # Exponential backoff
+            print(f"Retry {attempt + 1}/{max_retries} after {wait_time}s")
+            time.sleep(wait_time)
+</code></pre>
+</details>
+<h3 id="exercise-3-build-a-travel-agent-hard"><a class="header" href="#exercise-3-build-a-travel-agent-hard">Exercise 3: Build a Travel Agent (Hard)</a></h3>
+<p><strong>Task</strong>: Create a travel planning agent with these tools:</p>
+<ul>
+<li><code>search_flights(origin, destination, date)</code></li>
+<li><code>search_hotels(location, checkin, checkout)</code></li>
+<li><code>get_weather(location, date)</code></li>
+<li><code>calculate_budget(flights, hotels, days)</code></li>
+</ul>
+<p><strong>Challenge</strong>: Agent should create a complete travel plan with budget.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class TravelAgent:
+    def __init__(self):
+        self.client = openai.OpenAI()
+        self.tools = [
+            {
+                "name": "search_flights",
+                "description": "Search for flights",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "origin": {"type": "string"},
+                        "destination": {"type": "string"},
+                        "date": {"type": "string"}
+                    },
+                    "required": ["origin", "destination", "date"]
+                }
+            },
+            # Add other tools...
+        ]
+    
+    def plan_trip(self, request: str) -&gt; Dict:
+        """Plan complete trip"""
+        
+        messages = [{"role": "user", "content": request}]
+        
+        for _ in range(10):
+            response = self.client.chat.completions.create(
+                model="gpt-4",
+                messages=messages,
+                tools=self.tools
+            )
+            
+            message = response.choices[0].message
+            
+            if message.tool_calls:
+                # Execute tools and continue
+                for tool_call in message.tool_calls:
+                    result = self.execute_tool(tool_call)
+                    messages.append({
+                        "role": "tool",
+                        "content": json.dumps(result),
+                        "tool_call_id": tool_call.id
+                    })
+            else:
+                return {"plan": message.content}
+        
+        return {"error": "Max steps reached"}
+</code></pre>
+</details>
+<hr>
+<blockquote>
+<p><strong>✅ Key Takeaways</strong></p>
+<ul>
+<li>ReAct agents combine reasoning with tool use</li>
+<li>Tool integration requires clear schemas and validation</li>
+<li>Error handling and retries improve reliability</li>
+<li>Real-world agents need multiple specialized tools</li>
+<li>Practice builds intuition for agent design</li>
+</ul>
+</blockquote>
 <h2 id="next-steps-4"><a class="header" href="#next-steps-4">Next Steps</a></h2>
 <p>Congratulations! You’ve built a complete shopping research assistant. You now understand:</p>
 <ul>
@@ -4676,6 +5055,80 @@ report = team.research_topic("AI Agent Architectures")
 <h3 id="pitfall-4-no-clear-owner"><a class="header" href="#pitfall-4-no-clear-owner">Pitfall 4: No Clear Owner</a></h3>
 <p><strong>Problem</strong>: Task falls through the cracks
 <strong>Solution</strong>: Always assign clear responsibility</p>
+<hr>
+<h2 id="practice-exercises-1"><a class="header" href="#practice-exercises-1">Practice Exercises</a></h2>
+<h3 id="exercise-1-build-a-debate-system-medium"><a class="header" href="#exercise-1-build-a-debate-system-medium">Exercise 1: Build a Debate System (Medium)</a></h3>
+<p><strong>Task</strong>: Create 3 agents that debate a topic and reach consensus.</p>
+<p><strong>Requirements</strong>:</p>
+<ul>
+<li>Each agent takes a position</li>
+<li>Agents respond to each other’s arguments</li>
+<li>Judge determines the winner</li>
+</ul>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class DebateAgent:
+    def __init__(self, position: str):
+        self.position = position
+        self.client = openai.OpenAI()
+    
+    def argue(self, topic: str, opponent_args: List[str]) -&gt; str:
+        prompt = f"Topic: {topic}\nYour position: {self.position}\nOpponent arguments: {opponent_args}\n\nYour argument:"
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return response.choices[0].message.content
+
+# Create debate
+agents = [
+    DebateAgent("for"),
+    DebateAgent("against"),
+    DebateAgent("neutral")
+]
+
+# Run debate rounds
+for round in range(3):
+    for agent in agents:
+        others = [a.argue(topic, []) for a in agents if a != agent]
+        agent.argue(topic, others)
+</code></pre>
+</details>
+<h3 id="exercise-2-parallel-task-execution-hard"><a class="header" href="#exercise-2-parallel-task-execution-hard">Exercise 2: Parallel Task Execution (Hard)</a></h3>
+<p><strong>Task</strong>: Create a system where 4 agents analyze different files simultaneously.</p>
+<p><strong>Requirements</strong>:</p>
+<ul>
+<li>Use asyncio for parallel execution</li>
+<li>Aggregate results</li>
+<li>Handle failures gracefully</li>
+</ul>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">import asyncio
+
+async def analyze_parallel(files: List[str]) -&gt; List[Dict]:
+    tasks = [analyze_file(f) for f in files]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    return [r for r in results if not isinstance(r, Exception)]
+
+async def analyze_file(file_path: str) -&gt; Dict:
+    # Simulate analysis
+    await asyncio.sleep(1)
+    return {"file": file_path, "issues": []}
+</code></pre>
+</details>
+<hr>
+<blockquote>
+<p><strong>✅ Chapter 3 Summary</strong></p>
+<p>You’ve mastered advanced agent patterns:</p>
+<ul>
+<li><strong>Planning</strong>: Create multi-step plans with Chain-of-Thought and task decomposition</li>
+<li><strong>Memory</strong>: Implement short-term, long-term, and semantic memory systems</li>
+<li><strong>Multi-Agent</strong>: Coordinate specialized agents with various collaboration patterns</li>
+</ul>
+<p>These patterns enable agents to handle complex, long-running tasks that require coordination, context, and diverse expertise.</p>
+</blockquote>
 <h2 id="next-steps-7"><a class="header" href="#next-steps-7">Next Steps</a></h2>
 <p>You now understand multi-agent systems! In Chapter 4, we’ll explore the tools and capabilities that make agents powerful, including code execution, data access, and web interaction.</p>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -8839,6 +9292,66 @@ alerts.add_rule(
 <li><strong>Analyze trends</strong>: Look for patterns over time</li>
 <li><strong>Act on insights</strong>: Use data to improve</li>
 </ol>
+<hr>
+<h2 id="practice-exercises-2"><a class="header" href="#practice-exercises-2">Practice Exercises</a></h2>
+<h3 id="exercise-1-add-circuit-breaker-medium"><a class="header" href="#exercise-1-add-circuit-breaker-medium">Exercise 1: Add Circuit Breaker (Medium)</a></h3>
+<p><strong>Task</strong>: Implement a circuit breaker that stops calling a failing tool.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class CircuitBreaker:
+    def __init__(self, failure_threshold: int = 5):
+        self.failure_count = 0
+        self.threshold = failure_threshold
+        self.state = "closed"  # closed, open, half-open
+    
+    def call(self, func, *args):
+        if self.state == "open":
+            raise Exception("Circuit breaker is open")
+        
+        try:
+            result = func(*args)
+            self.failure_count = 0
+            return result
+        except:
+            self.failure_count += 1
+            if self.failure_count &gt;= self.threshold:
+                self.state = "open"
+            raise
+</code></pre>
+</details>
+<h3 id="exercise-2-build-a-metrics-dashboard-hard"><a class="header" href="#exercise-2-build-a-metrics-dashboard-hard">Exercise 2: Build a Metrics Dashboard (Hard)</a></h3>
+<p><strong>Task</strong>: Create a real-time dashboard showing agent metrics.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">from fastapi import FastAPI
+from prometheus_client import make_asgi_app
+
+app = FastAPI()
+
+# Mount Prometheus metrics
+metrics_app = make_asgi_app()
+app.mount("/metrics", metrics_app)
+
+@app.get("/dashboard")
+def dashboard():
+    return {
+        "requests_total": requests_total._value.get(),
+        "avg_duration": sum(durations) / len(durations),
+        "error_rate": errors_total._value.get() / requests_total._value.get()
+    }
+</code></pre>
+</details>
+<hr>
+<blockquote>
+<p><strong>✅ Chapter 5 Summary</strong></p>
+<p>You’ve learned production-ready practices:</p>
+<ul>
+<li><strong>Reliability</strong>: Input validation, guardrails, retries, and fallbacks</li>
+<li><strong>Testing</strong>: Unit tests, integration tests, benchmarks, and evaluation metrics</li>
+<li><strong>Monitoring</strong>: Logging, tracing, metrics, alerts, and feedback loops</li>
+</ul>
+<p>These practices ensure your agents are safe, reliable, and maintainable in production environments.</p>
+</blockquote>
 <h2 id="next-steps-12"><a class="header" href="#next-steps-12">Next Steps</a></h2>
 <p>Chapter 5 (Production-Ready Agents) is complete! You now understand reliability, testing, and monitoring. You’re ready to build production-grade agents that are safe, tested, and observable.</p>
 <p>Would you like to continue with Chapter 6 (Specialized Agent Types)?</p>
@@ -11804,6 +12317,51 @@ print(f"Created automation: {automation['workflow_id']}")
 <li><strong>Rate limiting</strong>: Don’t overwhelm systems</li>
 <li><strong>Security</strong>: Secure credentials and access</li>
 </ol>
+<hr>
+<h2 id="practice-exercises-3"><a class="header" href="#practice-exercises-3">Practice Exercises</a></h2>
+<h3 id="exercise-1-email-automation-agent-medium"><a class="header" href="#exercise-1-email-automation-agent-medium">Exercise 1: Email Automation Agent (Medium)</a></h3>
+<p><strong>Task</strong>: Build an agent that processes emails and takes actions.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class EmailAgent:
+    def process_email(self, email: Dict) -&gt; Dict:
+        # Classify email
+        category = self.classify(email["subject"])
+        
+        # Route based on category
+        if category == "urgent":
+            return self.escalate(email)
+        elif category == "question":
+            return self.auto_respond(email)
+        else:
+            return self.archive(email)
+</code></pre>
+</details>
+<h3 id="exercise-2-workflow-orchestrator-hard"><a class="header" href="#exercise-2-workflow-orchestrator-hard">Exercise 2: Workflow Orchestrator (Hard)</a></h3>
+<p><strong>Task</strong>: Create an orchestrator that manages complex multi-step workflows.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class WorkflowOrchestrator:
+    def execute_workflow(self, workflow: Dict) -&gt; Dict:
+        results = {}
+        for step in workflow["steps"]:
+            if self.check_conditions(step, results):
+                result = self.execute_step(step)
+                results[step["id"]] = result
+        return results
+</code></pre>
+</details>
+<hr>
+<blockquote>
+<p><strong>✅ Chapter 6 Summary</strong></p>
+<p>You’ve mastered specialized agent types:</p>
+<ul>
+<li><strong>Coding Agents</strong>: Analyze, generate, refactor, and test code</li>
+<li><strong>Research Agents</strong>: Multi-source search, verification, and synthesis</li>
+<li><strong>Automation Agents</strong>: Workflow orchestration, scheduling, and event-driven tasks</li>
+</ul>
+<p>These specialized agents demonstrate how to focus agent capabilities on specific domains for maximum effectiveness.</p>
+</blockquote>
 <h2 id="next-steps-14"><a class="header" href="#next-steps-14">Next Steps</a></h2>
 <p>Chapter 6 (Specialized Agent Types) is complete! You now have deep knowledge of coding agents, research agents, and task automation agents. These specialized agents form the foundation for building powerful, domain-specific AI systems.</p>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -20203,6 +20761,53 @@ def calculate_overall_score(tests: Dict, perf: Dict, feedback: Dict) -&gt; float
 ✅ Operates safely with validation
 ✅ Learns from feedback
 ✅ Scales to production workloads</p>
+<hr>
+<h2 id="practice-exercises-4"><a class="header" href="#practice-exercises-4">Practice Exercises</a></h2>
+<h3 id="exercise-1-add-code-review-agent-medium"><a class="header" href="#exercise-1-add-code-review-agent-medium">Exercise 1: Add Code Review Agent (Medium)</a></h3>
+<p><strong>Task</strong>: Add a ReviewerAgent that analyzes pull requests.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class ReviewerAgent:
+    def review_pr(self, diff: str) -&gt; Dict:
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{
+                "role": "user",
+                "content": f"Review this code change:\n{diff}\n\nProvide: issues, suggestions, approval"
+            }]
+        )
+        return {"review": response.choices[0].message.content}
+</code></pre>
+</details>
+<h3 id="exercise-2-implement-learning-system-hard"><a class="header" href="#exercise-2-implement-learning-system-hard">Exercise 2: Implement Learning System (Hard)</a></h3>
+<p><strong>Task</strong>: Make the agent learn from user corrections.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class LearningAgent:
+    def __init__(self):
+        self.corrections = []
+    
+    def learn_from_correction(self, original: str, corrected: str):
+        self.corrections.append({"original": original, "corrected": corrected})
+        
+        # Use corrections as few-shot examples
+        if len(self.corrections) &gt; 5:
+            self.update_prompts()
+</code></pre>
+</details>
+<hr>
+<blockquote>
+<p><strong>✅ Chapter 10 Summary</strong></p>
+<p>You’ve completed the capstone project:</p>
+<ul>
+<li><strong>Designed</strong> a multi-agent software engineering system</li>
+<li><strong>Implemented</strong> specialized agents (analyzer, fixer, tester)</li>
+<li><strong>Integrated</strong> all concepts from previous chapters</li>
+<li><strong>Evaluated</strong> with comprehensive test suites</li>
+<li><strong>Deployed</strong> with monitoring and feedback loops</li>
+</ul>
+<p>This capstone demonstrates how to combine planning, memory, tools, safety, and learning into a production-ready autonomous system.</p>
+</blockquote>
 <h3 id="what-youve-learned"><a class="header" href="#what-youve-learned">What You’ve Learned</a></h3>
 <p>Throughout this course, you’ve mastered:</p>
 <ul>

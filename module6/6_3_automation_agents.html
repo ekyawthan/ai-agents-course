@@ -36,10 +36,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-49812cde.js";
+            window.path_to_searchindex_js = "../searchindex-fc81a21b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-7241d7cf.js"></script>
+        <script src="../toc-2bd97266.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1044,6 +1044,51 @@ print(f"Created automation: {automation['workflow_id']}")
 <li><strong>Rate limiting</strong>: Don’t overwhelm systems</li>
 <li><strong>Security</strong>: Secure credentials and access</li>
 </ol>
+<hr>
+<h2 id="practice-exercises"><a class="header" href="#practice-exercises">Practice Exercises</a></h2>
+<h3 id="exercise-1-email-automation-agent-medium"><a class="header" href="#exercise-1-email-automation-agent-medium">Exercise 1: Email Automation Agent (Medium)</a></h3>
+<p><strong>Task</strong>: Build an agent that processes emails and takes actions.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class EmailAgent:
+    def process_email(self, email: Dict) -&gt; Dict:
+        # Classify email
+        category = self.classify(email["subject"])
+        
+        # Route based on category
+        if category == "urgent":
+            return self.escalate(email)
+        elif category == "question":
+            return self.auto_respond(email)
+        else:
+            return self.archive(email)
+</code></pre>
+</details>
+<h3 id="exercise-2-workflow-orchestrator-hard"><a class="header" href="#exercise-2-workflow-orchestrator-hard">Exercise 2: Workflow Orchestrator (Hard)</a></h3>
+<p><strong>Task</strong>: Create an orchestrator that manages complex multi-step workflows.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class WorkflowOrchestrator:
+    def execute_workflow(self, workflow: Dict) -&gt; Dict:
+        results = {}
+        for step in workflow["steps"]:
+            if self.check_conditions(step, results):
+                result = self.execute_step(step)
+                results[step["id"]] = result
+        return results
+</code></pre>
+</details>
+<hr>
+<blockquote>
+<p><strong>✅ Chapter 6 Summary</strong></p>
+<p>You’ve mastered specialized agent types:</p>
+<ul>
+<li><strong>Coding Agents</strong>: Analyze, generate, refactor, and test code</li>
+<li><strong>Research Agents</strong>: Multi-source search, verification, and synthesis</li>
+<li><strong>Automation Agents</strong>: Workflow orchestration, scheduling, and event-driven tasks</li>
+</ul>
+<p>These specialized agents demonstrate how to focus agent capabilities on specific domains for maximum effectiveness.</p>
+</blockquote>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
 <p>Chapter 6 (Specialized Agent Types) is complete! You now have deep knowledge of coding agents, research agents, and task automation agents. These specialized agents form the foundation for building powerful, domain-specific AI systems.</p>
 

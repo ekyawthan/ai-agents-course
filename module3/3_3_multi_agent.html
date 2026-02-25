@@ -36,10 +36,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-49812cde.js";
+            window.path_to_searchindex_js = "../searchindex-fc81a21b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-7241d7cf.js"></script>
+        <script src="../toc-2bd97266.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -837,6 +837,80 @@ report = team.research_topic("AI Agent Architectures")
 <h3 id="pitfall-4-no-clear-owner"><a class="header" href="#pitfall-4-no-clear-owner">Pitfall 4: No Clear Owner</a></h3>
 <p><strong>Problem</strong>: Task falls through the cracks
 <strong>Solution</strong>: Always assign clear responsibility</p>
+<hr>
+<h2 id="practice-exercises"><a class="header" href="#practice-exercises">Practice Exercises</a></h2>
+<h3 id="exercise-1-build-a-debate-system-medium"><a class="header" href="#exercise-1-build-a-debate-system-medium">Exercise 1: Build a Debate System (Medium)</a></h3>
+<p><strong>Task</strong>: Create 3 agents that debate a topic and reach consensus.</p>
+<p><strong>Requirements</strong>:</p>
+<ul>
+<li>Each agent takes a position</li>
+<li>Agents respond to each other’s arguments</li>
+<li>Judge determines the winner</li>
+</ul>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class DebateAgent:
+    def __init__(self, position: str):
+        self.position = position
+        self.client = openai.OpenAI()
+    
+    def argue(self, topic: str, opponent_args: List[str]) -&gt; str:
+        prompt = f"Topic: {topic}\nYour position: {self.position}\nOpponent arguments: {opponent_args}\n\nYour argument:"
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return response.choices[0].message.content
+
+# Create debate
+agents = [
+    DebateAgent("for"),
+    DebateAgent("against"),
+    DebateAgent("neutral")
+]
+
+# Run debate rounds
+for round in range(3):
+    for agent in agents:
+        others = [a.argue(topic, []) for a in agents if a != agent]
+        agent.argue(topic, others)
+</code></pre>
+</details>
+<h3 id="exercise-2-parallel-task-execution-hard"><a class="header" href="#exercise-2-parallel-task-execution-hard">Exercise 2: Parallel Task Execution (Hard)</a></h3>
+<p><strong>Task</strong>: Create a system where 4 agents analyze different files simultaneously.</p>
+<p><strong>Requirements</strong>:</p>
+<ul>
+<li>Use asyncio for parallel execution</li>
+<li>Aggregate results</li>
+<li>Handle failures gracefully</li>
+</ul>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">import asyncio
+
+async def analyze_parallel(files: List[str]) -&gt; List[Dict]:
+    tasks = [analyze_file(f) for f in files]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    return [r for r in results if not isinstance(r, Exception)]
+
+async def analyze_file(file_path: str) -&gt; Dict:
+    # Simulate analysis
+    await asyncio.sleep(1)
+    return {"file": file_path, "issues": []}
+</code></pre>
+</details>
+<hr>
+<blockquote>
+<p><strong>✅ Chapter 3 Summary</strong></p>
+<p>You’ve mastered advanced agent patterns:</p>
+<ul>
+<li><strong>Planning</strong>: Create multi-step plans with Chain-of-Thought and task decomposition</li>
+<li><strong>Memory</strong>: Implement short-term, long-term, and semantic memory systems</li>
+<li><strong>Multi-Agent</strong>: Coordinate specialized agents with various collaboration patterns</li>
+</ul>
+<p>These patterns enable agents to handle complex, long-running tasks that require coordination, context, and diverse expertise.</p>
+</blockquote>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
 <p>You now understand multi-agent systems! In Chapter 4, we’ll explore the tools and capabilities that make agents powerful, including code execution, data access, and web interaction.</p>
 

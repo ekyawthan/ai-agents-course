@@ -36,10 +36,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-49812cde.js";
+            window.path_to_searchindex_js = "../searchindex-fc81a21b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-7241d7cf.js"></script>
+        <script src="../toc-2bd97266.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -900,6 +900,66 @@ alerts.add_rule(
 <li><strong>Analyze trends</strong>: Look for patterns over time</li>
 <li><strong>Act on insights</strong>: Use data to improve</li>
 </ol>
+<hr>
+<h2 id="practice-exercises"><a class="header" href="#practice-exercises">Practice Exercises</a></h2>
+<h3 id="exercise-1-add-circuit-breaker-medium"><a class="header" href="#exercise-1-add-circuit-breaker-medium">Exercise 1: Add Circuit Breaker (Medium)</a></h3>
+<p><strong>Task</strong>: Implement a circuit breaker that stops calling a failing tool.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class CircuitBreaker:
+    def __init__(self, failure_threshold: int = 5):
+        self.failure_count = 0
+        self.threshold = failure_threshold
+        self.state = "closed"  # closed, open, half-open
+    
+    def call(self, func, *args):
+        if self.state == "open":
+            raise Exception("Circuit breaker is open")
+        
+        try:
+            result = func(*args)
+            self.failure_count = 0
+            return result
+        except:
+            self.failure_count += 1
+            if self.failure_count &gt;= self.threshold:
+                self.state = "open"
+            raise
+</code></pre>
+</details>
+<h3 id="exercise-2-build-a-metrics-dashboard-hard"><a class="header" href="#exercise-2-build-a-metrics-dashboard-hard">Exercise 2: Build a Metrics Dashboard (Hard)</a></h3>
+<p><strong>Task</strong>: Create a real-time dashboard showing agent metrics.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">from fastapi import FastAPI
+from prometheus_client import make_asgi_app
+
+app = FastAPI()
+
+# Mount Prometheus metrics
+metrics_app = make_asgi_app()
+app.mount("/metrics", metrics_app)
+
+@app.get("/dashboard")
+def dashboard():
+    return {
+        "requests_total": requests_total._value.get(),
+        "avg_duration": sum(durations) / len(durations),
+        "error_rate": errors_total._value.get() / requests_total._value.get()
+    }
+</code></pre>
+</details>
+<hr>
+<blockquote>
+<p><strong>✅ Chapter 5 Summary</strong></p>
+<p>You’ve learned production-ready practices:</p>
+<ul>
+<li><strong>Reliability</strong>: Input validation, guardrails, retries, and fallbacks</li>
+<li><strong>Testing</strong>: Unit tests, integration tests, benchmarks, and evaluation metrics</li>
+<li><strong>Monitoring</strong>: Logging, tracing, metrics, alerts, and feedback loops</li>
+</ul>
+<p>These practices ensure your agents are safe, reliable, and maintainable in production environments.</p>
+</blockquote>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
 <p>Chapter 5 (Production-Ready Agents) is complete! You now understand reliability, testing, and monitoring. You’re ready to build production-grade agents that are safe, tested, and observable.</p>
 <p>Would you like to continue with Chapter 6 (Specialized Agent Types)?</p>

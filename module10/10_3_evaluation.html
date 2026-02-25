@@ -36,10 +36,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-49812cde.js";
+            window.path_to_searchindex_js = "../searchindex-fc81a21b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-7241d7cf.js"></script>
+        <script src="../toc-2bd97266.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -965,6 +965,53 @@ def calculate_overall_score(tests: Dict, perf: Dict, feedback: Dict) -&gt; float
 ✅ Operates safely with validation
 ✅ Learns from feedback
 ✅ Scales to production workloads</p>
+<hr>
+<h2 id="practice-exercises"><a class="header" href="#practice-exercises">Practice Exercises</a></h2>
+<h3 id="exercise-1-add-code-review-agent-medium"><a class="header" href="#exercise-1-add-code-review-agent-medium">Exercise 1: Add Code Review Agent (Medium)</a></h3>
+<p><strong>Task</strong>: Add a ReviewerAgent that analyzes pull requests.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class ReviewerAgent:
+    def review_pr(self, diff: str) -&gt; Dict:
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{
+                "role": "user",
+                "content": f"Review this code change:\n{diff}\n\nProvide: issues, suggestions, approval"
+            }]
+        )
+        return {"review": response.choices[0].message.content}
+</code></pre>
+</details>
+<h3 id="exercise-2-implement-learning-system-hard"><a class="header" href="#exercise-2-implement-learning-system-hard">Exercise 2: Implement Learning System (Hard)</a></h3>
+<p><strong>Task</strong>: Make the agent learn from user corrections.</p>
+<details>
+<summary>Click to see solution</summary>
+<pre><code class="language-python">class LearningAgent:
+    def __init__(self):
+        self.corrections = []
+    
+    def learn_from_correction(self, original: str, corrected: str):
+        self.corrections.append({"original": original, "corrected": corrected})
+        
+        # Use corrections as few-shot examples
+        if len(self.corrections) &gt; 5:
+            self.update_prompts()
+</code></pre>
+</details>
+<hr>
+<blockquote>
+<p><strong>✅ Chapter 10 Summary</strong></p>
+<p>You’ve completed the capstone project:</p>
+<ul>
+<li><strong>Designed</strong> a multi-agent software engineering system</li>
+<li><strong>Implemented</strong> specialized agents (analyzer, fixer, tester)</li>
+<li><strong>Integrated</strong> all concepts from previous chapters</li>
+<li><strong>Evaluated</strong> with comprehensive test suites</li>
+<li><strong>Deployed</strong> with monitoring and feedback loops</li>
+</ul>
+<p>This capstone demonstrates how to combine planning, memory, tools, safety, and learning into a production-ready autonomous system.</p>
+</blockquote>
 <h3 id="what-youve-learned"><a class="header" href="#what-youve-learned">What You’ve Learned</a></h3>
 <p>Throughout this course, you’ve mastered:</p>
 <ul>
