@@ -437,7 +437,7 @@ selected = learner.active_learning(
 
 ## Conclusion
 
-Module 9 (Cutting-Edge Research) is complete! You now understand:
+Chapter 9 (Cutting-Edge Research) is complete! You now understand:
 - Frontier capabilities (self-improvement, tool creation, abstract reasoning)
 - Emerging paradigms (constitutional AI, debate systems, neuro-symbolic)
 - Open problems (alignment, interpretability, generalization, sample efficiency)

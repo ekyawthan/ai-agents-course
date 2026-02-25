@@ -489,6 +489,6 @@ print(f"Budget utilization: {report['utilization']:.1f}%")
 
 ## Next Steps
 
-**Module 8 (Enterprise & Scale) is complete!** You now understand architecture patterns, security & compliance, and cost optimization for production agent systems.
+**Chapter 8 (Enterprise & Scale) is complete!** You now understand architecture patterns, security & compliance, and cost optimization for production agent systems.
 
 We've completed 8 out of 10 modules! Only Chapters 9 and 10 remain. Would you like to continue?

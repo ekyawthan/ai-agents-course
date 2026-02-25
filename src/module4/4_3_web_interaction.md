@@ -729,4 +729,4 @@ agent.close()
 
 ## Next Steps
 
-Module 4 (Agent Tools & Capabilities) is complete! You now understand code execution, data access, and web interaction. In Module 5, we'll explore production-ready agents including reliability, testing, and monitoring.
+Chapter 4 (Agent Tools & Capabilities) is complete! You now understand code execution, data access, and web interaction. In Chapter 5, we'll explore production-ready agents including reliability, testing, and monitoring.

@@ -5,7 +5,7 @@
 By the end of this module, you will:
 - ✓ Design a complete autonomous software engineering agent
 - ✓ Implement multi-agent orchestration with specialized roles
-- ✓ Integrate all concepts from previous modules
+- ✓ Integrate all concepts from previous chapters
 - ✓ Deploy a production-ready agent system
 - ✓ Evaluate and iterate based on real-world testing
 

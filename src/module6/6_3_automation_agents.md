@@ -893,4 +893,4 @@ print(f"Created automation: {automation['workflow_id']}")
 
 ## Next Steps
 
-Module 6 (Specialized Agent Types) is complete! You now have deep knowledge of coding agents, research agents, and task automation agents. These specialized agents form the foundation for building powerful, domain-specific AI systems.
+Chapter 6 (Specialized Agent Types) is complete! You now have deep knowledge of coding agents, research agents, and task automation agents. These specialized agents form the foundation for building powerful, domain-specific AI systems.

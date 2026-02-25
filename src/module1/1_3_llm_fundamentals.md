@@ -361,4 +361,4 @@ Different models for different needs:
 
 ## Next Steps
 
-With these LLM fundamentals, you're ready to build your first agent! In Module 2, we'll implement a simple ReAct agent that puts these concepts into practice.
+With these LLM fundamentals, you're ready to build your first agent! In Chapter 2, we'll implement a simple ReAct agent that puts these concepts into practice.

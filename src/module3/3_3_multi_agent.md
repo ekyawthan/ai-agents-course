@@ -681,4 +681,4 @@ report = team.research_topic("AI Agent Architectures")
 
 ## Next Steps
 
-You now understand multi-agent systems! In Module 4, we'll explore the tools and capabilities that make agents powerful, including code execution, data access, and web interaction.
+You now understand multi-agent systems! In Chapter 4, we'll explore the tools and capabilities that make agents powerful, including code execution, data access, and web interaction.

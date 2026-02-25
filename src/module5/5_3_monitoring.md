@@ -757,6 +757,6 @@ alerts.add_rule(
 
 ## Next Steps
 
-Module 5 (Production-Ready Agents) is complete! You now understand reliability, testing, and monitoring. You're ready to build production-grade agents that are safe, tested, and observable.
+Chapter 5 (Production-Ready Agents) is complete! You now understand reliability, testing, and monitoring. You're ready to build production-grade agents that are safe, tested, and observable.
 
-Would you like to continue with Module 6 (Specialized Agent Types)?
+Would you like to continue with Chapter 6 (Specialized Agent Types)?

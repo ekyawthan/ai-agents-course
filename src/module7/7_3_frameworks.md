@@ -732,4 +732,4 @@ framework.add_middleware(logging_middleware)
 
 ## Next Steps
 
-Module 7 (Advanced Topics) is complete! You now have deep knowledge of agent learning, multimodal capabilities, and frameworks. This prepares you for enterprise-scale deployments in Module 8.
+Chapter 7 (Advanced Topics) is complete! You now have deep knowledge of agent learning, multimodal capabilities, and frameworks. This prepares you for enterprise-scale deployments in Module 8.

@@ -622,7 +622,7 @@ class DebuggingAgent:
     
     def __init__(self):
         self.client = openai.OpenAI()
-        self.sandbox = CodeExecutor()  # From previous modules
+        self.sandbox = CodeExecutor()  # From previous chapters
     
     def debug_code(self, code: str, error_message: str = None) -> Dict:
         """Debug code and suggest fixes"""

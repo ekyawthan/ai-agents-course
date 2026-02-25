@@ -674,4 +674,4 @@ Congratulations! You've built a complete shopping research assistant. You now un
 - ✅ Error handling and debugging
 - ✅ Real-world agent applications
 
-In Module 3, we'll explore advanced agent patterns including planning, memory systems, and multi-agent collaboration!
+In Chapter 3, we'll explore advanced agent patterns including planning, memory systems, and multi-agent collaboration!
