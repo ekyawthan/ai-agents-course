@@ -715,6 +715,88 @@ report = team.research_topic("AI Agent Architectures")
 **Problem**: Task falls through the cracks
 **Solution**: Always assign clear responsibility
 
+---
+
+## Practice Exercises
+
+### Exercise 1: Build a Debate System (Medium)
+**Task**: Create 3 agents that debate a topic and reach consensus.
+
+**Requirements**:
+- Each agent takes a position
+- Agents respond to each other's arguments
+- Judge determines the winner
+
+<details>
+<summary>Click to see solution</summary>
+
+```python
+class DebateAgent:
+    def __init__(self, position: str):
+        self.position = position
+        self.client = openai.OpenAI()
+    
+    def argue(self, topic: str, opponent_args: List[str]) -> str:
+        prompt = f"Topic: {topic}\nYour position: {self.position}\nOpponent arguments: {opponent_args}\n\nYour argument:"
+        
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return response.choices[0].message.content
+
+# Create debate
+agents = [
+    DebateAgent("for"),
+    DebateAgent("against"),
+    DebateAgent("neutral")
+]
+
+# Run debate rounds
+for round in range(3):
+    for agent in agents:
+        others = [a.argue(topic, []) for a in agents if a != agent]
+        agent.argue(topic, others)
+```
+</details>
+
+### Exercise 2: Parallel Task Execution (Hard)
+**Task**: Create a system where 4 agents analyze different files simultaneously.
+
+**Requirements**:
+- Use asyncio for parallel execution
+- Aggregate results
+- Handle failures gracefully
+
+<details>
+<summary>Click to see solution</summary>
+
+```python
+import asyncio
+
+async def analyze_parallel(files: List[str]) -> List[Dict]:
+    tasks = [analyze_file(f) for f in files]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    return [r for r in results if not isinstance(r, Exception)]
+
+async def analyze_file(file_path: str) -> Dict:
+    # Simulate analysis
+    await asyncio.sleep(1)
+    return {"file": file_path, "issues": []}
+```
+</details>
+
+---
+
+> **✅ Chapter 3 Summary**
+>
+> You've mastered advanced agent patterns:
+> - **Planning**: Create multi-step plans with Chain-of-Thought and task decomposition
+> - **Memory**: Implement short-term, long-term, and semantic memory systems
+> - **Multi-Agent**: Coordinate specialized agents with various collaboration patterns
+>
+> These patterns enable agents to handle complex, long-running tasks that require coordination, context, and diverse expertise.
+
 ## Next Steps
 
 You now understand multi-agent systems! In Chapter 4, we'll explore the tools and capabilities that make agents powerful, including code execution, data access, and web interaction.

@@ -755,6 +755,76 @@ alerts.add_rule(
 9. **Analyze trends**: Look for patterns over time
 10. **Act on insights**: Use data to improve
 
+---
+
+## Practice Exercises
+
+### Exercise 1: Add Circuit Breaker (Medium)
+**Task**: Implement a circuit breaker that stops calling a failing tool.
+
+<details>
+<summary>Click to see solution</summary>
+
+```python
+class CircuitBreaker:
+    def __init__(self, failure_threshold: int = 5):
+        self.failure_count = 0
+        self.threshold = failure_threshold
+        self.state = "closed"  # closed, open, half-open
+    
+    def call(self, func, *args):
+        if self.state == "open":
+            raise Exception("Circuit breaker is open")
+        
+        try:
+            result = func(*args)
+            self.failure_count = 0
+            return result
+        except:
+            self.failure_count += 1
+            if self.failure_count >= self.threshold:
+                self.state = "open"
+            raise
+```
+</details>
+
+### Exercise 2: Build a Metrics Dashboard (Hard)
+**Task**: Create a real-time dashboard showing agent metrics.
+
+<details>
+<summary>Click to see solution</summary>
+
+```python
+from fastapi import FastAPI
+from prometheus_client import make_asgi_app
+
+app = FastAPI()
+
+# Mount Prometheus metrics
+metrics_app = make_asgi_app()
+app.mount("/metrics", metrics_app)
+
+@app.get("/dashboard")
+def dashboard():
+    return {
+        "requests_total": requests_total._value.get(),
+        "avg_duration": sum(durations) / len(durations),
+        "error_rate": errors_total._value.get() / requests_total._value.get()
+    }
+```
+</details>
+
+---
+
+> **✅ Chapter 5 Summary**
+>
+> You've learned production-ready practices:
+> - **Reliability**: Input validation, guardrails, retries, and fallbacks
+> - **Testing**: Unit tests, integration tests, benchmarks, and evaluation metrics
+> - **Monitoring**: Logging, tracing, metrics, alerts, and feedback loops
+>
+> These practices ensure your agents are safe, reliable, and maintainable in production environments.
+
 ## Next Steps
 
 Chapter 5 (Production-Ready Agents) is complete! You now understand reliability, testing, and monitoring. You're ready to build production-grade agents that are safe, tested, and observable.

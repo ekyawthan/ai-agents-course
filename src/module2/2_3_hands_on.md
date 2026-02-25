@@ -665,6 +665,143 @@ def get_user_preferences() -> dict:
     }
 ```
 
+---
+
+## Practice Exercises
+
+### Exercise 1: Add a New Tool (Easy)
+**Task**: Add a `compare_prices` tool that compares prices across products.
+
+**Requirements**:
+- Takes a list of products with prices
+- Returns the cheapest option
+- Handles missing price data
+
+<details>
+<summary>Click to see solution</summary>
+
+```python
+def compare_prices(products: List[Dict]) -> Dict:
+    """Compare prices and find cheapest"""
+    
+    valid_products = [p for p in products if "price" in p]
+    
+    if not valid_products:
+        return {"error": "No products with prices"}
+    
+    cheapest = min(valid_products, key=lambda x: x["price"])
+    
+    return {
+        "cheapest": cheapest,
+        "savings": valid_products[0]["price"] - cheapest["price"]
+    }
+```
+</details>
+
+### Exercise 2: Improve Error Handling (Medium)
+**Task**: Enhance the agent to handle API timeouts and retries.
+
+**Requirements**:
+- Retry failed tool calls up to 3 times
+- Use exponential backoff
+- Log all retry attempts
+
+<details>
+<summary>Click to see solution</summary>
+
+```python
+import time
+
+def execute_tool_with_retry(tool_name: str, args: dict, max_retries: int = 3):
+    """Execute tool with retry logic"""
+    
+    for attempt in range(max_retries):
+        try:
+            result = execute_tool(tool_name, args)
+            return result
+        except Exception as e:
+            if attempt == max_retries - 1:
+                raise
+            
+            wait_time = 2 ** attempt  # Exponential backoff
+            print(f"Retry {attempt + 1}/{max_retries} after {wait_time}s")
+            time.sleep(wait_time)
+```
+</details>
+
+### Exercise 3: Build a Travel Agent (Hard)
+**Task**: Create a travel planning agent with these tools:
+- `search_flights(origin, destination, date)`
+- `search_hotels(location, checkin, checkout)`
+- `get_weather(location, date)`
+- `calculate_budget(flights, hotels, days)`
+
+**Challenge**: Agent should create a complete travel plan with budget.
+
+<details>
+<summary>Click to see solution</summary>
+
+```python
+class TravelAgent:
+    def __init__(self):
+        self.client = openai.OpenAI()
+        self.tools = [
+            {
+                "name": "search_flights",
+                "description": "Search for flights",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "origin": {"type": "string"},
+                        "destination": {"type": "string"},
+                        "date": {"type": "string"}
+                    },
+                    "required": ["origin", "destination", "date"]
+                }
+            },
+            # Add other tools...
+        ]
+    
+    def plan_trip(self, request: str) -> Dict:
+        """Plan complete trip"""
+        
+        messages = [{"role": "user", "content": request}]
+        
+        for _ in range(10):
+            response = self.client.chat.completions.create(
+                model="gpt-4",
+                messages=messages,
+                tools=self.tools
+            )
+            
+            message = response.choices[0].message
+            
+            if message.tool_calls:
+                # Execute tools and continue
+                for tool_call in message.tool_calls:
+                    result = self.execute_tool(tool_call)
+                    messages.append({
+                        "role": "tool",
+                        "content": json.dumps(result),
+                        "tool_call_id": tool_call.id
+                    })
+            else:
+                return {"plan": message.content}
+        
+        return {"error": "Max steps reached"}
+```
+</details>
+
+---
+
+> **✅ Key Takeaways**
+>
+> - ReAct agents combine reasoning with tool use
+> - Tool integration requires clear schemas and validation
+> - Error handling and retries improve reliability
+> - Real-world agents need multiple specialized tools
+> - Practice builds intuition for agent design
+
 ## Next Steps
 
 Congratulations! You've built a complete shopping research assistant. You now understand:

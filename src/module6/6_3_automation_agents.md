@@ -891,6 +891,61 @@ print(f"Created automation: {automation['workflow_id']}")
 9. **Rate limiting**: Don't overwhelm systems
 10. **Security**: Secure credentials and access
 
+---
+
+## Practice Exercises
+
+### Exercise 1: Email Automation Agent (Medium)
+**Task**: Build an agent that processes emails and takes actions.
+
+<details>
+<summary>Click to see solution</summary>
+
+```python
+class EmailAgent:
+    def process_email(self, email: Dict) -> Dict:
+        # Classify email
+        category = self.classify(email["subject"])
+        
+        # Route based on category
+        if category == "urgent":
+            return self.escalate(email)
+        elif category == "question":
+            return self.auto_respond(email)
+        else:
+            return self.archive(email)
+```
+</details>
+
+### Exercise 2: Workflow Orchestrator (Hard)
+**Task**: Create an orchestrator that manages complex multi-step workflows.
+
+<details>
+<summary>Click to see solution</summary>
+
+```python
+class WorkflowOrchestrator:
+    def execute_workflow(self, workflow: Dict) -> Dict:
+        results = {}
+        for step in workflow["steps"]:
+            if self.check_conditions(step, results):
+                result = self.execute_step(step)
+                results[step["id"]] = result
+        return results
+```
+</details>
+
+---
+
+> **✅ Chapter 6 Summary**
+>
+> You've mastered specialized agent types:
+> - **Coding Agents**: Analyze, generate, refactor, and test code
+> - **Research Agents**: Multi-source search, verification, and synthesis
+> - **Automation Agents**: Workflow orchestration, scheduling, and event-driven tasks
+>
+> These specialized agents demonstrate how to focus agent capabilities on specific domains for maximum effectiveness.
+
 ## Next Steps
 
 Chapter 6 (Specialized Agent Types) is complete! You now have deep knowledge of coding agents, research agents, and task automation agents. These specialized agents form the foundation for building powerful, domain-specific AI systems.

@@ -3,6 +3,7 @@
 [Introduction](./introduction.md)
 [Prerequisites](./prerequisites.md)
 [About This Course](./about.md)
+[FAQ](./faq.md)
 
 ---
 

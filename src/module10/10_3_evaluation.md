@@ -848,6 +848,63 @@ You've completed the capstone project! You've built a sophisticated Autonomous S
 ✅ Learns from feedback
 ✅ Scales to production workloads
 
+---
+
+## Practice Exercises
+
+### Exercise 1: Add Code Review Agent (Medium)
+**Task**: Add a ReviewerAgent that analyzes pull requests.
+
+<details>
+<summary>Click to see solution</summary>
+
+```python
+class ReviewerAgent:
+    def review_pr(self, diff: str) -> Dict:
+        response = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=[{
+                "role": "user",
+                "content": f"Review this code change:\n{diff}\n\nProvide: issues, suggestions, approval"
+            }]
+        )
+        return {"review": response.choices[0].message.content}
+```
+</details>
+
+### Exercise 2: Implement Learning System (Hard)
+**Task**: Make the agent learn from user corrections.
+
+<details>
+<summary>Click to see solution</summary>
+
+```python
+class LearningAgent:
+    def __init__(self):
+        self.corrections = []
+    
+    def learn_from_correction(self, original: str, corrected: str):
+        self.corrections.append({"original": original, "corrected": corrected})
+        
+        # Use corrections as few-shot examples
+        if len(self.corrections) > 5:
+            self.update_prompts()
+```
+</details>
+
+---
+
+> **✅ Chapter 10 Summary**
+>
+> You've completed the capstone project:
+> - **Designed** a multi-agent software engineering system
+> - **Implemented** specialized agents (analyzer, fixer, tester)
+> - **Integrated** all concepts from previous chapters
+> - **Evaluated** with comprehensive test suites
+> - **Deployed** with monitoring and feedback loops
+>
+> This capstone demonstrates how to combine planning, memory, tools, safety, and learning into a production-ready autonomous system.
+
 ### What You've Learned
 
 Throughout this course, you've mastered:
