@@ -1,4 +1,4 @@
-# AI Agents: Zero to Hero
+# Agentic Guide to AI Agents
 
 A comprehensive, hands-on course that takes you from understanding basic agent concepts to building production-ready autonomous systems. Learn to create intelligent agents that can reason, use tools, collaborate, and solve complex real-world problems.
 

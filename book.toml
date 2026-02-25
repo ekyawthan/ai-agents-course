@@ -2,7 +2,7 @@
 authors = ["Kyaw Mong"]
 language = "en"
 src = "src"
-title = "AI Agents: Zero to Hero"
+title = "Agentic Guide to AI Agents"
 
 [output.html]
 additional-css = ["theme/custom.css"]
